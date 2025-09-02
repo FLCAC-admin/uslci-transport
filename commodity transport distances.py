@@ -7,28 +7,6 @@ import zipfile
 import os
 import urllib.request
 
-'''
-# Get the directory of the current script
-script_dir = os.path.dirname(os.path.abspath(__file__))
-
-# Define expected file names
-csv_name = "CFS 2017 PUF CSV.csv"
-zip_name = "CFS 2017 PUF CSV.zip"
-
-# Full paths
-csv_path = os.path.join(script_dir, csv_name)
-zip_path = os.path.join(script_dir, zip_name)
-
-# Unzip if necessary
-if not os.path.exists(csv_path) and os.path.exists(zip_path):
-    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-        zip_ref.extractall(script_dir)
-
-# Read the CSV
-df = pd.read_csv(csv_path, delimiter=',')
-del script_dir, csv_name, zip_name, csv_path, zip_path
-'''
-
 # Get the current working directory
 script_dir = os.getcwd()
 
@@ -43,25 +21,23 @@ zip_path = os.path.join(script_dir, zip_filename)
 
 # Check if CSV file exists
 if os.path.exists(csv_path):
-    print(f"Found unzipped file: {csv_filename}")
+    print(f"\nFound unzipped file: {csv_filename}")
     df = pd.read_csv(csv_path)
 # Check if ZIP file exists
 elif os.path.exists(zip_path):
-    print(f"Found zipped file: {zip_filename}. Unzipping...")
+    print(f"\nFound zipped file: {zip_filename}. Unzipping...")
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
         zip_ref.extractall(script_dir)
     df = pd.read_csv(csv_path)
 # Download the ZIP file if neither exists
 else:
-    print(f"{csv_filename} not found. Downloading from {download_url}...")
+    print(f"\n{csv_filename} not found. Downloading from {download_url}...")
     urllib.request.urlretrieve(download_url, zip_path)
-    print("Download complete. Unzipping...")
+    print("\nDownload complete. Unzipping...")
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
         zip_ref.extractall(script_dir)
+    print("\nUnzipping complete. Reading into DataFrame...")
     df = pd.read_csv(csv_path)
-
-# Display the first few rows of the DataFrame
-print(df.head())
 
 ## Drop columns ##
 columnsToDrop = ['SHIPMT_ID',      # Unique shipment ID
@@ -352,8 +328,8 @@ pufDict_sctg_tMode['Single Modes'] = calc_dist_mass(df_SM)
 # Disaggregate 'Water' and 'Multiple Waterways'
 pufDict_sctg_tMode['Single Modes'] = disaggregate_generic_SM_dict(
     pufDict_sctg_tMode['Single Modes'],
-    aggregated_modes=['water', 'multiple Waterways'],
-    high_res_modes=['deep Sea', 'inland Water', 'great Lakes'],
+    aggregated_modes=['water', 'multiple waterways'],
+    high_res_modes=['deep Sea', 'inland water', 'great lakes'],
     default_mode='inland water'
 )
 
