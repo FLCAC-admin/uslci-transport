@@ -1,0 +1,385 @@
+#%% Setup ##
+
+## Dependencies ##
+import pandas as pd
+import copy
+import zipfile
+import os
+
+# Get the directory of the current script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Define expected file names
+csv_name = "CFS 2017 PUF CSV.csv"
+zip_name = "CFS 2017 PUF CSV.zip"
+
+# Full paths
+csv_path = os.path.join(script_dir, csv_name)
+zip_path = os.path.join(script_dir, zip_name)
+
+# Unzip if necessary
+if not os.path.exists(csv_path) and os.path.exists(zip_path):
+    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+        zip_ref.extractall(script_dir)
+
+# Read the CSV
+df = pd.read_csv(csv_path, delimiter=',')
+del script_dir, csv_name, zip_name, csv_path, zip_path
+
+## Drop columns ##
+columnsToDrop = ['SHIPMT_ID',      # Unique shipment ID
+                 'ORIG_STATE',     # Origin state
+                 'ORIG_MA',        # Origin metropolitan area
+                 'ORIG_CFS_AREA',  # Origin CFS area
+                 'DEST_STATE',     # Destination state
+                 'DEST_MA',        # Destination metropolitan area
+                 'DEST_CFS_AREA',  # Destination CFS area
+                 'QUARTER',        # Quarter shipment data was collected
+                 'SHIPMT_VALUE',   # Monetary value of shipment
+                 'TEMP_CNTL_YN',   # Is the shipment temperature contolled
+                 'EXPORT_CNTRY',   # If export, what is the destination
+                 'HAZMAT',         # Is the material hazardous
+                 'SHIPMT_DIST_GC'] # Great circle distance of shipment; https://ansperformance.eu/acronym/gcd/#:~:text=The%20great%2Dcircle%20distance%20or,the%20surface%20of%20the%20sphere.
+df.drop(columnsToDrop, axis = 1, inplace=True)
+del columnsToDrop
+df = df.astype(str)
+df_ref = df # Reference df with no rows removed for QC checks
+
+
+#%% Data cleaning ##
+
+# Remove and store aggregated SCTG codes (i.e. colVal 'SCTG'==01-05)
+df_aggSCTG = df[df['SCTG'].str.len()>2].copy()
+df = df[df['SCTG'].str.len()<=2].copy()
+rate_aggSCTG = 100*(len(df_aggSCTG) / len(df_ref)) # 0.234 % removed from original df
+
+# Remove and store suppressed SCTG codes (i.e. colVal 'SCTG'==00)
+# Column values for MODE are 0, suppressed, when SCTG is suppressed
+df_supSCTG = df[df['SCTG']=='00'].copy()
+df = df[df['SCTG'] !='00'].copy()
+rate_supSCTG = 100*(len(df_supSCTG) / len(df_ref)) # 0.008 % removed from original df
+
+# Remove and store shipments that are exports (i.e. colVal 'EXPORT_YN'==Y)
+df_exports = df[df['EXPORT_YN']=='Y'].copy()
+df = df[df['EXPORT_YN'] !='Y'].copy()
+rate_exports = 100*(len(df_exports) / len(df_ref)) # 3.56 % removed from original df
+
+
+#%% Transport Mode processing ##
+
+# Remove and store single-mode (SM) line items
+SMCodes = ['2','3','4','5','6','7','8','9','10','101','11','12','19']
+df_SM = df[df['MODE'].isin(SMCodes)].copy()
+df = df[~df['MODE'].isin(SMCodes)].copy()
+del SMCodes
+rate_SM = 100*(len(df_SM) / len(df_ref)) # 70.3 % of original df
+
+# Remove and store multi-mode (MM) line items
+MMCodes = ['13','14','15','16','17','18','20']
+df_MM = df[df['MODE'].isin(MMCodes)].copy()
+df = df[~df['MODE'].isin(MMCodes)].copy()
+del MMCodes
+rate_MM = 100*(len(df_MM) / len(df_ref)) # 25.9 % of original df
+
+# Calculate the average shipment distance for MODE 4 'For-hire truck'
+#mode_4_df = df_SM[df_SM['MODE'] == '4'].copy()
+#mode_4_df['SHIPMT_DIST_ROUTED'] = mode_4_df['SHIPMT_DIST_ROUTED'].astype(float)
+#avg_ship_dist_mode_4 = mode_4_df['SHIPMT_DIST_ROUTED'].mean()
+#print('Average shipment distance for "For-hire truck" (mode 4): ',avg_ship_dist_mode_4) # 457.5 miles
+#del mode_4_df
+
+# Calculate the average shipment distance for MODE 5 'Company-owned truck'
+#mode_5_df = df_SM[df_SM['MODE'] == '5'].copy()
+#mode_5_df['SHIPMT_DIST_ROUTED'] = mode_5_df['SHIPMT_DIST_ROUTED'].astype(float)
+#avg_ship_dist_mode_5 = mode_5_df['SHIPMT_DIST_ROUTED'].mean()
+#print('Average shipment distance for "Company-hired truck" (mode 5): ',avg_ship_dist_mode_5) # 52.3 miles
+#del mode_5_df
+
+#%% Quality Control ##
+
+# Check that all lines of data are accounted for
+removed = rate_aggSCTG + rate_exports + rate_supSCTG + rate_MM + rate_SM
+retained = 100*(len(df) / len(df_ref))
+total = removed + retained
+#del df, df_ref, rate_SM, rate_MM, rate_aggSCTG, rate_exports, rate_supSCTG, removed, retained, total
+
+
+#%% Code Mapping ##
+
+# Mode name mapping per PUF mode codes (Appendix A-4 of 2017 PUF User Guide)
+mode_names = {
+    '2': 'Single mode',
+    '3': 'Truck',
+    '4': 'For-hire truck',
+    '5': 'Company-owned truck',
+    '6': 'Rail',
+    '7': 'Water',
+    '8': 'Inland water',
+    '9': 'Great lakes',
+    '10': 'Deep sea',
+    '101': 'Multiple waterways',
+    '11': 'Air(incl. truck & air)',
+    '12': 'Pipeline',
+    '13': 'Multi-mode',
+    '14': 'Parcel,USPS,courier',
+    '15': 'Truck & rail',
+    '16': 'Truck & water',
+    '17': 'Rail & water',
+    '18': 'Other multiple modes',
+    '19': 'Other (single) mode',
+    '20': 'Non-parcel multi-mode'
+}
+
+# Commodity name mapping per SCTG Codes (Appendix A-3 of 2017 PUF User Guide)
+SCTG_codes = {
+    '01': 'Animals and Fish (live)',
+    '02': 'Cereal Grains (includes seed)',
+    '03': 'Agricultural Products (excludes Animal Feed, Cereal Grains, and Forage Products)',
+    '04': 'Animal Feed, Eggs, Honey, and Other Products of Animal Origin',
+    '05': 'Meat, Poultry, Fish, Seafood, and Their Preparations',
+    '06': 'Milled Grain Products and Preparations, and Bakery Products',
+    '07': 'Other Prepared Foodstuffs, and Fats and Oils',
+    '08': 'Alcoholic Beverages and Denatured Alcohol',
+    '09': 'Tobacco Products',
+    '10': 'Monumental or Building Stone',
+    '11': 'Natural Sands',
+    '12': 'Gravel and Crushed Stone (excludes Dolomite and Slate)',
+    '13': 'Other Non-Metallic Minerals not elsewhere classified',
+    '14': 'Metallic Ores and Concentrates',
+    '15': 'Coal',
+    '16': 'Crude Petroleum',
+    '17': 'Gasoline, Aviation Turbine Fuel, and Ethanol (includes Kerosene, and Fuel Alcohols)',
+    '18': 'Fuel Oils (includes Diesel, Bunker C, and Biodiesel)',
+    '19': 'Other Coal and Petroleum Products, not elsewhere classified',
+    '20': 'Basic Chemicals',
+    '21': 'Pharmaceutical Products',
+    '22': 'Fertilizers',
+    '23': 'Other Chemical Products and Preparations',
+    '24': 'Plastics and Rubber',
+    '25': 'Logs and Other Wood in the Rough',
+    '26': 'Wood Products',
+    '27': 'Pulp, Newsprint, Paper, and Paperboard',
+    '28': 'Paper or Paperboard Articles',
+    '29': 'Printed Products',
+    '30': 'Textiles, Leather, and Articles of Textiles or Leather',
+    '31': 'Non-Metallic Mineral Products',
+    '32': 'Base Metal in Primary or Semi-Finished Forms and in Finished Basic Shapes',
+    '33': 'Articles of Base Metal',
+    '34': 'Machinery',
+    '35': 'Electronic and Other Electrical Equipment and Components, and Office Equipment',
+    '36': 'Motorized and Other Vehicles (includes parts)',
+    '37': 'Transportation Equipment, not elsewhere classified',
+    '38': 'Precision Instruments and Apparatus',
+    '39': 'Furniture, Mattresses and Mattress Supports, Lamps, Lighting Fittings, and Illuminated Signs',
+    '40': 'Miscellaneous Manufactured Products',
+    '41': 'Waste and Scrap (excludes of agriculture or food, see 041xx)',
+    '43': 'Mixed Freight'
+}
+
+
+#%% Calculation Methods ##
+
+def calc_dist_mass(df_group):
+    """
+    Processes a grouped DataFrame by SCTG and MODE to calculate transport statistics.
+
+    For each SCTG category, this function:
+    - Groups the data by transport mode.
+    - Calculates the total mass shipped using the equation:
+      'Total tonnage for a given domain' (PUF User Guide, 2017, pg. 4).
+    - Calculates the average shipment distance using the equation:
+      'Average miles per shipment for a given domain' (PUF User Guide, 2017, pg. 5).
+    - Converts mass from pounds to metric tons.
+    - Converts distance from miles to kilometers.
+    - Returns a dictionary of summary DataFrames keyed by SCTG code.
+
+    Parameters:
+    - df_group (pd.DataFrame): A DataFrame containing shipment data with columns:
+        'SCTG', 'MODE', 'WGT_FACTOR', 'SHIPMT_DIST_ROUTED', 'SHIPMT_WGHT'
+
+    Returns:
+    - dict: Dictionary where each key is an SCTG code and each value is a DataFrame
+      summarizing transport mode, total mass shipped (in metric tons), and average
+      shipment distance (in kilometers).
+    """
+    sctg_summary = {}
+    for sctg, group_SCTG in df_group.groupby('SCTG'):
+        mode_data = []
+        for mode, df in group_SCTG.groupby('MODE'):
+            mode_name = mode_names.get(str(mode), str(mode))
+            
+            # Convert data to float for calculations
+            df['WGT_FACTOR'] = df['WGT_FACTOR'].astype(float)
+            df['SHIPMT_DIST_ROUTED'] = df['SHIPMT_DIST_ROUTED'].astype(float)
+            df['SHIPMT_WGHT'] = df['SHIPMT_WGHT'].astype(float)
+            
+            # Calculate total mass shipped
+            df['temp_marg_mass'] = df['WGT_FACTOR'] * df['SHIPMT_WGHT'] # Marginal contribution of each shipment in pounds
+            total_domain_mass =  df['temp_marg_mass'].sum() # Execute equation; sum temp_marg_mass column
+            total_domain_mass = 0.000453592 * total_domain_mass # Convert pounds to metric tons
+            
+            # Calculate average shipment distance
+            df['temp_numer'] = df['WGT_FACTOR'] * df['SHIPMT_DIST_ROUTED'] # Marginal contribution of each shipment in miles
+            fiveb_numer = df['temp_numer'].sum() # Sum temp_numer column
+            fiveb_denom = df['WGT_FACTOR'].sum() # Sum 'WGT_FACTOR values to serve as denominator
+            avg_ship_dist = fiveb_numer / fiveb_denom if fiveb_denom != 0 else float('nan') # Execute equation
+            avg_ship_dist = round(1.60934 * avg_ship_dist, 2) # Store results as kilometers
+            
+            # Append row to mode_data
+            mode_data.append({
+                'Mode': mode_name,
+                'Total Mass Shipped (m-Tons)': total_domain_mass,
+                'Avg. Distance (km)': avg_ship_dist
+            })
+            
+            # Drop temporary columns
+            df.drop(columns=['temp_numer', 'temp_marg_mass'], inplace=True)
+            
+        # Create DataFrame
+        sctg_summary[sctg] = pd.DataFrame(mode_data)
+        
+    return sctg_summary
+
+def disaggregate_generic_SM_dict(df_dict, aggregated_modes, high_res_modes, default_mode):
+    """
+    Disaggregate generic transport modes in a dictionary of DataFrames. Generic transport modes are
+    modes such as 'Water', 'Multiple waterways', and 'Truck'.
+
+    Parameters:
+    - df_dict: Dictionary of DataFrames keyed by SCTG code
+    - aggregated_modes: List of aggregated mode names (e.g., ['Water', 'Multiple Waterways'])
+    - high_res_modes: List of high-resolution mode names (e.g., ['Deep Sea', 'Inland Water'])
+    - default_mode: Default mode to assign if no high-resolution modes are present
+
+    Returns:
+    - Updated dictionary with disaggregated DataFrames
+    """
+    updated_dict = {}
+
+    for key, df in df_dict.items():
+        df = df.copy()
+
+        # Normalize mode names for consistency
+        df['Mode'] = df['Mode'].str.strip().str.lower()
+        normalized_agg_modes = [m.lower() for m in aggregated_modes]
+        normalized_high_res_modes = [m.lower() for m in high_res_modes]
+        normalized_default_mode = default_mode.lower()
+
+        # Check if any aggregated modes are present
+        if df['Mode'].isin(normalized_agg_modes).any():
+            # Total mass from aggregated modes
+            agg_mass = df[df['Mode'].isin(normalized_agg_modes)]['Total Mass Shipped (m-Tons)'].astype(float).sum()
+
+            # Filter high-resolution modes
+            high_res_df = df[df['Mode'].isin(normalized_high_res_modes)].copy()
+
+            if not high_res_df.empty:
+                total_high_res_mass = high_res_df['Total Mass Shipped (m-Tons)'].sum()
+
+                # Allocate aggregated mass proportionally
+                for mode in normalized_high_res_modes:
+                    if mode in df['Mode'].values:
+                        fraction = df.loc[df['Mode'] == mode, 'Total Mass Shipped (m-Tons)'].values[0] / total_high_res_mass
+                        added_mass = fraction * agg_mass
+                        df.loc[df['Mode'] == mode, 'Total Mass Shipped (m-Tons)'] += added_mass
+
+                # Remove aggregated mode rows
+                df = df[~df['Mode'].isin(normalized_agg_modes)].reset_index(drop=True)
+            else:
+                # No high-resolution modes present — rename aggregated modes to default
+                df.loc[df['Mode'].isin(normalized_agg_modes), 'Mode'] = normalized_default_mode
+                print(f"[INFO] For '{key}', no high-resolution modes found. Defaulted aggregated modes to '{default_mode}'.")
+
+        # Restore original casing for mode names (optional, if needed)
+        mode_case_map = {m.lower(): m for m in aggregated_modes + high_res_modes + [default_mode]}
+        df['Mode'] = df['Mode'].map(lambda x: mode_case_map.get(x, x))
+
+        updated_dict[key] = df
+
+    return updated_dict
+
+#%% Run Calculations ##
+
+# Combined dictionary
+# Level 1: Single mode and multi mode
+# Level 2: SCTG Codes
+# Level 3: Dataframes of transport mode, shipment mass, and shipment distance
+pufDict_sctg_tMode = {}
+
+# Process single mode dataframe (df_SM)
+pufDict_sctg_tMode['Single Modes'] = calc_dist_mass(df_SM)
+
+# Process multiple mode dataframe (df_MM)
+#pufDict_sctg_tMode['Multi Modes'] = calc_dist_mass(df_MM)
+
+# Disaggregate 'Water' and 'Multiple Waterways'
+pufDict_sctg_tMode['Single Modes'] = disaggregate_generic_SM_dict(
+    pufDict_sctg_tMode['Single Modes'],
+    aggregated_modes=['Water', 'Multiple Waterways'],
+    high_res_modes=['Deep Sea', 'Inland Water', 'Great Lakes'],
+    default_mode='inland water'
+)
+
+# Disaggregate 'Truck'
+pufDict_sctg_tMode['Single Modes'] = disaggregate_generic_SM_dict(
+    pufDict_sctg_tMode['Single Modes'],
+    aggregated_modes=['Truck'],
+    high_res_modes=['For-hire truck', 'Company-owned truck'],
+    default_mode='for-hire truck'
+)
+
+# Create copy of data dictionary to add mass weights to
+pufDict_sctg_tMode_margDistance = copy.deepcopy(pufDict_sctg_tMode)
+
+# Calculate mass weights and marginal distances for each transport mode within each commodity
+for mode_type, sctg_dict in pufDict_sctg_tMode_margDistance.items():
+    for sctg, df in sctg_dict.items():
+        
+        # Calculate total mass
+        total_mass = df['Total Mass Shipped (m-Tons)'].sum()
+        
+        # Calculate mass fraction for each mode
+        df['Mass frac.'] = df['Total Mass Shipped (m-Tons)'] / total_mass
+
+        # Calculate fractional distance for each mode
+        df['Mass frac. dist. (km)'] = df['Mass frac.'] * df['Avg. Distance (km)']
+        
+# Calculate t-km weights and marginal distances for each transport mode within each commodity
+'''
+for mode_type, sctg_dict in pufDict_sctg_tMode_margDistance.items():
+    for sctg, df in sctg_dict.items():
+        
+        # Calculate total t-km
+        df['m-Tons * Km'] = df['Total Mass Shipped (m-Tons)'] * df['Avg. Distance (km)']
+        total_ton_km = df['m-Tons * Km'].sum()
+        
+        # Calculate t-km fraction for each mode
+        df['t-km frac.'] = df['m-Tons * Km'] / total_ton_km
+
+        # Calculate fractional distance for each mode
+        df['t-km frac. dist. (km)'] = df['t-km frac.'] * df['Avg. Distance (km)']
+'''
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
