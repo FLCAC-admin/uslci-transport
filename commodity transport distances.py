@@ -19,25 +19,29 @@ download_url = "https://www2.census.gov/programs-surveys/cfs/datasets/2017/CFS%2
 csv_path = os.path.join(script_dir, csv_filename)
 zip_path = os.path.join(script_dir, zip_filename)
 
-# Check if CSV file exists
+# Read unzipped data file if present in project directory
 if os.path.exists(csv_path):
     print(f"\nFound unzipped file: {csv_filename}")
     df = pd.read_csv(csv_path)
-# Check if ZIP file exists
+# Unzip zipped file if present in directory, then read
 elif os.path.exists(zip_path):
-    print(f"\nFound zipped file: {zip_filename}. Unzipping...")
+    print(f"\nFound zipped file: {zip_filename}. Extracting...")
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
         zip_ref.extractall(script_dir)
     df = pd.read_csv(csv_path)
-# Download the ZIP file if neither exists
+# Download the zipped file from source file if neither exist in project directory
+# Unzip file then read
 else:
-    print(f"\n{csv_filename} not found. Downloading from {download_url}...")
+    print(f"\n{csv_filename} not found.")
+    print(f"\nDownloading from {download_url}...")
     urllib.request.urlretrieve(download_url, zip_path)
-    print("\nDownload complete. Unzipping...")
+    print("\nDownload complete. Extracting...")
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
         zip_ref.extractall(script_dir)
-    print("\nUnzipping complete. Reading into DataFrame...")
+    print("\nZipped file extraction complete. Reading into DataFrame...")
     df = pd.read_csv(csv_path)
+    
+del csv_filename, csv_path, download_url, script_dir, zip_filename, zip_path
 
 ## Drop columns ##
 columnsToDrop = ['SHIPMT_ID',      # Unique shipment ID
@@ -114,7 +118,8 @@ rate_MM = 100*(len(df_MM) / len(df_ref)) # 25.9 % of original df
 removed = rate_aggSCTG + rate_exports + rate_supSCTG + rate_MM + rate_SM
 retained = 100*(len(df) / len(df_ref))
 total = removed + retained
-#del df, df_ref, rate_SM, rate_MM, rate_aggSCTG, rate_exports, rate_supSCTG, removed, retained, total
+# Uncomment and run next line if QC is done and a cleaned up workspace is desired
+del df, df_ref, rate_SM, rate_MM, rate_aggSCTG, rate_exports, rate_supSCTG, removed, retained, total
 
 
 #%% Code Mapping ##
@@ -189,6 +194,12 @@ SCTG_codes = {
     '43': 'Mixed Freight'
 }
 
+# Map SCTG codes and MODE codes to their names for both single and multiple mode dictionaries
+df_SM['SCTG'] = df_SM['SCTG'].apply(lambda x: SCTG_codes.get(str(x), str(x)))
+df_SM['MODE'] = df_SM['MODE'].apply(lambda x: mode_names.get(str(x), str(x)))
+df_MM['SCTG'] = df_MM['SCTG'].apply(lambda x: SCTG_codes.get(str(x), str(x)))
+df_MM['MODE'] = df_MM['MODE'].apply(lambda x: mode_names.get(str(x), str(x)))
+
 
 #%% Calculation Methods ##
 
@@ -219,7 +230,6 @@ def calc_dist_mass(df_group):
     for sctg, group_SCTG in df_group.groupby('SCTG'):
         mode_data = []
         for mode, df in group_SCTG.groupby('MODE'):
-            mode_name = mode_names.get(str(mode), str(mode))
             
             # Convert data to float for calculations
             df['WGT_FACTOR'] = df['WGT_FACTOR'].astype(float)
@@ -240,7 +250,7 @@ def calc_dist_mass(df_group):
             
             # Append row to mode_data
             mode_data.append({
-                'Mode': mode_name,
+                'Mode': mode,
                 'Total Mass Shipped (m-Tons)': total_domain_mass,
                 'Avg. Distance (km)': avg_ship_dist
             })
