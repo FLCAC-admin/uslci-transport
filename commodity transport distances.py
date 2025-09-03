@@ -66,20 +66,30 @@ df_ref = df # Reference df with no rows removed for QC checks
 #%% Data cleaning ##
 
 # Remove and store aggregated SCTG codes (i.e. colVal 'SCTG'==01-05)
-df_aggSCTG = df[df['SCTG'].str.len()>2].copy()
-df = df[df['SCTG'].str.len()<=2].copy()
+df_aggSCTG = df[df['SCTG'].str.len() > 2].copy()
+df = df[df['SCTG'].str.len() <= 2].copy()
 rate_aggSCTG = 100*(len(df_aggSCTG) / len(df_ref)) # 0.234 % removed from original df
 
 # Remove and store suppressed SCTG codes (i.e. colVal 'SCTG'==00)
 # Column values for MODE are 0, suppressed, when SCTG is suppressed
-df_supSCTG = df[df['SCTG']=='00'].copy()
-df = df[df['SCTG'] !='00'].copy()
+df_supSCTG = df[df['SCTG'] == '00'].copy()
+df = df[df['SCTG'] != '00'].copy()
 rate_supSCTG = 100*(len(df_supSCTG) / len(df_ref)) # 0.008 % removed from original df
 
 # Remove and store shipments that are exports (i.e. colVal 'EXPORT_YN'==Y)
-df_exports = df[df['EXPORT_YN']=='Y'].copy()
-df = df[df['EXPORT_YN'] !='Y'].copy()
+df_exports = df[df['EXPORT_YN'] == 'Y'].copy()
+df = df[df['EXPORT_YN'] != 'Y'].copy()
 rate_exports = 100*(len(df_exports) / len(df_ref)) # 3.56 % removed from original df
+
+# Remove and store shipments that are of mode 'other (single) mode' code = 19
+df_otherSingle = df[df['MODE'] == '19'].copy()
+df = df[df['MODE'] != '19'].copy()
+rate_otherSingle = 100*(len(df_otherSingle) / len(df_ref)) # 0.004 % removed from original df
+
+# Remove and store shipments that are of mode 'Other multiple modes' code = 18
+df_otherMulti = df[df['MODE'] == '18'].copy()
+df = df[df['MODE'] != '18'].copy()
+rate_otherMulti = 100*(len(df_otherMulti) / len(df_ref)) # 0 % removed from original df
 
 
 #%% Transport Mode processing ##
@@ -112,14 +122,15 @@ rate_MM = 100*(len(df_MM) / len(df_ref)) # 25.9 % of original df
 #print('Average shipment distance for "Company-hired truck" (mode 5): ',avg_ship_dist_mode_5) # 52.3 miles
 #del mode_5_df
 
+
 #%% Quality Control ##
 
 # Check that all lines of data are accounted for
-removed = rate_aggSCTG + rate_exports + rate_supSCTG + rate_MM + rate_SM
+removed = rate_aggSCTG + rate_exports + rate_supSCTG + rate_MM + rate_SM + rate_otherSingle + rate_otherMulti
 retained = 100*(len(df) / len(df_ref))
 total = removed + retained
 # Uncomment and run next line if QC is done and a cleaned up workspace is desired
-del df, df_ref, rate_SM, rate_MM, rate_aggSCTG, rate_exports, rate_supSCTG, removed, retained, total
+#del df, df_ref, rate_SM, rate_MM, rate_aggSCTG, rate_exports, rate_supSCTG, removed, retained, total, rate_otherMulti, rate_otherSingle
 
 
 #%% Code Mapping ##
@@ -321,6 +332,7 @@ def disaggregate_generic_SM_dict(df_dict, aggregated_modes, high_res_modes, defa
 
     return updated_dict
 
+
 #%% Run Calculations ##
 
 # Combined dictionary
@@ -366,6 +378,8 @@ for mode_type, sctg_dict in pufDict_sctg_tMode_margDistance.items():
 
         # Calculate fractional distance for each mode
         df['Mass frac. dist. (km)'] = df['Mass frac.'] * df['Avg. Distance (km)']
+        
+del total_mass, mode_type, sctg_dict, sctg
         
 # Calculate t-km weights and marginal distances for each transport mode within each commodity
 '''
