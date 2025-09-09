@@ -250,7 +250,7 @@ def calc_dist_mass(df_group):
             # Calculate total mass shipped
             df['temp_marg_mass'] = df['WGT_FACTOR'] * df['SHIPMT_WGHT'] # Marginal contribution of each shipment in pounds
             total_domain_mass =  df['temp_marg_mass'].sum() # Execute equation; sum temp_marg_mass column
-            total_domain_mass = 0.000453592 * total_domain_mass # Convert pounds to metric tons
+            total_domain_mass = 0.453592 * total_domain_mass # Convert pounds to kg
             
             # Calculate average shipment distance
             df['temp_numer'] = df['WGT_FACTOR'] * df['SHIPMT_DIST_ROUTED'] # Marginal contribution of each shipment in miles
@@ -262,7 +262,7 @@ def calc_dist_mass(df_group):
             # Append row to mode_data
             mode_data.append({
                 'Mode': mode,
-                'Total Mass Shipped (m-Tons)': total_domain_mass,
+                'Total Mass Shipped (kg)': total_domain_mass,
                 'Avg. Distance (km)': avg_ship_dist
             })
             
@@ -302,20 +302,20 @@ def disaggregate_generic_SM_dict(df_dict, aggregated_modes, high_res_modes, defa
         # Check if any aggregated modes are present
         if df['Mode'].isin(normalized_agg_modes).any():
             # Total mass from aggregated modes
-            agg_mass = df[df['Mode'].isin(normalized_agg_modes)]['Total Mass Shipped (m-Tons)'].astype(float).sum()
+            agg_mass = df[df['Mode'].isin(normalized_agg_modes)]['Total Mass Shipped (kg)'].astype(float).sum()
 
             # Filter high-resolution modes
             high_res_df = df[df['Mode'].isin(normalized_high_res_modes)].copy()
 
             if not high_res_df.empty:
-                total_high_res_mass = high_res_df['Total Mass Shipped (m-Tons)'].sum()
+                total_high_res_mass = high_res_df['Total Mass Shipped (kg)'].sum()
 
                 # Allocate aggregated mass proportionally
                 for mode in normalized_high_res_modes:
                     if mode in df['Mode'].values:
-                        fraction = df.loc[df['Mode'] == mode, 'Total Mass Shipped (m-Tons)'].values[0] / total_high_res_mass
+                        fraction = df.loc[df['Mode'] == mode, 'Total Mass Shipped (kg)'].values[0] / total_high_res_mass
                         added_mass = fraction * agg_mass
-                        df.loc[df['Mode'] == mode, 'Total Mass Shipped (m-Tons)'] += added_mass
+                        df.loc[df['Mode'] == mode, 'Total Mass Shipped (kg)'] += added_mass
 
                 # Remove aggregated mode rows
                 df = df[~df['Mode'].isin(normalized_agg_modes)].reset_index(drop=True)
@@ -371,32 +371,55 @@ for mode_type, sctg_dict in pufDict_sctg_tMode_margDistance.items():
     for sctg, df in sctg_dict.items():
         
         # Calculate total mass
-        total_mass = df['Total Mass Shipped (m-Tons)'].sum()
+        total_mass = df['Total Mass Shipped (kg)'].sum()
         
         # Calculate mass fraction for each mode
-        df['Mass frac.'] = df['Total Mass Shipped (m-Tons)'] / total_mass
+        df['Mass frac.'] = df['Total Mass Shipped (kg)'] / total_mass
 
         # Calculate fractional distance for each mode
         df['Mass frac. dist. (km)'] = df['Mass frac.'] * df['Avg. Distance (km)']
         
 del total_mass, mode_type, sctg_dict, sctg
         
-# Calculate t-km weights and marginal distances for each transport mode within each commodity
-'''
-for mode_type, sctg_dict in pufDict_sctg_tMode_margDistance.items():
-    for sctg, df in sctg_dict.items():
-        
-        # Calculate total t-km
-        df['m-Tons * Km'] = df['Total Mass Shipped (m-Tons)'] * df['Avg. Distance (km)']
-        total_ton_km = df['m-Tons * Km'].sum()
-        
-        # Calculate t-km fraction for each mode
-        df['t-km frac.'] = df['m-Tons * Km'] / total_ton_km
 
-        # Calculate fractional distance for each mode
-        df['t-km frac. dist. (km)'] = df['t-km frac.'] * df['Avg. Distance (km)']
-'''
-        
+#%% WRITE DATA TO CSV ##
+
+# Extract the 'Single Modes' dictionary
+single_modes_dict = pufDict_sctg_tMode_margDistance['Single Modes']
+
+# Prepare a list to collect rows for the final CSV
+output_rows = []
+
+# Iterate through each commodity and its associated DataFrame
+for commodity, df in single_modes_dict.items():
+    # Sort the DataFrame by 'Total Mass Shipped (kg)' in descending order
+    sorted_df = df.sort_values(by='Total Mass Shipped (kg)', ascending=False)
+
+    # Iterate through each row in the sorted DataFrame
+    for _, row in sorted_df.iterrows():
+        output_rows.append({
+            'Commodity': commodity,
+            'Transport Mode': row['Mode'],
+            'Mass Shipped (kg)': row['Total Mass Shipped (kg)'],
+            'Avg. Dist. Shipped (km)': row['Avg. Distance (km)'],
+            'Mass Frac. by Mode': row['Mass frac.'],
+            'Weighted Dist. Shipped (km)': row['Mass frac. dist. (km)']
+        })
+
+# Create a DataFrame from the collected rows
+output_df = pd.DataFrame(output_rows)
+
+# Write the DataFrame to a CSV file in the current working directory
+output_df.to_csv('Weighted Commodity Transport Distances.csv', index=False)
+
+# Print confirmation
+print("CSV file 'Weighted Commodity Transport Distances.csv' has been successfully created.")
+
+
+
+
+
+
 
 
 
