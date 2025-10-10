@@ -1,0 +1,11 @@
+name: uslci-transport
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - pandas
+  - spyder
+  
+  - pip:
+      - -e git+https://github.com/FLCAC-admin/flcac-utils.git#egg=flcac-utils

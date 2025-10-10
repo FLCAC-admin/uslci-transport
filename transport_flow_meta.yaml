@@ -1,0 +1,139 @@
+Years:
+  - 2017
+
+## Flows to link to eLCI
+# This is used as the flows for the inputs to each process created.
+# Does this need to be created for each of the processes we will create?
+### Im thinking not; replace <> with commodity entry in dataframe
+Process:
+  FlowName: '<commodity>, transported'
+  FlowUUID: # generate
+  FlowContext: 'Technosphere Flows / 48-49: Transportation and Warehousing' # do we want to add a specific folder for this effort
+  Unit: 'kg' # assuming this is the reference flow unit
+  ProcessName: 'Transport, average, <commodity>'
+  ProcessCategory: 'Technosphere / 48-49: Transportation and Warehousing'
+
+## Transportation Modes
+# These will serve as the default providers for each transport mode
+# I'm not sold on how trucking is being handled
+# for now assuming that for hire trucks are long haul semis and company trucks are light commercial trucks
+# based on average distance each are being used to transport goods
+Mode:
+  company-owned truck: # on average they are short distance shipments
+    ProcessName: 'Transport, light commercial truck, diesel powered'
+    DefaultProviderUUID: 'bf6e7378-4e08-3698-a3a7-c9cc90fcbc07'
+    FlowName: 'Transport, light commercial truck, diesel powered'
+    FlowUUID: '35fe9caf-2ad2-3d14-ae03-21454a89da2e'
+
+  for-hire truck: # on average they are long distance shipments
+    ProcessName: 'Transport, combination truck, long-haul, diesel powered'
+    DefaultProviderUUID: 'a685da05-1a42-3fe1-a68b-6db458be5e07'
+    FlowName: 'Transport, combination truck, long-haul, diesel powered'
+    FlowUUID: '13ed0c67-549c-3a01-afee-7083b12dd949'
+
+  rail: 
+    ProcessName: 'Transport, train, diesel powered'
+    DefaultProviderUUID: '7de9c230-fd0f-3478-be87-f80181132faa'
+    FlowName: 'Transport, train, diesel powered'
+    FlowUUID: '73c7494d-4e93-3769-896b-8bb82f0dfccc'
+
+  inland water:
+    ProcessName: 'Transport, barge, average fuel mix'
+    DefaultProviderUUID: '099c3d09-08a3-3cac-9ffd-0558c12033b9'
+    FlowName: 'Transport, barge, average fuel mix'
+    FlowUUID: '4069483a-8d94-3b6b-81be-5f0a249b74f4'
+  
+  great lakes: # great lakes is combined with deep sea
+    ProcessName: 'Transport, ocean freighter, average fuel mix'
+    DefaultProviderUUID: '1e2429d8-8d91-328f-85c3-18d39bdebfa7'
+    FlowName: 'Transport, ocean freighter, average fuel mix'
+    FlowUUID: '0e63d1db-e383-3c9a-b02a-b5eebafe87d1'
+
+  deep sea:
+    ProcessName: 'Transport, ocean freighter, average fuel mix'
+    DefaultProviderUUID: '1e2429d8-8d91-328f-85c3-18d39bdebfa7'
+    FlowName: 'Transport, ocean freighter, average fuel mix'
+    FlowUUID: '0e63d1db-e383-3c9a-b02a-b5eebafe87d1'
+
+  air(incl. truck & air): # considering dropping these entries; often doesn't make sense in the context of our work
+    ProcessName: 'Transport, aircraft, freight'
+    DefaultProviderUUID: '61ff7eba-1846-30cb-9840-33939ee0dc26'
+    FlowName: 'Transport, aircraft, freight'
+    FlowUUID: '6a71f6df-1df1-32f0-b926-6e9b932a7fe9'
+
+  pipeline: # we only have petroleum or ng pipeline processes but pipeline is used for basic chemicals and non-metallic mineral products 
+    ProcessName:
+    DefaultProviderUUID:
+    FlowName:
+    FlowUUID:
+
+DQI:
+  dqSystem:
+    Process:
+      Federal LCA Commons Core Database: 'US EPA - Process Pedigree Matrix'
+    Flow:
+      Federal LCA Commons Core Database: 'US EPA - Flow Pedigree Matrix' 
+
+  Process:
+    Process review:
+      score: 
+      description: > 
+
+    
+    Process completeness:
+      score: 
+      description: 
+
+    # # EPA DQI category
+    # Range data completeness:
+    #   score: 5
+    #   description: No range data provided for flows.
+
+    # # EPA DQA Data Attributes
+    # Reproducibility:
+    #   score: 2
+    #   description: >
+    #     Code and calculations are fully transparent based on a public data
+    #     source. But the modeling of the data source is not transparent.
+
+    # Free to use:
+    #   score: 1
+    #   description: Data are made available on the FLCAC.
+
+    # Interoperable:
+    #   score: 1
+    #   description: Intended for use with the U.S. Electricity Baseline (FLCAC).
+
+    # Maintained:
+    #   score: 1
+    #   description: Data will be reproduced annually.
+
+  Flow:
+    Flow reliability:
+      score: 2
+      description: >
+
+    Temporal correlation:
+      score: 
+      description: 
+
+    Geographical correlation:
+      score: 
+      description: >
+
+
+    Technological correlation:
+      score: 
+      description: >
+
+
+    Data collection methods:
+      score: 
+      description: >
+
+Review:
+  review_type: 'Dependent internal review'
+  reviewers:
+    - USLCI: 'Franklin Associates, A Division of ERG'
+  details: >
+    details of review performed go here
