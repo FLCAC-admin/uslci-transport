@@ -44,8 +44,8 @@ use_advice: >
 
 # Edit this!
 sources:
- - ember_climate_yearly_2024: Ember Climate 1
- - ember_climate_data_2022: Ember Climate 2
+ - CFS_PUF_ZIP_2017: 2017 CFS Public Use File
+ - CFS_PUF_User_Guide_2017: 2017 CFS Public Use File User Guide
 
 ## Admin information
 
@@ -60,14 +60,14 @@ intended_application: >
 
 
 data_generator:
-    USLCI: 'Franklin Associates, A Division of ERG'
+    USLCI: 'ERG'
 
 data_documentor:
-    USLCI: 'Franklin Associates, A Division of ERG'
+    USLCI: 'ERG'
 
 # What is this?
 publication: 
-    flcac_international_electricity: 'ERG, International Electricity'
+    uslci_transport: 'ERG, US Average Commodity Transport'
 
 # creation_date: # Turn off to assign automatically
 

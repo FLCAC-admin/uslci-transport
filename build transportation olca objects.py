@@ -143,12 +143,12 @@ df_olca = pd.concat([df_olca, new_df], ignore_index=True)
 
 #%% Add values shared by both inputs and ref flow
 
-# *** Do we need to add to this? Will a new folder path create a new olca category in the app?
-df_olca['ProcessCategory'] = 'Technosphere / 48-49: Transportation and Warehousing'
-# *** Do we need to add to flow category?
+df_olca['ProcessCategory'] = '48-49: Transportation and Warehousing'
 df_olca['Context'] = 'Technosphere Flows / 48-49: Transportation and Warehousing'
 df_olca['FlowType'] = 'PRODUCT_FLOW'
 df_olca['avoided_product'] = False
+df_olca['location'] = 'US'
+df_olca['Year'] = 2017
 
 
 #%% Assign exchange dqi
@@ -157,13 +157,8 @@ df_olca['exchange_dqi'] = format_dqi_score(meta['DQI']['Flow'])
 
 
 #%% Assign locations to processes
-
-### Follow up on the purpose of this code block 
 from flcac_utils.util import generate_locations_from_exchange_df
 from esupy.location import read_iso_3166
-
-
-# *** Can I just assign location to be US?
 df_olca = df_olca.merge(read_iso_3166()
                             .filter(['ISO-2d', 'ISO-3d'])
                             .rename(columns={'ISO-3d': 'CountryCode',
@@ -213,12 +208,14 @@ for year in df_olca.Year.unique():
                                 )
     processes.update(p_dict)
 
-write_objects('international_electricity', flows, new_flows, processes,
+write_objects('uslci-transport', flows, new_flows, processes,
               location_objs, source_objs, actor_objs, dq_objs,
               )
-
-
-
+'''
+write_objects('uslic-transport', flows, new_flows, processes,
+              location_objs, source_objs, actor_objs, dq_objs,
+              )
+'''
 
 
 
