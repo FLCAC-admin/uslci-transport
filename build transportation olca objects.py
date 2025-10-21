@@ -32,7 +32,7 @@ from esupy.util import make_uuid
 import os
 
 # working directory
-working_dir = Path(r'C:\Users\mchristie\Code\uslci-transport')
+working_dir = Path(__file__).parent
 
 # Load yaml file for flow meta data
 with open(working_dir / 'transport_flow_meta.yaml') as f:
@@ -43,7 +43,7 @@ with open(working_dir / 'transport_process_meta.yaml') as f:
     process_meta = yaml.safe_load(f)
 
 # Read in CSV file created by 'commodity transport distances.py'
-csv_path = r'C:\Users\mchristie\Code\uslci-transport\Weighted Commodity Transport Distances.csv'
+csv_path = working_dir / 'Weighted Commodity Transport Distances.csv'
 df_olca = pd.read_csv(csv_path)
 df_olca = df_olca.drop(columns=['Mass Shipped (kg)', 'Avg. Dist. Shipped (km)', 'Mass Frac. by Mode'])
 
@@ -208,23 +208,8 @@ for year in df_olca.Year.unique():
                                 )
     processes.update(p_dict)
 
+out_path = working_dir / 'output'
 write_objects('uslci-transport', flows, new_flows, processes,
               location_objs, source_objs, actor_objs, dq_objs,
+              out_path = out_path
               )
-'''
-write_objects('uslic-transport', flows, new_flows, processes,
-              location_objs, source_objs, actor_objs, dq_objs,
-              )
-'''
-
-
-
-
-
-
-
-
-
-
-
-
