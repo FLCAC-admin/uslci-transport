@@ -24,9 +24,11 @@ import copy
 import zipfile
 import os
 import urllib.request
+from pathlib import Path
 
 # Get the current working directory
-script_dir = os.getcwd()
+script_dir = Path(__file__).parent
+data_dir = script_dir / 'data'
 
 # Define filenames and download URL
 csv_filename = "CFS 2017 PUF CSV.csv"
@@ -34,8 +36,8 @@ zip_filename = "CFS 2017 PUF CSV.zip"
 download_url = "https://www2.census.gov/programs-surveys/cfs/datasets/2017/CFS%202017%20PUF%20CSV.zip"
 
 # Full paths
-csv_path = os.path.join(script_dir, csv_filename)
-zip_path = os.path.join(script_dir, zip_filename)
+csv_path = os.path.join(data_dir, csv_filename)
+zip_path = os.path.join(data_dir, zip_filename)
 
 # Read unzipped data file if present in project directory
 if os.path.exists(csv_path):
@@ -45,17 +47,17 @@ if os.path.exists(csv_path):
 elif os.path.exists(zip_path):
     print(f"\nFound zipped file: {zip_filename}. Extracting...")
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-        zip_ref.extractall(script_dir)
+        zip_ref.extractall(data_dir)
     df = pd.read_csv(csv_path)
 # Download the zipped file from source file if neither exist in project directory
 # Unzip file then read
 else:
-    print(f"\n{csv_filename} not found.")
+    print(f"\n{csv_filename} not found in data directory.")
     print(f"\nDownloading from {download_url}...")
     urllib.request.urlretrieve(download_url, zip_path)
     print("\nDownload complete. Extracting...")
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-        zip_ref.extractall(script_dir)
+        zip_ref.extractall(data_dir)
     print("\nZipped file extraction complete. Reading into DataFrame...")
     df = pd.read_csv(csv_path)
     
@@ -428,7 +430,7 @@ for commodity, df in single_modes_dict.items():
 output_df = pd.DataFrame(output_rows)
 
 # Write the DataFrame to a CSV file in the current working directory
-output_df.to_csv('Weighted Commodity Transport Distances.csv', index=False)
+output_df.to_csv(data_dir / 'Weighted Commodity Transport Distances.csv', index=False)
 
 # Print confirmation
 print("CSV file 'Weighted Commodity Transport Distances.csv' has been successfully created.")

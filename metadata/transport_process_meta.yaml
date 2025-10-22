@@ -1,63 +1,70 @@
 ## General Information
 
 description: >
-    Electricity generation mixes by country, as sourced from Ember Climate, are
-    linked to U.S. based generators and supply chains. These data represent a
-    generation mix and do not account for transmission loss to end users.
-
-# valid_until: 2023 # Assigned in code
-# valid_from: 2023 # Assigned in code
+    Average transport distances per transportation mode (i.e. truck, rail, water) for commodities
+    defined according to the Standard Classification of Transported Goods (SCTG). Data sourced 
+    from the 2017 Commodity Flow Survey Public Use File. These data represent U.S. average 
+    shipment characteristics.
 
 time_description: >
-    This process reflects the generation mix of the region over the course of
-    the entire year. It reflects the most recently available full year.
+    This process reflects transportation activities over the course of 2017. 
 
 geography_description: >
-    This process represents the generation mix of the entire region.
+    This process represents the average U.S. shipment for the commodity.
 
 technology_description: >
-    This is the tech description.
-
-## DQI methods
-
+    This data represents the standard transportation technology used in the U.S 
+    for all modes excluding pipeline. The current default provider for pipeline 
+    entries represent the transportation of crude petroleum which was selected as 
+    a proxy for basic Basic Chemicals and Non-metallic minerals.
 
 ## LCI method
 
 inventory_method_description: >
-    Not applicable; this process contains only technosphere flows.
+    Not applicable; this process contains only technosphere flows. 
+    This process contains the mixture of transport processes used to 
+    model transport of a specific commodity moved within the U.S.
 
 modeling_constants_description: >
-    Approaches to compile and estimate generation mixes for specific countries
-    by Ember Climate are described in the linked methodology document.
-    Generation technologies were mapped to those available in the U.S.
-    Electricity Baseline.
+    Approaches to compile and estimate average transport practices for U.S. commodities
+    from Commodity Flow Survey data are described in the linked methodology document.
+    Transportation technologies were mapped to those available in USLCI.
 
 ## Data Source information
 
 completeness_description: >
-    This process contains no elementary flows. Generation mix of all technologies
-    sums to 100%.
+    This process contains no elementary flows. All transportation modes included in the 
+    CFS data for each commodity are included. 
 
 data_selection_description: >
-    Data were retrieved for all available countries for the most recent data year.
+    Data were retrieved for all available commodities.
 
 data_treatment_description: >
-    Generation by fuel subcateogry were normalized to total generation for each
-    country to generate resource shares.
+    Estimation of the total mass of each commodity shipped per transportation mode was
+    completed based on the 2017 CFS PUF User Guide instructions. Estimation of average 
+    shipment distance for each commodity transport mode was completed based on the 
+    2017 CFS PUF User Guide instructions. The shipment distances produced based on the 
+    calculation from the 2017 CFS PUF User Guide are weighted based on the mass fraction 
+    of the mass of commodity shipped by each mode.
 
 sampling_description: >
-    No uncertainty was assessed.
+    The uncertainty included in the CFS PUF was not captured.
 
 data_collection_description: >
-    Data from Ember Climate were accessed in August of 2024.
+    Data from the 2017 CFS PUF were accessed in Q4 of 2025. These data will remain
+    unchanged. The CFS data are updated with each census but are released as separate
+    data sets.
 
 use_advice: >
-    This process is intended to connect to electriciy generation processes from
-    the electricity baseline.
+    These data are inteded to be used as proxies for commodity specifc transport inputs
+    when primary or more relevant data are not available. It is recommended that the user
+    review the transportation modes present in each process and make a judgement call about
+    which modes are relevant for the use case and which modes should be dropped. 
+
 
 sources:
- - ember_climate_yearly_2024: Ember Climate 1
- - ember_climate_data_2022: Ember Climate 2
+ - CFS_PUF_ZIP_2017: 2017 CFS Public Use File
+ - CFS_PUF_User_Guide_2017: 2017 CFS Public Use File User Guide
 
 ## Admin information
 
@@ -69,20 +76,19 @@ project_description: >
     Manufacturing Technologies Office (AMMTO).
 
 intended_application: >
-    This process is intended for use with electricity flows from the U.S.
-    Electricity Baseline.
-
-# data_set_owner:
+    This process is intended to provide representative mixes of transportation 
+    for commodities in the US. 
 
 
 data_generator:
-    USLCI: 'Franklin Associates, A Division of ERG'
+    USLCI: 'ERG'
 
 data_documentor:
-    USLCI: 'Franklin Associates, A Division of ERG'
+    USLCI: 'ERG'
 
+# What is this?
 publication: 
-    flcac_international_electricity: 'ERG, International Electricity'
+    uslci_transport: 'ERG, US Average Commodity Transport'
 
 # creation_date: # Turn off to assign automatically
 

@@ -31,19 +31,21 @@ import yaml
 from esupy.util import make_uuid
 import os
 
-# working directory
-working_dir = Path(__file__).parent
+# Directories
+working_dir = Path(__file__).parent # parent directory
+data_dir = working_dir / 'data' # data directory
+meta_dir = working_dir / 'metadata' # metadata directory
 
 # Load yaml file for flow meta data
-with open(working_dir / 'transport_flow_meta.yaml') as f:
+with open(meta_dir / 'transport_flow_meta.yaml') as f:
     meta = yaml.safe_load(f)
 
 # Load yaml file for process meta data
-with open(working_dir / 'transport_process_meta.yaml') as f:
+with open(meta_dir / 'transport_process_meta.yaml') as f:
     process_meta = yaml.safe_load(f)
 
 # Read in CSV file created by 'commodity transport distances.py'
-csv_path = working_dir / 'Weighted Commodity Transport Distances.csv'
+csv_path = data_dir / 'Weighted Commodity Transport Distances.csv'
 df_olca = pd.read_csv(csv_path)
 df_olca = df_olca.drop(columns=['Mass Shipped (kg)', 'Avg. Dist. Shipped (km)', 'Mass Frac. by Mode'])
 
@@ -173,7 +175,7 @@ from flcac_utils.util import extract_actors_from_process_meta, \
     extract_sources_from_process_meta, extract_dqsystems
 
 (process_meta, source_objs) = extract_sources_from_process_meta(
-    process_meta, bib_path = working_dir / 'transport_sources.bib')
+    process_meta, bib_path = meta_dir / 'transport_sources.bib')
 
 (process_meta, actor_objs) = extract_actors_from_process_meta(process_meta)
 
