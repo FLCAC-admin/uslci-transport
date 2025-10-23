@@ -45,7 +45,7 @@ with open(meta_dir / 'transport_process_meta.yaml') as f:
     process_meta = yaml.safe_load(f)
 
 # Read in CSV file created by 'commodity transport distances.py'
-csv_path = data_dir / 'Weighted Commodity Transport Distances.csv'
+csv_path = data_dir / 'Weighted_Commodity_Transport_Distances.csv'
 df_olca = pd.read_csv(csv_path)
 df_olca = df_olca.drop(columns=['Mass Shipped (kg)', 'Avg. Dist. Shipped (km)', 'Mass Frac. by Mode'])
 

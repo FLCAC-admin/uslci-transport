@@ -29,6 +29,7 @@ from pathlib import Path
 # Get the current working directory
 script_dir = Path(__file__).parent
 data_dir = script_dir / 'data'
+data_dir.mkdir(exist_ok=True)
 
 # Define filenames and download URL
 csv_filename = "CFS 2017 PUF CSV.csv"
@@ -430,38 +431,7 @@ for commodity, df in single_modes_dict.items():
 output_df = pd.DataFrame(output_rows)
 
 # Write the DataFrame to a CSV file in the current working directory
-output_df.to_csv(data_dir / 'Weighted Commodity Transport Distances.csv', index=False)
+output_df.to_csv(data_dir / 'Weighted_Commodity_Transport_Distances.csv', index=False)
 
 # Print confirmation
-print("CSV file 'Weighted Commodity Transport Distances.csv' has been successfully created.")
-
-
-#%% 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print("CSV file 'Weighted_Commodity_Transport_Distances.csv' has been successfully created.")
