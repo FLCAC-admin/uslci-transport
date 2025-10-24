@@ -1,13 +1,14 @@
 ## General Information
 
 description: >
-    Average transport distances per transportation mode (i.e. truck, rail, water) for commodities
-    defined according to the Standard Classification of Transported Goods (SCTG). Data sourced 
-    from the 2017 Commodity Flow Survey Public Use File. These data represent U.S. average 
-    shipment characteristics.
+    Average transport distances per transportation mode (i.e. truck, rail, water) 
+    for commodities defined according to the Standard Classification of Transported 
+    Goods (SCTG). Data sourced from the 2017 Commodity Flow Survey Public Use File. 
+    These data represent U.S. average shipment characteristics per commodity.
 
 time_description: >
-    This process reflects transportation activities over the course of 2017. 
+    This process reflects a sample of four weeks of transportation activities, one 
+    week per quarter, over the course of 2017. 
 
 geography_description: >
     This process represents the average U.S. shipment for the commodity.
@@ -16,7 +17,8 @@ technology_description: >
     This data represents the standard transportation technology used in the U.S 
     for all modes excluding pipeline. The current default provider for pipeline 
     entries represent the transportation of crude petroleum which was selected as 
-    a proxy for basic Basic Chemicals and Non-metallic minerals.
+    a proxy for basic Basic Chemicals and non-metallic minerals, which included
+    pipeline transportation modes.
 
 ## LCI method
 
@@ -45,7 +47,8 @@ data_treatment_description: >
     shipment distance for each commodity transport mode was completed based on the 
     2017 CFS PUF User Guide instructions. The shipment distances produced based on the 
     calculation from the 2017 CFS PUF User Guide are weighted based on the mass fraction 
-    of the mass of commodity shipped by each mode.
+    of the mass of commodity shipped by each mode. A more detailed discussion of the 
+    methodology is included in the methodology document.
 
 sampling_description: >
     The uncertainty included in the CFS PUF was not captured.
@@ -56,11 +59,10 @@ data_collection_description: >
     data sets.
 
 use_advice: >
-    These data are inteded to be used as proxies for commodity specifc transport inputs
+    These data are intended to be used as proxies for commodity specifc transport inputs
     when primary or more relevant data are not available. It is recommended that the user
-    review the transportation modes present in each process and make a judgement call about
-    which modes are relevant for the use case and which modes should be dropped. 
-
+    review the transportation modes present in each process and make a judgement call 
+    about which modes are relevant for the use case and which modes should be excluded. 
 
 sources:
  - CFS_PUF_ZIP_2017: 2017 CFS Public Use File
@@ -79,21 +81,17 @@ intended_application: >
     This process is intended to provide representative mixes of transportation 
     for commodities in the US. 
 
-
 data_generator:
     USLCI: 'ERG'
 
 data_documentor:
     USLCI: 'ERG'
 
-# What is this?
 publication: 
     uslci_transport: 'ERG, US Average Commodity Transport'
 
-# creation_date: # Turn off to assign automatically
-
 restrictions_description: >
-    The underlying Ember Climate data is released under a Creative Commons Attribution Licence.
+    The underlying Commodity Flow Survey data is released under a Creative Commons Attribution Licence.
 
     These U.S. LCI Database Project data ("Data") are provided by the National Renewable Energy Laboratory ("NREL"), operated by the Alliance for Sustainable Energy, LLC ("Alliance") for the US Department of Energy ("DOE") under Contract No. DE-AC36-08GO28308. The United States Government (the "Government") retains and the user acknowledges that the Government retains a non-exclusive, paid-up, irrevocable, worldwide license to publish or reproduce the published form of these data, or allow others to do so, for Government purposes.
 

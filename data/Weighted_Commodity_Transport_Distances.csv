@@ -5,23 +5,23 @@ Commodity,Transport Mode,Mass Shipped (kg),Avg. Dist. Shipped (km),Mass Frac. by
 "Agricultural Products (excludes Animal Feed, Cereal Grains, and Forage Products)",inland water,26729398910.317394,1539.77,0.11557322200901574,177.95618005282216
 "Agricultural Products (excludes Animal Feed, Cereal Grains, and Forage Products)",air(incl. truck & air),22129744.1656448,3136.26,9.568512348669261e-05,0.30009342538637457
 "Agricultural Products (excludes Animal Feed, Cereal Grains, and Forage Products)",deep sea,11577908.439615503,1752.8,5.006084076119055e-05,0.0877466416862148
-Alcoholic Beverages and Denatured Alcohol,company-owned truck,58274067751.36354,59.88,0.6136775816144259,36.74701358707182
-Alcoholic Beverages and Denatured Alcohol,for-hire truck,36429234509.116585,697.07,0.3836321265404774,267.4184464475706
-Alcoholic Beverages and Denatured Alcohol,rail,244019522.49769357,1965.14,0.002569741845927473,5.0499024911059145
-Alcoholic Beverages and Denatured Alcohol,air(incl. truck & air),11447279.531584,1037.19,0.00012054999916909718,0.1250332536381959
-"Animal Feed, Eggs, Honey, and Other Products of Animal Origin",for-hire truck,149164440893.8766,192.47,0.5634542889879085,108.44804700150274
-"Animal Feed, Eggs, Honey, and Other Products of Animal Origin",company-owned truck,103193866489.43828,104.4,0.38980487790710805,40.695629253502084
+Alcoholic Beverages and Denatured Alcohol,company-owned truck,58274067751.36354,59.88,0.613677581614426,36.74701358707183
+Alcoholic Beverages and Denatured Alcohol,for-hire truck,36429234509.11658,697.07,0.3836321265404774,267.4184464475706
+Alcoholic Beverages and Denatured Alcohol,rail,244019522.49769357,1965.14,0.0025697418459274734,5.049902491105915
+Alcoholic Beverages and Denatured Alcohol,air(incl. truck & air),11447279.531584,1037.19,0.00012054999916909719,0.12503325363819592
+"Animal Feed, Eggs, Honey, and Other Products of Animal Origin",for-hire truck,149164440893.87656,192.47,0.5634542889879084,108.44804700150273
+"Animal Feed, Eggs, Honey, and Other Products of Animal Origin",company-owned truck,103193866489.43826,104.4,0.38980487790710805,40.695629253502084
 "Animal Feed, Eggs, Honey, and Other Products of Animal Origin",rail,8737210679.583372,1163.61,0.033003970662851906,38.403750303001104
-"Animal Feed, Eggs, Honey, and Other Products of Animal Origin",inland water,3636507504.1360974,1718.82,0.013736556366003938,23.61066781301489
-"Animal Feed, Eggs, Honey, and Other Products of Animal Origin",air(incl. truck & air),81028.1780264,3506.38,3.060761275559818e-07,0.0010732192121397435
+"Animal Feed, Eggs, Honey, and Other Products of Animal Origin",inland water,3636507504.1360974,1718.82,0.01373655636600394,23.61066781301489
+"Animal Feed, Eggs, Honey, and Other Products of Animal Origin",air(incl. truck & air),81028.1780264,3506.38,3.0607612755598187e-07,0.0010732192121397437
 Animals and Fish (live),for-hire truck,2594936742.4689813,633.53,0.6651293602494468,421.379403598832
 Animals and Fish (live),company-owned truck,1304346114.1018448,212.85,0.334327570386538,71.16162335677461
 Animals and Fish (live),air(incl. truck & air),2118731.6792992,1920.98,0.0005430693640152803,1.0432253868860732
-Articles of Base Metal,for-hire truck,79389432077.64615,668.61,0.7621998315963527,509.6144294036374
-Articles of Base Metal,company-owned truck,21727174959.58202,70.28,0.20859765162523275,14.660242956221358
-Articles of Base Metal,rail,3017120941.328193,655.75,0.028966690064453748,18.994907009765544
-Articles of Base Metal,air(incl. truck & air),24563307.565778397,2469.82,0.00023582671396080371,0.5824495346746723
-Base Metal in Primary or Semi-Finished Forms and in Finished Basic Shapes,for-hire truck,185913887984.79935,508.09,0.7116222531193724,361.56815058742194
+Articles of Base Metal,for-hire truck,79389432077.64613,668.61,0.7621998315963527,509.6144294036374
+Articles of Base Metal,company-owned truck,21727174959.58202,70.28,0.20859765162523278,14.66024295622136
+Articles of Base Metal,rail,3017120941.328193,655.75,0.02896669006445375,18.994907009765548
+Articles of Base Metal,air(incl. truck & air),24563307.565778397,2469.82,0.00023582671396080374,0.5824495346746723
+Base Metal in Primary or Semi-Finished Forms and in Finished Basic Shapes,for-hire truck,185913887984.79932,508.09,0.7116222531193723,361.5681505874219
 Base Metal in Primary or Semi-Finished Forms and in Finished Basic Shapes,company-owned truck,52148570937.36459,82.23,0.19960899075187435,16.41384730952663
 Base Metal in Primary or Semi-Finished Forms and in Finished Basic Shapes,rail,17053116232.544508,765.54,0.06527418219074671,49.96999743430423
 Base Metal in Primary or Semi-Finished Forms and in Finished Basic Shapes,inland water,6125813196.596186,438.94,0.023447764104135054,10.292161575869041
@@ -42,8 +42,8 @@ Coal,inland water,85686710999.07925,230.11,0.1386403272331374,31.90252569961725
 Coal,for-hire truck,71656530533.90887,88.0,0.1159396215093281,10.202686692820873
 Coal,company-owned truck,34609843351.88461,74.04,0.055998415061636206,4.146122651163545
 "Electronic and Other Electrical Equipment and Components, and Office Equipment",for-hire truck,30138991003.992023,793.1,0.6949047109772072,551.128926276023
-"Electronic and Other Electrical Equipment and Components, and Office Equipment",company-owned truck,12916628154.978987,54.49,0.29781440771016016,16.227907076126627
-"Electronic and Other Electrical Equipment and Components, and Office Equipment",air(incl. truck & air),198914813.14692318,2352.9,0.0045863128171954775,10.79113542757924
+"Electronic and Other Electrical Equipment and Components, and Office Equipment",company-owned truck,12916628154.978985,54.49,0.2978144077101601,16.227907076126623
+"Electronic and Other Electrical Equipment and Components, and Office Equipment",air(incl. truck & air),198914813.1469232,2352.9,0.004586312817195478,10.791135427579242
 "Electronic and Other Electrical Equipment and Components, and Office Equipment",rail,112793983.965428,98.72,0.0026006534464634735,0.2567365082348741
 "Electronic and Other Electrical Equipment and Components, and Office Equipment",inland water,4073227.2661896003,231.89,9.391504897363859e-05,0.02177796070649705
 Fertilizers,company-owned truck,66521187102.182106,65.53,0.5058338540331279,33.14729245479087
@@ -53,16 +53,16 @@ Fertilizers,inland water,4381793272.159584,379.41,0.03331960049101718,12.6417896
 Fertilizers,pipeline,145687953.40352157,32.08,0.001107825974949937,0.035539057276393976
 Fertilizers,air(incl. truck & air),171.4124168,4081.29,1.3034374038738797e-09,5.3197060420564266e-06
 "Fuel Oils (includes Diesel, Bunker C, and Biodiesel)",company-owned truck,297143386938.3483,43.14,0.40710604121665894,17.56255461808667
-"Fuel Oils (includes Diesel, Bunker C, and Biodiesel)",for-hire truck,228557468467.3938,101.22,0.3131388086303518,31.69591020956421
+"Fuel Oils (includes Diesel, Bunker C, and Biodiesel)",for-hire truck,228557468467.39377,101.22,0.3131388086303518,31.69591020956421
 "Fuel Oils (includes Diesel, Bunker C, and Biodiesel)",pipeline,134857000324.71576,36.31,0.18476298630849108,6.708744032861311
 "Fuel Oils (includes Diesel, Bunker C, and Biodiesel)",inland water,53799507569.62965,50.7,0.07370887426352812,3.737039925160876
 "Fuel Oils (includes Diesel, Bunker C, and Biodiesel)",deep sea,12735232635.766617,188.79,0.017448108792661267,3.2940284589665203
 "Fuel Oils (includes Diesel, Bunker C, and Biodiesel)",rail,2798050391.72422,194.99,0.0038335136105045187,0.7474968189122762
 "Fuel Oils (includes Diesel, Bunker C, and Biodiesel)",air(incl. truck & air),1216859.5137744,1227.82,1.667177804203695e-06,0.0020469942515573807
-"Furniture, Mattresses and Mattress Supports, Lamps, Lighting Fittings, and Illuminated Signs",for-hire truck,17550184155.176353,1118.3,0.7810524016264738,873.4509007388856
-"Furniture, Mattresses and Mattress Supports, Lamps, Lighting Fittings, and Illuminated Signs",company-owned truck,4893306658.091234,100.63,0.21777144236231338,21.914340244919593
-"Furniture, Mattresses and Mattress Supports, Lamps, Lighting Fittings, and Illuminated Signs",air(incl. truck & air),25446001.7254656,2666.21,0.0011324474195676375,3.019342634525431
-"Furniture, Mattresses and Mattress Supports, Lamps, Lighting Fittings, and Illuminated Signs",deep sea,982128.511404,336.87,4.370859164527209e-05,0.01472411326754281
+"Furniture, Mattresses and Mattress Supports, Lamps, Lighting Fittings, and Illuminated Signs",for-hire truck,17550184155.176357,1118.3,0.7810524016264737,873.4509007388855
+"Furniture, Mattresses and Mattress Supports, Lamps, Lighting Fittings, and Illuminated Signs",company-owned truck,4893306658.091234,100.63,0.2177714423623133,21.914340244919586
+"Furniture, Mattresses and Mattress Supports, Lamps, Lighting Fittings, and Illuminated Signs",air(incl. truck & air),25446001.7254656,2666.21,0.0011324474195676373,3.0193426345254304
+"Furniture, Mattresses and Mattress Supports, Lamps, Lighting Fittings, and Illuminated Signs",deep sea,982128.511404,336.87,4.370859164527208e-05,0.014724113267542804
 "Gasoline, Aviation Turbine Fuel, and Ethanol (includes Kerosene, and Fuel Alcohols)",for-hire truck,439975848769.80646,94.85,0.3780295507691582,35.85610289045465
 "Gasoline, Aviation Turbine Fuel, and Ethanol (includes Kerosene, and Fuel Alcohols)",pipeline,338467801241.7177,68.39,0.2908133053461637,19.888721952624135
 "Gasoline, Aviation Turbine Fuel, and Ethanol (includes Kerosene, and Fuel Alcohols)",company-owned truck,335220383618.76355,40.97,0.2880231071373354,11.800306699416632
@@ -78,8 +78,8 @@ Gravel and Crushed Stone (excludes Dolomite and Slate),inland water,19817745744.
 Logs and Other Wood in the Rough,for-hire truck,12271555565.58096,301.64,0.6253658744088991,188.6353623567003
 Logs and Other Wood in the Rough,company-owned truck,5425624725.222337,84.21,0.27649310899262336,23.283484708268812
 Logs and Other Wood in the Rough,rail,1925821327.5375392,461.27,0.09814101659847753,45.26950672637973
-Machinery,for-hire truck,50577254026.79022,483.91,0.6588407160050856,318.81961088202104
-Machinery,company-owned truck,25558697793.659966,56.12,0.33293841428427573,18.684503809633554
+Machinery,for-hire truck,50577254026.790215,483.91,0.6588407160050855,318.819610882021
+Machinery,company-owned truck,25558697793.65997,56.12,0.3329384142842758,18.684503809633558
 Machinery,rail,539233371.4152095,22.53,0.0070242821077010405,0.15825707588650445
 Machinery,air(incl. truck & air),91858492.78722881,1905.86,0.001196587602937656,2.280528448934761
 "Meat, Poultry, Fish, Seafood, and Their Preparations",for-hire truck,57148595960.23418,270.49,0.7191551129057593,194.52426648987884
@@ -98,11 +98,11 @@ Metallic Ores and Concentrates,air(incl. truck & air),11136.001114399998,1847.47
 "Milled Grain Products and Preparations, and Bakery Products",rail,1919081730.4143426,765.77,0.019077097683329974,14.608669092963593
 "Milled Grain Products and Preparations, and Bakery Products",air(incl. truck & air),14100752.3165368,2944.89,0.00014017195051559098,0.4127909753538587
 "Milled Grain Products and Preparations, and Bakery Products",inland water,9665892.9316512,3905.87,9.608615450364695e-05,0.3753000282911595
-Miscellaneous Manufactured Products,for-hire truck,46826923006.638145,1098.49,0.718069467547384,788.7921294061258
-Miscellaneous Manufactured Products,company-owned truck,18348056421.795437,97.15,0.28135906139851014,27.33403281486526
+Miscellaneous Manufactured Products,for-hire truck,46826923006.63814,1098.49,0.7180694675473839,788.7921294061257
+Miscellaneous Manufactured Products,company-owned truck,18348056421.795433,97.15,0.2813590613985101,27.334032814865257
 Miscellaneous Manufactured Products,air(incl. truck & air),36851239.49286,2591.79,0.0005650969190811002,1.4646125439052047
-Miscellaneous Manufactured Products,rail,415671.6634408,6.44,6.374135024826598e-06,4.1049429559883296e-05
-Mixed Freight,company-owned truck,223457596621.52957,114.68,0.6205910354029365,71.16937994000875
+Miscellaneous Manufactured Products,rail,415671.6634408,6.44,6.374135024826599e-06,4.1049429559883296e-05
+Mixed Freight,company-owned truck,223457596621.52954,114.68,0.6205910354029364,71.16937994000875
 Mixed Freight,for-hire truck,135952729738.3447,410.26,0.37757071851566665,154.90216297823739
 Mixed Freight,air(incl. truck & air),342865482.7460312,2578.85,0.0009522130737925713,2.4556146853499725
 Mixed Freight,rail,286263886.04884964,810.25,0.000795017954759509,0.6441632978438923
@@ -110,12 +110,12 @@ Mixed Freight,deep sea,27731208.518004,1631.34,7.701568291862994e-05,0.125638764
 Mixed Freight,inland water,5040784.316030401,3027.74,1.3999369926217084e-05,0.04238645230040451
 Monumental or Building Stone,for-hire truck,8438956214.379071,570.01,0.6938831396847193,395.5203284516868
 Monumental or Building Stone,company-owned truck,3722970962.8881154,81.55,0.3061168603152807,24.963829958711138
-Motorized and Other Vehicles (includes parts),for-hire truck,97774633871.2565,612.09,0.7392941461191133,452.51455389804806
-Motorized and Other Vehicles (includes parts),company-owned truck,32024514088.94155,71.82,0.24214394737021483,17.390778300128826
-Motorized and Other Vehicles (includes parts),rail,2337336044.6449423,2126.47,0.017673079273244862,37.581272882177
-Motorized and Other Vehicles (includes parts),air(incl. truck & air),105560441.25674722,2108.13,0.0007981642394654447,1.682633978144288
-Motorized and Other Vehicles (includes parts),inland water,9660835.9251616,374.59,7.304757034931574e-05,0.027362889377150184
-Motorized and Other Vehicles (includes parts),deep sea,2329711.3798511997,292.28,1.761542761222656e-05,0.005148637182501578
+Motorized and Other Vehicles (includes parts),for-hire truck,97774633871.25648,612.09,0.7392941461191133,452.51455389804806
+Motorized and Other Vehicles (includes parts),company-owned truck,32024514088.94156,71.82,0.2421439473702149,17.390778300128833
+Motorized and Other Vehicles (includes parts),rail,2337336044.6449423,2126.47,0.017673079273244865,37.581272882177004
+Motorized and Other Vehicles (includes parts),air(incl. truck & air),105560441.25674722,2108.13,0.0007981642394654448,1.6826339781442883
+Motorized and Other Vehicles (includes parts),inland water,9660835.9251616,374.59,7.304757034931576e-05,0.027362889377150187
+Motorized and Other Vehicles (includes parts),deep sea,2329711.3798511997,292.28,1.7615427612226562e-05,0.005148637182501579
 Natural Sands,for-hire truck,231309817788.37897,202.64,0.5280242298044905,106.99882992758195
 Natural Sands,company-owned truck,125106436793.65941,49.67,0.2855876614454495,14.185139143995478
 Natural Sands,rail,74017434672.47688,550.67,0.16896385682511367,93.04332703788533
@@ -128,30 +128,30 @@ Non-Metallic Mineral Products,inland water,980874793.593975,899.92,0.00121971315
 Non-Metallic Mineral Products,air(incl. truck & air),385089420.0061657,4323.92,0.0004788568681403391,2.070538789289375
 Non-Metallic Mineral Products,deep sea,105494657.39865679,469.4,0.00013118210634467707,0.06157688071819142
 Non-Metallic Mineral Products,pipeline,15969095.4512176,20.92,1.9857494487077207e-05,0.00041541878466965523
-Other Chemical Products and Preparations,for-hire truck,72855600650.86195,794.58,0.7575387371841468,601.9251297917793
-Other Chemical Products and Preparations,company-owned truck,20185520840.208675,65.3,0.2098852226882992,13.705505041545937
-Other Chemical Products and Preparations,rail,2858181330.4393725,1169.89,0.02971882815269509,34.76775986755646
-Other Chemical Products and Preparations,inland water,258207683.1266104,59.71,0.0026847945862712836,0.16030908474625835
-Other Chemical Products and Preparations,air(incl. truck & air),16582085.894228,1671.69,0.0001724173885874609,0.2882284243277725
+Other Chemical Products and Preparations,for-hire truck,72855600650.86197,794.58,0.7575387371841469,601.9251297917795
+Other Chemical Products and Preparations,company-owned truck,20185520840.208675,65.3,0.20988522268829918,13.705505041545935
+Other Chemical Products and Preparations,rail,2858181330.4393725,1169.89,0.029718828152695085,34.76775986755646
+Other Chemical Products and Preparations,inland water,258207683.1266104,59.71,0.002684794586271283,0.16030908474625832
+Other Chemical Products and Preparations,air(incl. truck & air),16582085.894228,1671.69,0.00017241738858746086,0.28822842432777246
 "Other Coal and Petroleum Products, not elsewhere classified",for-hire truck,169302613527.154,238.65,0.3962753678905711,94.5711165470848
-"Other Coal and Petroleum Products, not elsewhere classified",company-owned truck,122070887068.49492,50.75,0.2857232069488263,14.500452752652935
+"Other Coal and Petroleum Products, not elsewhere classified",company-owned truck,122070887068.49493,50.75,0.28572320694882636,14.500452752652938
 "Other Coal and Petroleum Products, not elsewhere classified",inland water,54249599806.50031,439.43,0.12697843035830747,55.79813165235105
 "Other Coal and Petroleum Products, not elsewhere classified",rail,36087810994.06849,457.72,0.08446833914791418,38.66284819478328
 "Other Coal and Petroleum Products, not elsewhere classified",pipeline,34247619646.39132,69.94,0.08016112564365922,5.606469127517526
 "Other Coal and Petroleum Products, not elsewhere classified",deep sea,11274885749.891224,829.54,0.026390375230360506,21.891871868593253
 "Other Coal and Petroleum Products, not elsewhere classified",air(incl. truck & air),1347831.8450959998,3582.12,3.1547803612870964e-06,0.011300801827773734
-Other Non-Metallic Minerals not elsewhere classified,for-hire truck,108079360119.21889,308.33,0.6411307523519587,197.6798448726794
+Other Non-Metallic Minerals not elsewhere classified,for-hire truck,108079360119.21887,308.33,0.6411307523519587,197.6798448726794
 Other Non-Metallic Minerals not elsewhere classified,company-owned truck,38124600758.04066,59.77,0.22615653849318254,13.517376305737521
 Other Non-Metallic Minerals not elsewhere classified,pipeline,9955597909.765686,34.17,0.05905697416195799,2.0179768071141044
 Other Non-Metallic Minerals not elsewhere classified,inland water,7615512963.292151,1383.26,0.04517550391042118,62.4894675391292
 Other Non-Metallic Minerals not elsewhere classified,rail,4801075931.345109,1623.75,0.028480159584279532,46.24465912497389
 Other Non-Metallic Minerals not elsewhere classified,air(incl. truck & air),12052.891983200001,2281.07,7.14981999956511e-08,0.00016309239906407987
-"Other Prepared Foodstuffs, and Fats and Oils",for-hire truck,248653692195.88113,646.5,0.5706060641561438,368.89682047694697
-"Other Prepared Foodstuffs, and Fats and Oils",company-owned truck,164366191949.82568,67.48,0.3771846098104183,25.452417470007028
-"Other Prepared Foodstuffs, and Fats and Oils",rail,20431128698.032482,1578.87,0.04688499024365207,74.02530454599494
-"Other Prepared Foodstuffs, and Fats and Oils",inland water,2283173080.9188824,1905.55,0.005239384921194267,9.983909936581735
-"Other Prepared Foodstuffs, and Fats and Oils",air(incl. truck & air),27892006.7912856,3541.81,6.400608040862843e-05,0.22669737565208425
-"Other Prepared Foodstuffs, and Fats and Oils",deep sea,9127135.586352,824.12,2.0944788182936386e-05,0.017261018837321535
+"Other Prepared Foodstuffs, and Fats and Oils",for-hire truck,248653692195.88116,646.5,0.5706060641561437,368.8968204769469
+"Other Prepared Foodstuffs, and Fats and Oils",company-owned truck,164366191949.82574,67.48,0.37718460981041835,25.45241747000703
+"Other Prepared Foodstuffs, and Fats and Oils",rail,20431128698.032482,1578.87,0.04688499024365206,74.02530454599491
+"Other Prepared Foodstuffs, and Fats and Oils",inland water,2283173080.9188824,1905.55,0.0052393849211942655,9.983909936581732
+"Other Prepared Foodstuffs, and Fats and Oils",air(incl. truck & air),27892006.7912856,3541.81,6.40060804086284e-05,0.22669737565208414
+"Other Prepared Foodstuffs, and Fats and Oils",deep sea,9127135.586352,824.12,2.094478818293638e-05,0.017261018837321528
 Paper or Paperboard Articles,for-hire truck,49994960527.02349,581.18,0.752070985776608,437.088615513649
 Paper or Paperboard Articles,company-owned truck,16117085191.244522,110.22,0.2424482791835197,26.72264933160754
 Paper or Paperboard Articles,rail,170852239.978636,224.66,0.002570119291791835,0.5774030000939536
@@ -159,21 +159,21 @@ Paper or Paperboard Articles,inland water,157629021.8499128,83.49,0.002371203269
 Paper or Paperboard Articles,deep sea,22428948.326662403,4292.67,0.00033739723164393626,1.448334974360976
 Paper or Paperboard Articles,air(incl. truck & air),13429243.379936801,2744.07,0.00020201524714723797,0.5543439792393213
 Pharmaceutical Products,for-hire truck,10309771006.938814,593.04,0.6766449338317235,401.2775115595653
-Pharmaceutical Products,company-owned truck,4826463993.224299,76.29,0.3167676961145364,24.166207536577986
+Pharmaceutical Products,company-owned truck,4826463993.2242985,76.29,0.31676769611453637,24.166207536577982
 Pharmaceutical Products,rail,55472982.78126,1315.81,0.003640770754094478,4.790562565945055
 Pharmaceutical Products,air(incl. truck & air),44896167.1175488,2729.9,0.002946599299645541,8.043921428102362
 Plastics and Rubber,for-hire truck,96362494115.20659,665.22,0.6546850361644955,435.5095797573457
-Plastics and Rubber,company-owned truck,28906953776.774162,77.15,0.1963933193357053,15.151744586749665
+Plastics and Rubber,company-owned truck,28906953776.774166,77.15,0.19639331933570534,15.151744586749668
 Plastics and Rubber,rail,21763247433.184288,793.33,0.1478591080863554,117.30106621814835
 Plastics and Rubber,air(incl. truck & air),156393766.82186,3082.38,0.0010625364134438018,3.2751409900709056
-Precision Instruments and Apparatus,for-hire truck,3927551972.493439,1758.07,0.8150521680170353,1432.9187650257093
-Precision Instruments and Apparatus,company-owned truck,755445176.399328,101.76,0.15677124915329493,15.953042313839294
-Precision Instruments and Apparatus,air(incl. truck & air),135776577.0257808,2404.1,0.02817658282966986,67.7393227808093
-Printed Products,for-hire truck,17262887619.981762,135.25,0.7534407829591159,101.90286589522042
-Printed Products,company-owned truck,5627882362.867831,59.13,0.2456295949568035,14.524077949795792
-Printed Products,air(incl. truck & air),21299565.844455995,2502.07,0.000929622084080573,2.3259795279154796
+Precision Instruments and Apparatus,for-hire truck,3927551972.4934382,1758.07,0.8150521680170353,1432.9187650257093
+Precision Instruments and Apparatus,company-owned truck,755445176.399328,101.76,0.15677124915329496,15.953042313839296
+Precision Instruments and Apparatus,air(incl. truck & air),135776577.0257808,2404.1,0.028176582829669863,67.73932278080932
+Printed Products,for-hire truck,17262887619.981762,135.25,0.753440782959116,101.90286589522044
+Printed Products,company-owned truck,5627882362.86783,59.13,0.2456295949568035,14.524077949795792
+Printed Products,air(incl. truck & air),21299565.844455995,2502.07,0.0009296220840805731,2.3259795279154796
 "Pulp, Newsprint, Paper, and Paperboard",for-hire truck,68842468977.14062,685.04,0.7179489538055407,491.8237513149476
-"Pulp, Newsprint, Paper, and Paperboard",company-owned truck,17763293757.531345,83.27,0.185251028309209,15.425853127307834
+"Pulp, Newsprint, Paper, and Paperboard",company-owned truck,17763293757.53134,83.27,0.18525102830920895,15.425853127307828
 "Pulp, Newsprint, Paper, and Paperboard",rail,9281160539.623495,1254.56,0.09679198899354641,121.43135771174357
 "Pulp, Newsprint, Paper, and Paperboard",air(incl. truck & air),769871.9040128001,2252.31,8.02889170395392e-06,0.018083553073732453
 "Textiles, Leather, and Articles of Textiles or Leather",for-hire truck,21577491323.549133,1438.67,0.7582535533013748,1090.8766395280888
@@ -189,10 +189,10 @@ Tobacco Products,air(incl. truck & air),6161372.0575896,3053.95,0.00155030050065
 "Transportation Equipment, not elsewhere classified",rail,836789668.2584223,384.75,0.19640334393626324,75.56618657947728
 "Transportation Equipment, not elsewhere classified",air(incl. truck & air),82044266.0183008,2706.47,0.019256652905774475,52.11755338989144
 "Waste and Scrap (excludes of agriculture or food, see 041xx)",for-hire truck,86895471198.47961,237.92,0.5712276082829323,135.90647256267525
-"Waste and Scrap (excludes of agriculture or food, see 041xx)",company-owned truck,41982833575.72544,96.96,0.2759839296759764,26.75940182138267
+"Waste and Scrap (excludes of agriculture or food, see 041xx)",company-owned truck,41982833575.72545,96.96,0.27598392967597646,26.759401821382674
 "Waste and Scrap (excludes of agriculture or food, see 041xx)",rail,15962857045.358494,430.52,0.10493555677435615,45.17685590249581
 "Waste and Scrap (excludes of agriculture or food, see 041xx)",inland water,7279411378.361766,328.21,0.04785290526673512,15.705802037595133
-Wood Products,for-hire truck,160705712163.0114,533.86,0.6033375403770939,322.09777930571533
-Wood Products,company-owned truck,95967359748.90604,90.71,0.3602903095856186,32.68193398251146
-Wood Products,rail,9686670237.382114,1172.53,0.03636667120791539,42.64101299141703
-Wood Products,air(incl. truck & air),1459347.5743736,1601.13,5.478829372192659e-06,0.008772318072698833
+Wood Products,for-hire truck,160705712163.01135,533.86,0.6033375403770938,322.0977793057153
+Wood Products,company-owned truck,95967359748.90605,90.71,0.3602903095856187,32.68193398251147
+Wood Products,rail,9686670237.382114,1172.53,0.036366671207915396,42.641012991417035
+Wood Products,air(incl. truck & air),1459347.5743736,1601.13,5.47882937219266e-06,0.008772318072698834

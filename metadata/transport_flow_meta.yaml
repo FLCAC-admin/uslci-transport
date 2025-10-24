@@ -1,15 +1,15 @@
 Years:
   - 2017
 
-## Transportation Modes
+## CFS Transportation Mode Mapping to USLCI Processes
 Mode:
-  company-owned truck: # on average they are short distance shipments
+  company-owned truck:
     ProcessName: 'Transport, light commercial truck, diesel powered'
     DefaultProviderUUID: 'bf6e7378-4e08-3698-a3a7-c9cc90fcbc07'
     FlowName: 'Transport, light commercial truck, diesel powered'
     FlowUUID: '35fe9caf-2ad2-3d14-ae03-21454a89da2e'
 
-  for-hire truck: # on average they are long distance shipments
+  for-hire truck: 
     ProcessName: 'Transport, combination truck, long-haul, diesel powered'
     DefaultProviderUUID: 'a685da05-1a42-3fe1-a68b-6db458be5e07'
     FlowName: 'Transport, combination truck, long-haul, diesel powered'
@@ -27,7 +27,7 @@ Mode:
     FlowName: 'Transport, barge, average fuel mix'
     FlowUUID: '4069483a-8d94-3b6b-81be-5f0a249b74f4'
   
-  great lakes: # great lakes is combined with deep sea
+  great lakes: 
     ProcessName: 'Transport, ocean freighter, average fuel mix'
     DefaultProviderUUID: '1e2429d8-8d91-328f-85c3-18d39bdebfa7'
     FlowName: 'Transport, ocean freighter, average fuel mix'
@@ -39,13 +39,13 @@ Mode:
     FlowName: 'Transport, ocean freighter, average fuel mix'
     FlowUUID: '0e63d1db-e383-3c9a-b02a-b5eebafe87d1'
 
-  air(incl. truck & air): # considering dropping these entries; often doesn't make sense in the context of our work
+  air(incl. truck & air): 
     ProcessName: 'Transport, aircraft, freight'
     DefaultProviderUUID: '61ff7eba-1846-30cb-9840-33939ee0dc26'
     FlowName: 'Transport, aircraft, freight'
     FlowUUID: '6a71f6df-1df1-32f0-b926-6e9b932a7fe9'
 
-  pipeline: # we only have petroleum or ng pipeline processes but pipeline is used for basic chemicals and non-metallic mineral products 
+  pipeline: 
     ProcessName: 'Transport, pipeline, unspecified petroleum products'
     DefaultProviderUUID: '0855376f-1ec5-3f3e-bead-959c932539b7'
     FlowName: 'Transport, pipeline, unspecified petroleum products'
@@ -65,10 +65,8 @@ DQI:
         No documentation of third party review of 2017 CFS PUF data.
         Various government entities involved in the effort to produce CFS data reviewed internally.
         
-
     Process completeness:
       score: 1
-      # If I drop air freight flows, can I still say this?
       description: All flows have been evaluated and given a value.
 
     # # EPA DQI category
@@ -97,10 +95,12 @@ DQI:
 
   Flow:
     Flow reliability:
-      score: 1
+      score: 2
       description: >
-        Data collected directly from businesses. Collected data were processesed and weighted. 
-        Imputation was not used on the 2017 CFS PUF data file. 
+        Data collected directly from business establishements. 
+        Collected data were processesed and weighted. 
+        Values for shipment value, shipment weight, ZIP code, 
+        SCTG code, HAZMAT Code, and Temperature Control Code were imputed when required. 
 
     Temporal correlation:
       score: 3
@@ -120,15 +120,13 @@ DQI:
         All technologies are categorically equivalent. These data are direct representations
         of the the shipping practices in the US.
 
-    # Discuss how representative this is
     Data collection methods:
       score: 3
       description: >
         Data were collected from a total of 710,498 establishements representing 22 three digit NAICS
         code industries, 19 four digit NAICS code industries, one five digit NAICS code industry, and
-        1 six digit NAICS code industry.
-        The data are intended to represent one year of shipping activity and were collected 
-        for four weeks once per quarter. 
+        1 six digit NAICS code industry. The data are intended to represent one year of shipping activity and were collected 
+        for four weeks once per quarter in 2017. 
 
 Review:
   review_type: 'Dependent internal review'

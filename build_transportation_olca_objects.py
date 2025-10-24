@@ -12,12 +12,6 @@ respective transportation mode.
 
 This script only works after running 'commodity transport distances.py'
 
-TO-DO:
-- Ask questions 
-- Complete dqi in flow meta
-- fill out process meta
-
-
 '''
 
 
@@ -25,11 +19,9 @@ TO-DO:
 
 ## DEPENDENCIES ##
 import pandas as pd
-import numpy as np
 from pathlib import Path
 import yaml
 from esupy.util import make_uuid
-import os
 
 # Directories
 working_dir = Path(__file__).parent # parent directory
@@ -196,10 +188,7 @@ validate_exchange_data(df_olca)
 flows, new_flows = build_flow_dict(df_olca)
 processes = {}
 for year in df_olca.Year.unique():
-    ### *** I dont think this is relevant since we have 1 year of data
     process_meta = assign_year_to_meta(process_meta, year)
-    # Update time period to match year for each region
-
     p_dict = build_process_dict(df_olca.query('Year == @year'),
                                 flows,
                                 meta=process_meta,
