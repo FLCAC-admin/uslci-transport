@@ -1,30 +1,37 @@
 ## General Information
 
 description: >
-    Average transport distances per transportation mode (i.e. truck, rail, water) 
-    for commodities defined according to the Standard Classification of Transported 
-    Goods (SCTG). Data sourced from the 2017 Commodity Flow Survey Public Use File. 
-    These data represent U.S. average shipment characteristics per commodity.
+    Average transport distances per transportation mode (i.e. truck, rail, water)
+    for the commodity '[COMMODITY]'. Commodity categories are defined according to the
+    Standard Classification of Transported Goods (SCTG). The SCTG code for '[COMMODITY]'
+    is '[SCTG]'. Specific commodities that are included in each category can be found in
+    the SCTG Commodity Code Manual which is referenced in the methodology document. The
+    system boundaries for these processes are manufacturing or wholesale gate to consumer.
+    Data are sourced from the 2017 Commodity Flow Survey Public Use File. These data
+    represent U.S. average shipment characteristics per commodity. These data are intended
+    to model transportation of domestically transported and consumed goods. Shipment data
+    for commodities that were ultimately exported from the United States were not included.
 
 time_description: >
-    This process reflects a sample of four weeks of transportation activities, one 
+    This process reflects a sample of four weeks of transportation activities, one
     week per quarter, over the course of 2017. 
 
 geography_description: >
     This process represents the average U.S. shipment for the commodity.
 
 technology_description: >
-    This data represents the standard transportation technology used in the U.S 
-    for all modes excluding pipeline. The current default provider for pipeline 
-    entries represent the transportation of crude petroleum which was selected as 
-    a proxy for basic Basic Chemicals and non-metallic minerals, which included
-    pipeline transportation modes.
+    This data represents the standard transportation technology used in the U.S.
+    for all modes excluding pipeline. The current default provider for pipeline
+    entries represent the transportation of crude petroleum which was selected as
+    a proxy for SCTG Code 20 (Basic Chemicals) and SCTG Code 31 (Non-Metallic Minerals).
+    Currently, there are no pipeline processes in USLCI that specifically relate to
+    chemical or mineral transport.
 
 ## LCI method
 
 inventory_method_description: >
-    Not applicable; this process contains only technosphere flows. 
-    This process contains the mixture of transport processes used to 
+    Not applicable; this process contains only technosphere flows.
+    This process contains the mixture of transport processes used to
     model transport of a specific commodity moved within the U.S.
 
 modeling_constants_description: >
@@ -35,7 +42,7 @@ modeling_constants_description: >
 ## Data Source information
 
 completeness_description: >
-    This process contains no elementary flows. All transportation modes included in the 
+    This process contains no elementary flows. All transportation modes included in the
     CFS data for each commodity are included. 
 
 data_selection_description: >
@@ -43,11 +50,11 @@ data_selection_description: >
 
 data_treatment_description: >
     Estimation of the total mass of each commodity shipped per transportation mode was
-    completed based on the 2017 CFS PUF User Guide instructions. Estimation of average 
-    shipment distance for each commodity transport mode was completed based on the 
-    2017 CFS PUF User Guide instructions. The shipment distances produced based on the 
-    calculation from the 2017 CFS PUF User Guide are weighted based on the mass fraction 
-    of the mass of commodity shipped by each mode. A more detailed discussion of the 
+    completed based on the 2017 CFS PUF User Guide instructions. Estimation of average
+    shipment distance for each commodity transport mode was completed based on the
+    2017 CFS PUF User Guide instructions. The shipment distances produced based on the
+    calculation from the 2017 CFS PUF User Guide are weighted based on the mass fraction
+    of the mass of commodity shipped by each mode. A more detailed discussion of the
     methodology is included in the methodology document.
 
 sampling_description: >
@@ -61,12 +68,14 @@ data_collection_description: >
 use_advice: >
     These data are intended to be used as proxies for commodity specifc transport inputs
     when primary or more relevant data are not available. It is recommended that the user
-    review the transportation modes present in each process and make a judgement call 
-    about which modes are relevant for the use case and which modes should be excluded. 
+    review the transportation modes present in each process and make a judgement call
+    about which modes are relevant for the use case and which modes should be excluded.
+    These processes only represent the domestic transport of commodities within the United
+    States.  
 
 sources:
- - CFS_PUF_ZIP_2017: 2017 CFS Public Use File
- - CFS_PUF_User_Guide_2017: 2017 CFS Public Use File User Guide
+ - CFS_PUF_ZIP_2017: US Census Bureau (2017) CFS Public Use File
+ - CFS_PUF_User_Guide_2017: US Census Bureau (2017) CFS Public Use File User Guide
 
 ## Admin information
 
@@ -78,8 +87,11 @@ project_description: >
     Manufacturing Technologies Office (AMMTO).
 
 intended_application: >
-    This process is intended to provide representative mixes of transportation 
+    This process is intended to provide representative mixes of transportation
     for commodities in the US. 
+
+data_set_owner:
+    USLCI: 'US Census Bureau'
 
 data_generator:
     USLCI: 'ERG'
@@ -92,9 +104,9 @@ publication:
 
 restrictions_description: >
     The underlying Commodity Flow Survey data is released under a Creative Commons Attribution Licence.
-
+    
     These U.S. LCI Database Project data ("Data") are provided by the National Renewable Energy Laboratory ("NREL"), operated by the Alliance for Sustainable Energy, LLC ("Alliance") for the US Department of Energy ("DOE") under Contract No. DE-AC36-08GO28308. The United States Government (the "Government") retains and the user acknowledges that the Government retains a non-exclusive, paid-up, irrevocable, worldwide license to publish or reproduce the published form of these data, or allow others to do so, for Government purposes.
-
+    
     Access to and use of these Data shall impose the following obligations on the user, as set forth in this Agreement. The user is granted the right, without any fee or cost, to use, copy, modify, alter, enhance and distribute these Data for any purpose whatsoever, provided that this entire notice appears in all copies of the Data. Any modification, alteration or enhancement of these data shall be identified and documented by the user. Further, the user agrees to credit the DOE/NREL/Alliance in any publication that results from the use of these Data. The names DOE/NREL/Alliance, however, may not be used in any advertising or publicity to endorse or promote any products or commercial entities unless specific written permission is obtained from DOE/NREL/Alliance. The user also understands that DOE/NREL/Alliance is not obligated to provide the user with any support, consulting, training or assistance of any kind with regard to the use of these Data or to provide the user with any updates, revisions or new versions of these Data.
-
+    
     YOU AGREE TO INDEMNIFY THE GOVERNMENT AND DOE/NREL/ALLIANCE, AND ITS SUBSIDIARIES, AFFILIATES, OFFICERS, AGENTS, AND EMPLOYEES AGAINST ANY CLAIM OR DEMAND, INCLUDING REASONABLE ATTORNEYS' FEES, RELATED TO YOUR USE OF THESE DATA. THESE DATA ARE PROVIDED BY DOE/NREL/ALLIANCE "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE GOVERNMENT OR DOE/NREL/ALLIANCE BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER, INCLUDING BUT NOT LIMITED TO CLAIMS ASSOCIATED WITH THE LOSS OF DATA OR PROFITS, WHICH MAY RESULT FROM AN ACTION IN CONTRACT, NEGLIGENCE OR OTHER TORTIOUS CLAIM THAT ARISES OUT OF OR IN CONNECTION WITH THE ACCESS, USE OR PERFORMANCE OF THESE DATA.

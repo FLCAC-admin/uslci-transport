@@ -22,6 +22,7 @@ import pandas as pd
 from pathlib import Path
 import yaml
 from esupy.util import make_uuid
+import copy
 
 # Directories
 working_dir = Path(__file__).parent # parent directory
@@ -68,12 +69,67 @@ for column in schema:
 df_olca['amount'] = df_olca['Weighted Dist. Shipped (km)']
 df_olca.drop('Weighted Dist. Shipped (km)', axis=1, inplace=True)
 
+#%% Code Mapping
+SCTG_codes = {
+    '01': 'Animals and Fish (live)',
+    '02': 'Cereal Grains (includes seed)',
+    '03': 'Agricultural Products (excludes Animal Feed, Cereal Grains, and Forage Products)',
+    '04': 'Animal Feed, Eggs, Honey, and Other Products of Animal Origin',
+    '05': 'Meat, Poultry, Fish, Seafood, and Their Preparations',
+    '06': 'Milled Grain Products and Preparations, and Bakery Products',
+    '07': 'Other Prepared Foodstuffs, and Fats and Oils',
+    '08': 'Alcoholic Beverages and Denatured Alcohol',
+    '09': 'Tobacco Products',
+    '10': 'Monumental or Building Stone',
+    '11': 'Natural Sands',
+    '12': 'Gravel and Crushed Stone (excludes Dolomite and Slate)',
+    '13': 'Other Non-Metallic Minerals not elsewhere classified',
+    '14': 'Metallic Ores and Concentrates',
+    '15': 'Coal',
+    '16': 'Crude Petroleum',
+    '17': 'Gasoline, Aviation Turbine Fuel, and Ethanol (includes Kerosene, and Fuel Alcohols)',
+    '18': 'Fuel Oils (includes Diesel, Bunker C, and Biodiesel)',
+    '19': 'Other Coal and Petroleum Products, not elsewhere classified',
+    '20': 'Basic Chemicals',
+    '21': 'Pharmaceutical Products',
+    '22': 'Fertilizers',
+    '23': 'Other Chemical Products and Preparations',
+    '24': 'Plastics and Rubber',
+    '25': 'Logs and Other Wood in the Rough',
+    '26': 'Wood Products',
+    '27': 'Pulp, Newsprint, Paper, and Paperboard',
+    '28': 'Paper or Paperboard Articles',
+    '29': 'Printed Products',
+    '30': 'Textiles, Leather, and Articles of Textiles or Leather',
+    '31': 'Non-Metallic Mineral Products',
+    '32': 'Base Metal in Primary or Semi-Finished Forms and in Finished Basic Shapes',
+    '33': 'Articles of Base Metal',
+    '34': 'Machinery',
+    '35': 'Electronic and Other Electrical Equipment and Components, and Office Equipment',
+    '36': 'Motorized and Other Vehicles (includes parts)',
+    '37': 'Transportation Equipment, not elsewhere classified',
+    '38': 'Precision Instruments and Apparatus',
+    '39': 'Furniture, Mattresses and Mattress Supports, Lamps, Lighting Fittings, and Illuminated Signs',
+    '40': 'Miscellaneous Manufactured Products',
+    '41': 'Waste and Scrap (excludes of agriculture or food, see 041xx)',
+    '43': 'Mixed Freight'
+}
+
+# Reverse SCTG_codes
+reversed_SCTG_codes = {v: k for k, v in SCTG_codes.items()}
+
+# Add SCTG codes to df_olca
+df_olca['SCTG'] = df_olca['Commodity'].map(reversed_SCTG_codes)
+
+# Reorder for comparison
+df_olca = df_olca[['SCTG'] + [col for col in df_olca.columns if col != 'SCTG']]
 
 #%% Add values for inputs ###
+
 df_olca['IsInput'] = True
 df_olca['reference'] = False
 df_olca['unit'] = 'kg*km'
-df_olca['ProcessName'] = 'Transport, average, ' + df_olca['Commodity'].str.lower()
+df_olca['ProcessName'] = 'Transport; average mix; ' + df_olca['Commodity'].str.lower()
 df_olca['ProcessID'] = df_olca['ProcessName'].apply(make_uuid)
 
 # Map flow name based on transport mode mapping to uslci in transport_flow_meta.yaml
@@ -93,46 +149,41 @@ df_olca['default_provider'] = df_olca['Transport Mode'].map(
     {k: v['DefaultProviderUUID'] for k, v in meta['Mode'].items()})
 
 
-#%% Create new flows for the reference flow of each process ###
+#%% Create ref flow df that will be updated for each process ###
 
-# Get unique commodities
-unique_commodities = df_olca['Commodity'].unique()
+# Create FlowName by modifying the commodity string
+refFlowName = 'Commodity transport; at consumer'
 
-# Creat list for dictionaries of ref flow values
-new_rows = []
-for commodity in unique_commodities:
-    
-    # Get process uuid and name for each new ref flow
-    processID = df_olca[df_olca['Commodity'] == commodity]['ProcessID'].iloc[0]
-    processName = df_olca[df_olca['Commodity'] == commodity]['ProcessName'].iloc[0]
-    
-    # Create FlowName by modifying the commodity string
-    flowName = f"{commodity}, transported"
-    
-    # generate reference flow uuid
-    flowUUID = make_uuid([flowName, processName, processID])
+# generate reference flow uuid
+refFlowUUID = make_uuid([refFlowName, 'uslci-transport'])
 
-    # Create the new row as a dictionary
-    new_row = {
-        'Commodity': commodity,
-        'ProcessID': processID,
-        'ProcessName': processName,
-        'FlowName': flowName,
-        'FlowUUID': flowUUID,
-        'IsInput': False,
-        'reference': True,
-        'amount': 1.0,
-        'unit': 'kg',
-        'default_provider': 'nan',
-        'default_provider_name': 'nan'
-    }
-    new_rows.append(new_row)
+# Dictionary of ref flow values
+ref_flow = {
+    'SCTG': 'nan',
+    'Commodity': 'nan',
+    'Transport Mode': 'nan',
+    'ProcessID': 'nan', # Updated for each process in create json file loop
+    'ProcessCategory': '48-49: Transportation and Warehousing',
+    'ProcessName': 'nan', # Updated for each process in create json file loop
+    'FlowUUID': refFlowUUID,
+    'FlowName': refFlowName,
+    'Context': 'Technosphere Flows / 48-49: Transportation and Warehousing',
+    'IsInput': False,
+    'FlowType':'PRODUCT_FLOW',
+    'reference': True,
+    'default_provider': 'nan',
+    'default_provider_name': 'nan',
+    'amount': 1.0,
+    'unit': 'kg',
+    'avoided_product': False,
+    'exchange_dqi': 'nan', # Updated for each process in create json file loop
+    'location': 'US',
+    'Year': 2017,
+    'CountryCode': 'USA'
+}
 
-# Convert new rows to DataFrame
-new_df = pd.DataFrame(new_rows)
-
-# Append to original DataFrame
-df_olca = pd.concat([df_olca, new_df], ignore_index=True)
+# Convert ref flow data to df; will be concatenated in the create json file loop
+refFlow_df = pd.DataFrame([ref_flow])
 
 
 #%% Add values shared by both inputs and ref flow
@@ -146,11 +197,13 @@ df_olca['Year'] = 2017
 
 
 #%% Assign exchange dqi
+
 from flcac_utils.util import format_dqi_score
 df_olca['exchange_dqi'] = format_dqi_score(meta['DQI']['Flow'])
 
 
 #%% Assign locations to processes
+
 from flcac_utils.util import generate_locations_from_exchange_df
 from esupy.location import read_iso_3166
 df_olca = df_olca.merge(read_iso_3166()
@@ -162,6 +215,7 @@ locations = generate_locations_from_exchange_df(df_olca)
 
 
 #%% Build supporting objects
+
 from flcac_utils.generate_processes import build_location_dict
 from flcac_utils.util import extract_actors_from_process_meta, \
     extract_sources_from_process_meta, extract_dqsystems
@@ -180,24 +234,63 @@ location_objs = build_location_dict(df_olca, locations)
 
 
 #%% Create json file
+
 from flcac_utils.generate_processes import build_flow_dict, \
     build_process_dict, write_objects, validate_exchange_data
-from flcac_utils.util import assign_year_to_meta
+
+# Add ref flow so the new flow gets created
+df_olca = pd.concat([df_olca, refFlow_df], ignore_index=True)
 
 validate_exchange_data(df_olca)
+# Need to update this so that the new ref flow gets created
 flows, new_flows = build_flow_dict(df_olca)
 processes = {}
-for year in df_olca.Year.unique():
-    process_meta = assign_year_to_meta(process_meta, year)
-    p_dict = build_process_dict(df_olca.query('Year == @year'),
-                                flows,
-                                meta=process_meta,
-                                loc_objs=location_objs,
-                                source_objs=source_objs,
-                                actor_objs=actor_objs,
-                                dq_objs=dq_objs,
-                                )
-    processes.update(p_dict)
+# Loop over each unique ProcessID
+for pid in df_olca['ProcessID'].unique():
+    if pid != 'nan':
+        # Create a fresh reference flow row for this pid
+        ref_flow_copy = refFlow_df.copy()
+        ref_flow_copy['ProcessID'] = pid
+
+        # Filter the DataFrame for the current ProcessID
+        _df_olca = pd.concat([
+            df_olca[df_olca['ProcessID'] == pid],
+            ref_flow_copy
+        ], ignore_index=True)
+
+        # Get a donor row to provide current process name and dqi
+        source_row = _df_olca[_df_olca['FlowName'] != 'Commodity transport; at consumer'].iloc[0]
+
+        # Update reference flow with current process name and dqi
+        _df_olca.loc[
+            _df_olca['FlowName'] == 'Commodity transport; at consumer', 'ProcessName'] = source_row['ProcessName']
+        _df_olca.loc[
+            _df_olca['FlowName'] == 'Commodity transport; at consumer', 'exchange_dqi'] = source_row['exchange_dqi']
+    
+        # Get representative values for replacement (e.g., first row)
+        commodity = _df_olca.iloc[0]['Commodity']
+        sctg = _df_olca.iloc[0]['SCTG']
+    
+        # Create a deep copy of process_meta
+        _process_meta = copy.deepcopy(process_meta)
+    
+        # Replace placeholders in all string values of _process_meta
+        for key, value in _process_meta.items():
+            if isinstance(value, str):
+                _process_meta[key] = value.replace('[COMMODITY]', commodity).replace('[SCTG]', sctg)
+    
+        # Now call your function with filtered data
+        p_dict = build_process_dict(
+            _df_olca,
+            flows,
+            meta=_process_meta,
+            loc_objs=location_objs,
+            source_objs=source_objs,
+            actor_objs=actor_objs,
+            dq_objs=dq_objs,
+        )
+        processes.update(p_dict)
+
 
 out_path = working_dir / 'output'
 write_objects('uslci-transport', flows, new_flows, processes,

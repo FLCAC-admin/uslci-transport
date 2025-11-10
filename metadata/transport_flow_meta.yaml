@@ -97,9 +97,9 @@ DQI:
     Flow reliability:
       score: 2
       description: >
-        Data collected directly from business establishements. 
-        Collected data were processesed and weighted. 
-        Values for shipment value, shipment weight, ZIP code, 
+        Data collected directly from business establishements.
+        Collected data were processesed and weighted.
+        Values for shipment value, shipment weight, ZIP code,
         SCTG code, HAZMAT Code, and Temperature Control Code were imputed when required. 
 
     Temporal correlation:
@@ -125,7 +125,7 @@ DQI:
       description: >
         Data were collected from a total of 710,498 establishements representing 22 three digit NAICS
         code industries, 19 four digit NAICS code industries, one five digit NAICS code industry, and
-        1 six digit NAICS code industry. The data are intended to represent one year of shipping activity and were collected 
+        1 six digit NAICS code industry. The data are intended to represent one year of shipping activity and were collected
         for four weeks once per quarter in 2017. 
 
 Review:
@@ -133,5 +133,5 @@ Review:
   reviewers:
     - USLCI: 'Franklin Associates, A Division of ERG'
   details: >
-    ERG internally reviewed the programs, underlying assumptions, and mathematical operations 
+    ERG internally reviewed the programs, underlying assumptions, and mathematical operations
     required to produce the JSON-LD files for addition to USLCI.
