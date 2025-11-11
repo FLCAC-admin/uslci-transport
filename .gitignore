@@ -1,4 +1,4 @@
 data/CFS 2017 PUF CSV.csv
 data/CFS 2017 PUF CSV.zip
-src/flcac-utils/
+**/src/
 output/*zip

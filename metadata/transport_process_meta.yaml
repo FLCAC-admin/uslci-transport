@@ -90,7 +90,7 @@ intended_application: >
     This process is intended to provide representative mixes of transportation
     for commodities in the US. 
 
-data_set_owner:
+data_set_owner: 
     USLCI: 'US Census Bureau'
 
 data_generator:
@@ -103,7 +103,7 @@ publication:
     uslci_transport: 'ERG, US Average Commodity Transport'
 
 restrictions_description: >
-    The underlying Commodity Flow Survey data is released under a Creative Commons Attribution Licence.
+    The Commodity Flow Survey Public Use File is a work of the United States Government and is therefore not subject to copyright protection under Title 17 U.S.C. §105. This provision states: ‘Copyright protection under this title is not available for any work of the United States Government.’ Accordingly, the data are in the public domain and may be used freely, with attribution recommended for transparency.
     
     These U.S. LCI Database Project data ("Data") are provided by the National Renewable Energy Laboratory ("NREL"), operated by the Alliance for Sustainable Energy, LLC ("Alliance") for the US Department of Energy ("DOE") under Contract No. DE-AC36-08GO28308. The United States Government (the "Government") retains and the user acknowledges that the Government retains a non-exclusive, paid-up, irrevocable, worldwide license to publish or reproduce the published form of these data, or allow others to do so, for Government purposes.
     
