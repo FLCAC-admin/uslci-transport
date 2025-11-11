@@ -1,0 +1,20 @@
+{
+  "@type": "Flow",
+  "@id": "73c7494d-4e93-3769-896b-8bb82f0dfccc",
+  "category": "Technosphere Flows / 48-49: Transportation and Warehousing",
+  "flowProperties": [
+    {
+      "conversionFactor": 1.0,
+      "flowProperty": {
+        "@type": "FlowProperty",
+        "@id": "838aaa20-0117-11db-92e3-0800200c9a66",
+        "name": "Goods transport (mass*distance)"
+      },
+      "isRefFlowProperty": true
+    }
+  ],
+  "flowType": "PRODUCT_FLOW",
+  "lastChange": "2025-11-11T12:00:00Z",
+  "name": "Transport, train, diesel powered",
+  "version": "01.00.000"
+}
