@@ -162,11 +162,11 @@ ref_flow = {
     'Commodity': 'nan',
     'Transport Mode': 'nan',
     'ProcessID': 'nan', # Updated for each process in create json file loop
-    'ProcessCategory': '48-49: Transportation and Warehousing',
+    'ProcessCategory': f'{meta.get("Category")}',
     'ProcessName': 'nan', # Updated for each process in create json file loop
     'FlowUUID': refFlowUUID,
     'FlowName': refFlowName,
-    'Context': 'Technosphere Flows / 48-49: Transportation and Warehousing',
+    'Context': f'Technosphere Flows / {meta.get("Category")}',
     'IsInput': False,
     'FlowType':'PRODUCT_FLOW',
     'reference': True,
@@ -187,8 +187,9 @@ refFlow_df = pd.DataFrame([ref_flow])
 
 #%% Add values shared by both inputs and ref flow
 
-df_olca['ProcessCategory'] = '48-49: Transportation and Warehousing'
+df_olca['ProcessCategory'] = f'{meta.get("Category")}'
 df_olca['Context'] = 'Technosphere Flows / 48-49: Transportation and Warehousing'
+## TODO: ^^ input flows need to have specific context see #4
 df_olca['FlowType'] = 'PRODUCT_FLOW'
 df_olca['avoided_product'] = False
 df_olca['location'] = 'US'

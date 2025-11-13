@@ -1,7 +1,7 @@
 {
   "@type": "Process",
   "@id": "0e37e687-c802-3164-b3c6-c768c9ee098e",
-  "category": "48-49: Transportation and Warehousing",
+  "category": "48-49: Transportation and Warehousing / Commodity Transport",
   "defaultAllocationMethod": "PHYSICAL_ALLOCATION",
   "description": "Average transport distances per transportation mode (i.e. truck, rail, water) for the commodity 'Monumental or Building Stone'. Commodity categories are defined according to the Standard Classification of Transported Goods (SCTG). The SCTG code for 'Monumental or Building Stone' is '10'. Specific commodities that are included in each category can be found in the SCTG Commodity Code Manual which is referenced in the methodology document. The system boundaries for these processes are manufacturing or wholesale gate to consumer. Data are sourced from the 2017 Commodity Flow Survey Public Use File. These data represent U.S. average shipment characteristics per commodity. These data are intended to model transportation of domestically transported and consumed goods. Shipment data for commodities that were ultimately exported from the United States were not included.\n",
   "dqEntry": "(4;1)",
@@ -80,7 +80,7 @@
       "flow": {
         "@type": "Flow",
         "@id": "1d6944d8-817b-3ae1-b997-68bdc265557f",
-        "category": "Technosphere Flows / 48-49: Transportation and Warehousing",
+        "category": "Technosphere Flows / 48-49: Transportation and Warehousing / Commodity Transport",
         "name": "Commodity transport; at consumer"
       },
       "flowProperty": {
