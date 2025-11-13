@@ -1,7 +1,4 @@
-#%% PURPOSE ##
-
-'''
-
+"""
 The purpose of this script is to build olca process objects that will contain
 the 2017 CFS PUF derived transport data for commodities defined according to
 the 2017 Standard Classification of Transported Goods (SCTG) Codes.
@@ -11,8 +8,7 @@ are weighted by the total moass of that commodity transported via the
 respective transportation mode.
 
 This script only works after running 'commodity transport distances.py'
-
-'''
+"""
 
 
 #%% SETUP ##
@@ -33,14 +29,11 @@ meta_dir = working_dir / 'metadata' # metadata directory
 with open(meta_dir / 'transport_flow_meta.yaml') as f:
     meta = yaml.safe_load(f)
 
-# Load yaml file for process meta data
-with open(meta_dir / 'transport_process_meta.yaml') as f:
-    process_meta = yaml.safe_load(f)
-
 # Read in CSV file created by 'commodity transport distances.py'
 csv_path = data_dir / 'Weighted_Commodity_Transport_Distances.csv'
 df_olca = pd.read_csv(csv_path)
 df_olca = df_olca.drop(columns=['Mass Shipped (kg)', 'Avg. Dist. Shipped (km)', 'Mass Frac. by Mode'])
+YEAR = 2017
 
 # Create empty df_olca that includes all schema requirements
 schema = ['ProcessID',
@@ -67,7 +60,7 @@ for column in schema:
 # Move values from 'Weighted Dist. Shipped (km)' to 'amount'
 # Remove 'Weighted Dist. Shipped (km)' column
 df_olca['amount'] = df_olca['Weighted Dist. Shipped (km)']
-df_olca.drop('Weighted Dist. Shipped (km)', axis=1, inplace=True)
+df_olca = df_olca.drop('Weighted Dist. Shipped (km)', axis=1)
 
 #%% Code Mapping
 SCTG_codes = {
@@ -124,6 +117,12 @@ df_olca['SCTG'] = df_olca['Commodity'].map(reversed_SCTG_codes)
 # Reorder for comparison
 df_olca = df_olca[['SCTG'] + [col for col in df_olca.columns if col != 'SCTG']]
 
+# Check if any SCTG not in df
+missing_keys = set(SCTG_codes.keys()) - set(df_olca['SCTG'])
+if len(missing_keys) > 0:
+    for k in missing_keys:
+        print(f'Missing SCTG code: {SCTG_codes[k]} ({k})')
+
 #%% Add values for inputs ###
 
 df_olca['IsInput'] = True
@@ -178,7 +177,7 @@ ref_flow = {
     'avoided_product': False,
     'exchange_dqi': 'nan', # Updated for each process in create json file loop
     'location': 'US',
-    'Year': 2017,
+    'Year': YEAR,
     'CountryCode': 'USA'
 }
 
@@ -193,7 +192,7 @@ df_olca['Context'] = 'Technosphere Flows / 48-49: Transportation and Warehousing
 df_olca['FlowType'] = 'PRODUCT_FLOW'
 df_olca['avoided_product'] = False
 df_olca['location'] = 'US'
-df_olca['Year'] = 2017
+df_olca['Year'] = YEAR
 
 
 #%% Assign exchange dqi
@@ -218,7 +217,11 @@ locations = generate_locations_from_exchange_df(df_olca)
 
 from flcac_utils.generate_processes import build_location_dict
 from flcac_utils.util import extract_actors_from_process_meta, \
-    extract_sources_from_process_meta, extract_dqsystems
+    extract_sources_from_process_meta, extract_dqsystems, assign_year_to_meta
+
+# Load yaml file for process meta data
+with open(meta_dir / 'transport_process_meta.yaml') as f:
+    process_meta = yaml.safe_load(f)
 
 (process_meta, source_objs) = extract_sources_from_process_meta(
     process_meta, bib_path = meta_dir / 'transport_sources.bib')
@@ -228,6 +231,7 @@ from flcac_utils.util import extract_actors_from_process_meta, \
 dq_objs = extract_dqsystems(meta['DQI']['dqSystem'])
 
 process_meta['dq_entry'] = format_dqi_score(meta['DQI']['Process'])
+process_meta = assign_year_to_meta(process_meta, YEAR)
 
 # generate dictionary of location objects
 location_objs = build_location_dict(df_olca, locations)
