@@ -127,11 +127,3 @@ DQI:
         code industries, 19 four digit NAICS code industries, one five digit NAICS code industry, and
         1 six digit NAICS code industry. The data are intended to represent one year of shipping activity and were collected
         for four weeks once per quarter in 2017. 
-
-Review:
-  review_type: 'Dependent internal review'
-  reviewers:
-    - USLCI: 'Franklin Associates, A Division of ERG'
-  details: >
-    ERG internally reviewed the programs, underlying assumptions, and mathematical operations
-    required to produce the JSON-LD files for addition to USLCI.

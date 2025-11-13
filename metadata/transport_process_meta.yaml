@@ -90,6 +90,14 @@ intended_application: >
     This process is intended to provide representative mixes of transportation
     for commodities in the US. 
 
+reviews:
+  1:
+    reviewType: 'Dependent internal review'
+    # reviewers: 'ERG' # not enabled
+    details: >
+      ERG internally reviewed the programs, underlying assumptions, and mathematical operations
+      required to produce the JSON-LD files for addition to USLCI.
+
 data_set_owner: 
     _NEW:
         name: 'US Census Bureau'
