@@ -125,27 +125,33 @@ if len(missing_keys) > 0:
 
 #%% Add values for inputs ###
 
+from flcac_utils.mapping import prepare_tech_flow_mappings
+
 df_olca['IsInput'] = True
 df_olca['reference'] = False
 df_olca['unit'] = 'kg*km'
 df_olca['ProcessName'] = 'Transport; average mix; ' + df_olca['Commodity'].str.lower()
 df_olca['ProcessID'] = df_olca['ProcessName'].apply(make_uuid)
 
-# Map flow name based on transport mode mapping to uslci in transport_flow_meta.yaml
+# Extract data from the transport flow mapping file and apply to data frame
+flow_dict, flow_objs, provider_dict = prepare_tech_flow_mappings(
+    pd.read_csv(data_dir / 'transport_mapping.csv'))
+
+# Map flow name based on transport mode mapping to uslci
 df_olca['FlowName'] = df_olca['Transport Mode'].map(
-    {k: v['FlowName'] for k, v in meta['Mode'].items()})
+    {k: v['name'] for k, v in flow_dict.items()})
 
-# Map flow uuid based on transport mode mapping to uslci in transport_flow_meta.yaml
+# Map flow uuid based on transport mode mapping to uslci
 df_olca['FlowUUID'] = df_olca['Transport Mode'].map(
-    {k: v['FlowUUID'] for k, v in meta['Mode'].items()})
+    {k: v['id'] for k, v in flow_dict.items()})
 
-# Map default provider name based on transport mode mapping to uslci in transport_flow_meta.yaml
+# Map default provider name based on transport mode mapping to uslci
 df_olca['default_provider_name'] = df_olca['Transport Mode'].map(
-    {k: v['ProcessName'] for k, v in meta['Mode'].items()})
+    {k: v['provider'] for k, v in flow_dict.items()})
 
-# Map default provider uuid based on transport mode mapping to uslci in transport_flow_meta.yaml
-df_olca['default_provider'] = df_olca['Transport Mode'].map(
-    {k: v['DefaultProviderUUID'] for k, v in meta['Mode'].items()})
+# Map default provider uuid based on mapped flow name
+df_olca['default_provider'] = df_olca['FlowName'].map(
+    {k: v.id for k, v in provider_dict.items()})
 
 
 #%% Create ref flow df that will be updated for each process ###
@@ -249,6 +255,12 @@ df_olca = pd.concat([df_olca, refFlow_df], ignore_index=True)
 validate_exchange_data(df_olca)
 # Need to update this so that the new ref flow gets created
 flows, new_flows = build_flow_dict(df_olca)
+# replace newly created flows with those pulled via API
+api_flows = {flow.id: flow for k, flow in flow_objs.items()}
+if not(flows.keys() | api_flows.keys()) == flows.keys():
+    print('Warning, some flows not consistent')
+else:
+    flows.update(api_flows)
 processes = {}
 # Loop over each unique ProcessID
 for pid in df_olca['ProcessID'].unique():

@@ -26,7 +26,7 @@
       "flow": {
         "@type": "Flow",
         "@id": "13ed0c67-549c-3a01-afee-7083b12dd949",
-        "category": "Technosphere Flows / 48-49: Transportation and Warehousing",
+        "category": "Technosphere flows/48-49: Transportation and Warehousing/4841: General Freight Trucking",
         "name": "Transport, combination truck, long-haul, diesel powered"
       },
       "flowProperty": {
@@ -53,7 +53,7 @@
       "flow": {
         "@type": "Flow",
         "@id": "35fe9caf-2ad2-3d14-ae03-21454a89da2e",
-        "category": "Technosphere Flows / 48-49: Transportation and Warehousing",
+        "category": "Technosphere flows/48-49: Transportation and Warehousing/4841: General Freight Trucking",
         "name": "Transport, light commercial truck, diesel powered"
       },
       "flowProperty": {
@@ -80,7 +80,7 @@
       "flow": {
         "@type": "Flow",
         "@id": "6a71f6df-1df1-32f0-b926-6e9b932a7fe9",
-        "category": "Technosphere Flows / 48-49: Transportation and Warehousing",
+        "category": "Technosphere flows/48-49: Transportation and Warehousing/4811: Scheduled Air Transportation",
         "name": "Transport, aircraft, freight"
       },
       "flowProperty": {
@@ -107,7 +107,7 @@
       "flow": {
         "@type": "Flow",
         "@id": "73c7494d-4e93-3769-896b-8bb82f0dfccc",
-        "category": "Technosphere Flows / 48-49: Transportation and Warehousing",
+        "category": "Technosphere flows/48-49: Transportation and Warehousing/4821: Rail Transportation",
         "name": "Transport, train, diesel powered"
       },
       "flowProperty": {
