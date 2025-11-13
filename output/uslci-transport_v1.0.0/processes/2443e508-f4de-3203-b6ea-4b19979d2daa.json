@@ -161,7 +161,7 @@
       "flow": {
         "@type": "Flow",
         "@id": "1d6944d8-817b-3ae1-b997-68bdc265557f",
-        "category": "Technosphere Flows / 48-49: Transportation and Warehousing / Commodity Transport",
+        "category": "Technosphere flows / 48-49: Transportation and Warehousing / Commodity Transport",
         "name": "Commodity transport; at consumer"
       },
       "flowProperty": {

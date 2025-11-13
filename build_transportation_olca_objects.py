@@ -172,7 +172,7 @@ ref_flow = {
     'ProcessName': 'nan', # Updated for each process in create json file loop
     'FlowUUID': refFlowUUID,
     'FlowName': refFlowName,
-    'Context': f'Technosphere Flows / {meta.get("Category")}',
+    'Context': f'Technosphere flows / {meta.get("Category")}',
     'IsInput': False,
     'FlowType':'PRODUCT_FLOW',
     'reference': True,
@@ -194,8 +194,8 @@ refFlow_df = pd.DataFrame([ref_flow])
 #%% Add values shared by both inputs and ref flow
 
 df_olca['ProcessCategory'] = f'{meta.get("Category")}'
-df_olca['Context'] = 'Technosphere Flows / 48-49: Transportation and Warehousing'
-## TODO: ^^ input flows need to have specific context see #4
+df_olca['Context'] = 'Technosphere flows / 48-49: Transportation and Warehousing'
+##^^ input flows are replaced via API so context does not matter see #4
 df_olca['FlowType'] = 'PRODUCT_FLOW'
 df_olca['avoided_product'] = False
 df_olca['location'] = 'US'
