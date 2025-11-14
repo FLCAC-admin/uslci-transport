@@ -1,20 +1,23 @@
 {
   "@type": "Flow",
   "@id": "35fe9caf-2ad2-3d14-ae03-21454a89da2e",
-  "category": "Technosphere Flows / 48-49: Transportation and Warehousing",
+  "category": "Technosphere flows/48-49: Transportation and Warehousing/4841: General Freight Trucking",
   "flowProperties": [
     {
       "conversionFactor": 1.0,
       "flowProperty": {
         "@type": "FlowProperty",
         "@id": "838aaa20-0117-11db-92e3-0800200c9a66",
-        "name": "Goods transport (mass*distance)"
+        "category": "Technical flow properties",
+        "name": "Goods transport (mass*distance)",
+        "refUnit": "t*km"
       },
       "isRefFlowProperty": true
     }
   ],
   "flowType": "PRODUCT_FLOW",
-  "lastChange": "2025-11-11T12:00:00Z",
+  "isInfrastructureFlow": false,
+  "lastChange": "2025-03-27T03:04:31.418Z",
   "name": "Transport, light commercial truck, diesel powered",
   "version": "01.00.000"
 }

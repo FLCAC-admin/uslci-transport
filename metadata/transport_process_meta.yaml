@@ -90,8 +90,20 @@ intended_application: >
     This process is intended to provide representative mixes of transportation
     for commodities in the US. 
 
+reviews:
+  1:
+    reviewType: 'Dependent internal review'
+    # reviewers: 'ERG' # not enabled
+    details: >
+      ERG internally reviewed the programs, underlying assumptions, and mathematical operations
+      required to produce the JSON-LD files for addition to USLCI.
+
 data_set_owner: 
-    USLCI: 'US Census Bureau'
+    _NEW:
+        name: 'US Census Bureau'
+        email: ''
+        description: ''
+        category: 'Organisations'
 
 data_generator:
     USLCI: 'ERG'
@@ -100,7 +112,7 @@ data_documentor:
     USLCI: 'ERG'
 
 publication: 
-    uslci_transport: 'ERG, US Average Commodity Transport'
+    uslci_transport: 'ERG (2025) US Average Commodity Transport'
 
 restrictions_description: >
     The Commodity Flow Survey Public Use File is a work of the United States Government and is therefore not subject to copyright protection under Title 17 U.S.C. §105. This provision states: ‘Copyright protection under this title is not available for any work of the United States Government.’ Accordingly, the data are in the public domain and may be used freely, with attribution recommended for transparency.

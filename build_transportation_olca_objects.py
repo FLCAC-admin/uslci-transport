@@ -1,7 +1,4 @@
-#%% PURPOSE ##
-
-'''
-
+"""
 The purpose of this script is to build olca process objects that will contain
 the 2017 CFS PUF derived transport data for commodities defined according to
 the 2017 Standard Classification of Transported Goods (SCTG) Codes.
@@ -11,8 +8,7 @@ are weighted by the total moass of that commodity transported via the
 respective transportation mode.
 
 This script only works after running 'commodity transport distances.py'
-
-'''
+"""
 
 
 #%% SETUP ##
@@ -33,14 +29,11 @@ meta_dir = working_dir / 'metadata' # metadata directory
 with open(meta_dir / 'transport_flow_meta.yaml') as f:
     meta = yaml.safe_load(f)
 
-# Load yaml file for process meta data
-with open(meta_dir / 'transport_process_meta.yaml') as f:
-    process_meta = yaml.safe_load(f)
-
 # Read in CSV file created by 'commodity transport distances.py'
 csv_path = data_dir / 'Weighted_Commodity_Transport_Distances.csv'
 df_olca = pd.read_csv(csv_path)
 df_olca = df_olca.drop(columns=['Mass Shipped (kg)', 'Avg. Dist. Shipped (km)', 'Mass Frac. by Mode'])
+YEAR = 2017
 
 # Create empty df_olca that includes all schema requirements
 schema = ['ProcessID',
@@ -67,7 +60,7 @@ for column in schema:
 # Move values from 'Weighted Dist. Shipped (km)' to 'amount'
 # Remove 'Weighted Dist. Shipped (km)' column
 df_olca['amount'] = df_olca['Weighted Dist. Shipped (km)']
-df_olca.drop('Weighted Dist. Shipped (km)', axis=1, inplace=True)
+df_olca = df_olca.drop('Weighted Dist. Shipped (km)', axis=1)
 
 #%% Code Mapping
 SCTG_codes = {
@@ -124,7 +117,15 @@ df_olca['SCTG'] = df_olca['Commodity'].map(reversed_SCTG_codes)
 # Reorder for comparison
 df_olca = df_olca[['SCTG'] + [col for col in df_olca.columns if col != 'SCTG']]
 
+# Check if any SCTG not in df
+missing_keys = set(SCTG_codes.keys()) - set(df_olca['SCTG'])
+if len(missing_keys) > 0:
+    for k in missing_keys:
+        print(f'Missing SCTG code: {SCTG_codes[k]} ({k})')
+
 #%% Add values for inputs ###
+
+from flcac_utils.mapping import prepare_tech_flow_mappings
 
 df_olca['IsInput'] = True
 df_olca['reference'] = False
@@ -132,21 +133,25 @@ df_olca['unit'] = 'kg*km'
 df_olca['ProcessName'] = 'Transport; average mix; ' + df_olca['Commodity'].str.lower()
 df_olca['ProcessID'] = df_olca['ProcessName'].apply(make_uuid)
 
-# Map flow name based on transport mode mapping to uslci in transport_flow_meta.yaml
+# Extract data from the transport flow mapping file and apply to data frame
+flow_dict, flow_objs, provider_dict = prepare_tech_flow_mappings(
+    pd.read_csv(data_dir / 'transport_mapping.csv'))
+
+# Map flow name based on transport mode mapping to uslci
 df_olca['FlowName'] = df_olca['Transport Mode'].map(
-    {k: v['FlowName'] for k, v in meta['Mode'].items()})
+    {k: v['name'] for k, v in flow_dict.items()})
 
-# Map flow uuid based on transport mode mapping to uslci in transport_flow_meta.yaml
+# Map flow uuid based on transport mode mapping to uslci
 df_olca['FlowUUID'] = df_olca['Transport Mode'].map(
-    {k: v['FlowUUID'] for k, v in meta['Mode'].items()})
+    {k: v['id'] for k, v in flow_dict.items()})
 
-# Map default provider name based on transport mode mapping to uslci in transport_flow_meta.yaml
+# Map default provider name based on transport mode mapping to uslci
 df_olca['default_provider_name'] = df_olca['Transport Mode'].map(
-    {k: v['ProcessName'] for k, v in meta['Mode'].items()})
+    {k: v['provider'] for k, v in flow_dict.items()})
 
-# Map default provider uuid based on transport mode mapping to uslci in transport_flow_meta.yaml
-df_olca['default_provider'] = df_olca['Transport Mode'].map(
-    {k: v['DefaultProviderUUID'] for k, v in meta['Mode'].items()})
+# Map default provider uuid based on mapped flow name
+df_olca['default_provider'] = df_olca['FlowName'].map(
+    {k: v.id for k, v in provider_dict.items()})
 
 
 #%% Create ref flow df that will be updated for each process ###
@@ -163,11 +168,11 @@ ref_flow = {
     'Commodity': 'nan',
     'Transport Mode': 'nan',
     'ProcessID': 'nan', # Updated for each process in create json file loop
-    'ProcessCategory': '48-49: Transportation and Warehousing',
+    'ProcessCategory': f'{meta.get("Category")}',
     'ProcessName': 'nan', # Updated for each process in create json file loop
     'FlowUUID': refFlowUUID,
     'FlowName': refFlowName,
-    'Context': 'Technosphere Flows / 48-49: Transportation and Warehousing',
+    'Context': f'Technosphere flows / {meta.get("Category")}',
     'IsInput': False,
     'FlowType':'PRODUCT_FLOW',
     'reference': True,
@@ -178,7 +183,7 @@ ref_flow = {
     'avoided_product': False,
     'exchange_dqi': 'nan', # Updated for each process in create json file loop
     'location': 'US',
-    'Year': 2017,
+    'Year': YEAR,
     'CountryCode': 'USA'
 }
 
@@ -188,12 +193,13 @@ refFlow_df = pd.DataFrame([ref_flow])
 
 #%% Add values shared by both inputs and ref flow
 
-df_olca['ProcessCategory'] = '48-49: Transportation and Warehousing'
-df_olca['Context'] = 'Technosphere Flows / 48-49: Transportation and Warehousing'
+df_olca['ProcessCategory'] = f'{meta.get("Category")}'
+df_olca['Context'] = 'Technosphere flows / 48-49: Transportation and Warehousing'
+##^^ input flows are replaced via API so context does not matter see #4
 df_olca['FlowType'] = 'PRODUCT_FLOW'
 df_olca['avoided_product'] = False
 df_olca['location'] = 'US'
-df_olca['Year'] = 2017
+df_olca['Year'] = YEAR
 
 
 #%% Assign exchange dqi
@@ -218,7 +224,11 @@ locations = generate_locations_from_exchange_df(df_olca)
 
 from flcac_utils.generate_processes import build_location_dict
 from flcac_utils.util import extract_actors_from_process_meta, \
-    extract_sources_from_process_meta, extract_dqsystems
+    extract_sources_from_process_meta, extract_dqsystems, assign_year_to_meta
+
+# Load yaml file for process meta data
+with open(meta_dir / 'transport_process_meta.yaml') as f:
+    process_meta = yaml.safe_load(f)
 
 (process_meta, source_objs) = extract_sources_from_process_meta(
     process_meta, bib_path = meta_dir / 'transport_sources.bib')
@@ -228,6 +238,7 @@ from flcac_utils.util import extract_actors_from_process_meta, \
 dq_objs = extract_dqsystems(meta['DQI']['dqSystem'])
 
 process_meta['dq_entry'] = format_dqi_score(meta['DQI']['Process'])
+process_meta = assign_year_to_meta(process_meta, YEAR)
 
 # generate dictionary of location objects
 location_objs = build_location_dict(df_olca, locations)
@@ -244,6 +255,12 @@ df_olca = pd.concat([df_olca, refFlow_df], ignore_index=True)
 validate_exchange_data(df_olca)
 # Need to update this so that the new ref flow gets created
 flows, new_flows = build_flow_dict(df_olca)
+# replace newly created flows with those pulled via API
+api_flows = {flow.id: flow for k, flow in flow_objs.items()}
+if not(flows.keys() | api_flows.keys()) == flows.keys():
+    print('Warning, some flows not consistent')
+else:
+    flows.update(api_flows)
 processes = {}
 # Loop over each unique ProcessID
 for pid in df_olca['ProcessID'].unique():
