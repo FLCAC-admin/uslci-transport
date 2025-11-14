@@ -76,7 +76,7 @@
         "@type": "Process",
         "@id": "nan"
       },
-      "dqEntry": "(2;3;1;1;3)",
+      "dqEntry": "",
       "flow": {
         "@type": "Flow",
         "@id": "1d6944d8-817b-3ae1-b997-68bdc265557f",
@@ -98,7 +98,7 @@
       }
     }
   ],
-  "lastChange": "2025-11-13T12:00:00Z",
+  "lastChange": "2025-11-14T12:00:00Z",
   "location": {
     "@type": "Location",
     "@id": "0b3b97fa-6688-3c56-88ee-4ae80ec0c3c2",
@@ -107,7 +107,7 @@
   "name": "Transport; average mix; monumental or building stone",
   "processDocumentation": {
     "completenessDescription": "This process contains no elementary flows. All transportation modes included in the CFS data for each commodity are included. \n",
-    "creationDate": "2025-11-13T12:00:00",
+    "creationDate": "2025-11-14T12:00:00",
     "dataCollectionDescription": "Data from the 2017 CFS PUF were accessed in Q4 of 2025. These data will remain unchanged. The CFS data are updated with each census but are released as separate data sets.\n",
     "dataDocumentor": {
       "@type": "Actor",

@@ -282,7 +282,7 @@ for pid in df_olca['ProcessID'].unique():
         _df_olca.loc[
             _df_olca['FlowName'] == 'Commodity transport; at consumer', 'ProcessName'] = source_row['ProcessName']
         _df_olca.loc[
-            _df_olca['FlowName'] == 'Commodity transport; at consumer', 'exchange_dqi'] = source_row['exchange_dqi']
+            _df_olca['FlowName'] == 'Commodity transport; at consumer', 'exchange_dqi'] = ''
     
         # Get representative values for replacement (e.g., first row)
         commodity = _df_olca.iloc[0]['Commodity']
