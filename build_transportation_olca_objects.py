@@ -314,3 +314,10 @@ write_objects('uslci-transport', flows, new_flows, processes,
               location_objs, source_objs, actor_objs, dq_objs,
               out_path = out_path
               )
+
+#%% Unzip files to repo
+from flcac_utils.util import extract_latest_zip
+
+extract_latest_zip(out_path,
+                   working_dir,
+                   output_folder_name = out_path / 'uslci-transport_v1.0')

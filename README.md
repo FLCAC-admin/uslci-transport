@@ -17,6 +17,8 @@ Output:
 - This transport data set needs to be imported into a database containing USLCI so that default providers are linked
 - Reference the [2017 CFS Commodity Code (SCTG) Manual](https://www.bts.gov/surveys/commodity-flow-survey/2017-cfs-commodity-code-sctg-manual) to determine which commodity process should be selected
 
+## Datasets
 
-  
-
+| Datasts             | Version | flcac-utils | Release        |
+|---------------------|---------|-------------|----------------|
+| Commodity Transport | v1.0.0  | v0.2.0      | 2025 Q4, USLCI |
