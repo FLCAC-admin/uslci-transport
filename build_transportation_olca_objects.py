@@ -62,6 +62,9 @@ for column in schema:
 df_olca['amount'] = df_olca['Weighted Dist. Shipped (km)']
 df_olca = df_olca.drop('Weighted Dist. Shipped (km)', axis=1)
 
+#%% EXTRACT SCTG CATEGORY CONTENTS
+
+
 #%% Code Mapping
 SCTG_codes = {
     '01': 'Animals and Fish (live)',
@@ -176,8 +179,8 @@ ref_flow = {
     'IsInput': False,
     'FlowType':'PRODUCT_FLOW',
     'reference': True,
-    'default_provider': 'nan',
-    'default_provider_name': 'nan',
+    'default_provider': '',
+    'default_provider_name': '',
     'amount': 1.0,
     'unit': 'kg',
     'avoided_product': False,
