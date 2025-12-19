@@ -1,0 +1,13 @@
+﻿processName,formula,isInputParameter,name,value,description
+Transport; average mix; coal,,TRUE,coal_barge_dist,230.11,km
+Transport; average mix; coal,,TRUE,coal_barge_mass_frac,0.1386403272331374,fraction of all commodity shipped by current mode
+Transport; average mix; coal,coal_barge_dist*coal_barge_mass_frac,FALSE,coal_barge_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; coal,,TRUE,coal_rail_dist,579.68,km
+Transport; average mix; coal,,TRUE,coal_rail_mass_frac,0.6894216361958984,fraction of all commodity shipped by current mode
+Transport; average mix; coal,coal_rail_dist*coal_rail_mass_frac,FALSE,coal_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; coal,,TRUE,coal_forHire_dist,88,km
+Transport; average mix; coal,,TRUE,coal_forHire_mass_frac,0.1159396215093281,fraction of all commodity shipped by current mode
+Transport; average mix; coal,coal_forHire_dist*coal_forHire_mass_frac,FALSE,coal_forHire_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; coal,,TRUE,coal_compOwn_dist,74.04,km
+Transport; average mix; coal,,TRUE,coal_compOwn_mass_frac,0.055998415061636206,fraction of all commodity shipped by current mode
+Transport; average mix; coal,coal_compOwn_dist*coal_compOwn_mass_frac,FALSE,coal_compOwn_kgkm,,kg*km; average mass distance per shipment

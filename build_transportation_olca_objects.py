@@ -35,12 +35,17 @@ df_olca = pd.read_csv(csv_path)
 df_olca = df_olca.drop(columns=['Mass Shipped (kg)', 'Avg. Dist. Shipped (km)', 'Mass Frac. by Mode'])
 YEAR = 2017
 
+# Read in CSV file containing coal parameter 
+csv_path = data_dir / 'uslci_transport_params.csv'
+df_params = pd.read_csv(csv_path) # read in params to df_params
+
 # Create empty df_olca that includes all schema requirements
 schema = ['ProcessID',
           'ProcessCategory',
           'ProcessName',
           'FlowUUID', 
           'FlowName',
+          'amountFormula',
           'Context',
           'IsInput', 
           'FlowType', 
@@ -155,6 +160,12 @@ df_olca['default_provider_name'] = df_olca['Transport Mode'].map(
 # Map default provider uuid based on mapped flow name
 df_olca['default_provider'] = df_olca['FlowName'].map(
     {k: v.id for k, v in provider_dict.items()})
+
+# Assign amount formula 
+df_olca.loc[(df_olca['Commodity'] == 'Coal') & (df_olca['Transport Mode'] == 'rail'), 'amountFormula'] = 'coal_rail_kgkm'
+df_olca.loc[(df_olca['Commodity'] == 'Coal') & (df_olca['Transport Mode'] == 'inland water'), 'amountFormula'] = 'coal_barge_kgkm'
+df_olca.loc[(df_olca['Commodity'] == 'Coal') & (df_olca['Transport Mode'] == 'for-hire truck'), 'amountFormula'] = 'coal_forHire_kgkm'
+df_olca.loc[(df_olca['Commodity'] == 'Coal') & (df_olca['Transport Mode'] == 'company-owned truck'), 'amountFormula'] = 'coal_compOwn_kgkm'
 
 
 #%% Create ref flow df that will be updated for each process ###
@@ -308,6 +319,7 @@ for pid in df_olca['ProcessID'].unique():
             source_objs=source_objs,
             actor_objs=actor_objs,
             dq_objs=dq_objs,
+            df_params = df_params
         )
         processes.update(p_dict)
 
@@ -320,7 +332,6 @@ write_objects('uslci-transport', flows, new_flows, processes,
 
 #%% Unzip files to repo
 from flcac_utils.util import extract_latest_zip
-
 extract_latest_zip(out_path,
                    working_dir,
                    output_folder_name = out_path / 'uslci-transport_v1.0')
