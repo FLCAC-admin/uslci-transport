@@ -130,7 +130,6 @@
     },
     {
       "amount": 1.0,
-      "amountFormula": NaN,
       "dqEntry": "",
       "flow": {
         "@type": "Flow",
@@ -153,7 +152,7 @@
       }
     }
   ],
-  "lastChange": "2025-12-19T12:00:00Z",
+  "lastChange": "2025-12-22T12:00:00Z",
   "location": {
     "@type": "Location",
     "@id": "0b3b97fa-6688-3c56-88ee-4ae80ec0c3c2",
@@ -163,6 +162,7 @@
   "parameters": [
     {
       "@type": "Parameter",
+      "@id": "d750b37b-e6e1-3a85-8e58-ab4e010442e6",
       "description": "km",
       "isInputParameter": true,
       "name": "coal_barge_dist",
@@ -171,6 +171,7 @@
     },
     {
       "@type": "Parameter",
+      "@id": "82d9ee1e-693a-3754-9460-c9c0ec3d7155",
       "description": "fraction of all commodity shipped by current mode",
       "isInputParameter": true,
       "name": "coal_barge_mass_frac",
@@ -179,6 +180,7 @@
     },
     {
       "@type": "Parameter",
+      "@id": "c54801fc-897b-37db-b5f9-329048815dc0",
       "description": "kg*km; average mass distance per shipment",
       "formula": "coal_barge_dist*coal_barge_mass_frac",
       "isInputParameter": false,
@@ -187,6 +189,7 @@
     },
     {
       "@type": "Parameter",
+      "@id": "de48efc2-e5f6-3223-ad58-3d36a0c15c3f",
       "description": "km",
       "isInputParameter": true,
       "name": "coal_rail_dist",
@@ -195,6 +198,7 @@
     },
     {
       "@type": "Parameter",
+      "@id": "a96b6891-5efa-3a58-8d8e-a63e936ea0fa",
       "description": "fraction of all commodity shipped by current mode",
       "isInputParameter": true,
       "name": "coal_rail_mass_frac",
@@ -203,6 +207,7 @@
     },
     {
       "@type": "Parameter",
+      "@id": "695d2ac3-9d53-3079-b49e-97c667287370",
       "description": "kg*km; average mass distance per shipment",
       "formula": "coal_rail_dist*coal_rail_mass_frac",
       "isInputParameter": false,
@@ -211,6 +216,7 @@
     },
     {
       "@type": "Parameter",
+      "@id": "f6750217-4994-36b4-9351-0842e3a4b121",
       "description": "km",
       "isInputParameter": true,
       "name": "coal_forHire_dist",
@@ -219,6 +225,7 @@
     },
     {
       "@type": "Parameter",
+      "@id": "60561c50-867c-37a6-b9c5-cc74fbaa286a",
       "description": "fraction of all commodity shipped by current mode",
       "isInputParameter": true,
       "name": "coal_forHire_mass_frac",
@@ -227,6 +234,7 @@
     },
     {
       "@type": "Parameter",
+      "@id": "1a720c64-473d-3f24-b01a-362db3141335",
       "description": "kg*km; average mass distance per shipment",
       "formula": "coal_forHire_dist*coal_forHire_mass_frac",
       "isInputParameter": false,
@@ -235,6 +243,7 @@
     },
     {
       "@type": "Parameter",
+      "@id": "88f1f9d6-36ff-3d5f-aa5a-4db3d9d38113",
       "description": "km",
       "isInputParameter": true,
       "name": "coal_compOwn_dist",
@@ -243,6 +252,7 @@
     },
     {
       "@type": "Parameter",
+      "@id": "fd0f2eac-bace-3201-89d8-ff8fcd292504",
       "description": "fraction of all commodity shipped by current mode",
       "isInputParameter": true,
       "name": "coal_compOwn_mass_frac",
@@ -251,6 +261,7 @@
     },
     {
       "@type": "Parameter",
+      "@id": "fbbb1047-8dbc-3f0d-a5b9-af5714125cb5",
       "description": "kg*km; average mass distance per shipment",
       "formula": "coal_compOwn_dist*coal_compOwn_mass_frac",
       "isInputParameter": false,
@@ -260,7 +271,7 @@
   ],
   "processDocumentation": {
     "completenessDescription": "This process contains no elementary flows. All transportation modes included in the CFS data for each commodity are included. \n",
-    "creationDate": "2025-12-19T12:00:00",
+    "creationDate": "2025-12-22T12:00:00",
     "dataCollectionDescription": "Data from the 2017 CFS PUF were accessed in Q4 of 2025. These data will remain unchanged. The CFS data are updated with each census but are released as separate data sets.\n",
     "dataDocumentor": {
       "@type": "Actor",

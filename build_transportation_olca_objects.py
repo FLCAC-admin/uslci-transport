@@ -167,7 +167,6 @@ df_olca.loc[(df_olca['Commodity'] == 'Coal') & (df_olca['Transport Mode'] == 'in
 df_olca.loc[(df_olca['Commodity'] == 'Coal') & (df_olca['Transport Mode'] == 'for-hire truck'), 'amountFormula'] = 'coal_forHire_kgkm'
 df_olca.loc[(df_olca['Commodity'] == 'Coal') & (df_olca['Transport Mode'] == 'company-owned truck'), 'amountFormula'] = 'coal_compOwn_kgkm'
 
-
 #%% Create ref flow df that will be updated for each process ###
 
 # Create FlowName by modifying the commodity string
@@ -186,6 +185,7 @@ ref_flow = {
     'ProcessName': 'nan', # Updated for each process in create json file loop
     'FlowUUID': refFlowUUID,
     'FlowName': refFlowName,
+    'amountFormula':'nan', # this will not be added when make_exchanges() is called unless overwritten with parameter name
     'Context': f'Technosphere flows / {meta.get("Category")}',
     'IsInput': False,
     'FlowType':'PRODUCT_FLOW',
@@ -203,6 +203,9 @@ ref_flow = {
 
 # Convert ref flow data to df; will be concatenated in the create json file loop
 refFlow_df = pd.DataFrame([ref_flow])
+
+# Assign parameter to reference flow if parameter is used for exchange value
+#refFlow_df['amountFormula'] = 
 
 
 #%% Add values shared by both inputs and ref flow
@@ -309,7 +312,7 @@ for pid in df_olca['ProcessID'].unique():
         for key, value in _process_meta.items():
             if isinstance(value, str):
                 _process_meta[key] = value.replace('[COMMODITY]', commodity).replace('[SCTG]', sctg)
-    
+            
         # Now call your function with filtered data
         p_dict = build_process_dict(
             _df_olca,
