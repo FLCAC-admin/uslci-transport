@@ -2,7 +2,7 @@
   "@type": "Source",
   "@id": "75ac425f-71f2-354a-b139-dc3b40672d2a",
   "description": "ERG, Commodity Transport Distances, 2025",
-  "lastChange": "2025-12-22T12:00:00Z",
+  "lastChange": "2025-12-23T12:00:00Z",
   "name": "ERG (2025) US Average Commodity Transport",
   "textReference": "",
   "url": "https://github.com/FLCAC-admin/uslci-transport/releases/tag/v1.0.0",

@@ -18,7 +18,7 @@
   "exchanges": [
     {
       "amount": 399.6439340700383,
-      "amountFormula": "coal_rail_kgkm",
+      "amountFormula": "SCTG15_rail_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "7de9c230-fd0f-3478-be87-f80181132faa"
@@ -46,7 +46,7 @@
     },
     {
       "amount": 31.90252569961725,
-      "amountFormula": "coal_barge_kgkm",
+      "amountFormula": "SCTG15_inlandWater_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "099c3d09-08a3-3cac-9ffd-0558c12033b9"
@@ -74,7 +74,7 @@
     },
     {
       "amount": 10.202686692820873,
-      "amountFormula": "coal_forHire_kgkm",
+      "amountFormula": "SCTG15_longHaul_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "a685da05-1a42-3fe1-a68b-6db458be5e07"
@@ -102,7 +102,7 @@
     },
     {
       "amount": 4.146122651163545,
-      "amountFormula": "coal_compOwn_kgkm",
+      "amountFormula": "SCTG15_lightTruck_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "bf6e7378-4e08-3698-a3a7-c9cc90fcbc07"
@@ -152,7 +152,7 @@
       }
     }
   ],
-  "lastChange": "2025-12-22T12:00:00Z",
+  "lastChange": "2025-12-23T12:00:00Z",
   "location": {
     "@type": "Location",
     "@id": "0b3b97fa-6688-3c56-88ee-4ae80ec0c3c2",
@@ -162,116 +162,116 @@
   "parameters": [
     {
       "@type": "Parameter",
-      "@id": "d750b37b-e6e1-3a85-8e58-ab4e010442e6",
+      "@id": "f8059da2-27b9-31fc-8b48-42d7117b90ec",
       "description": "km",
       "isInputParameter": true,
-      "name": "coal_barge_dist",
-      "parameterScope": "PROCESS_SCOPE",
-      "value": 230.11
-    },
-    {
-      "@type": "Parameter",
-      "@id": "82d9ee1e-693a-3754-9460-c9c0ec3d7155",
-      "description": "fraction of all commodity shipped by current mode",
-      "isInputParameter": true,
-      "name": "coal_barge_mass_frac",
-      "parameterScope": "PROCESS_SCOPE",
-      "value": 0.1386403272331374
-    },
-    {
-      "@type": "Parameter",
-      "@id": "c54801fc-897b-37db-b5f9-329048815dc0",
-      "description": "kg*km; average mass distance per shipment",
-      "formula": "coal_barge_dist*coal_barge_mass_frac",
-      "isInputParameter": false,
-      "name": "coal_barge_kgkm",
-      "parameterScope": "PROCESS_SCOPE"
-    },
-    {
-      "@type": "Parameter",
-      "@id": "de48efc2-e5f6-3223-ad58-3d36a0c15c3f",
-      "description": "km",
-      "isInputParameter": true,
-      "name": "coal_rail_dist",
+      "name": "SCTG15_rail_dist",
       "parameterScope": "PROCESS_SCOPE",
       "value": 579.68
     },
     {
       "@type": "Parameter",
-      "@id": "a96b6891-5efa-3a58-8d8e-a63e936ea0fa",
+      "@id": "07760658-cedd-377e-9055-97916d6c1448",
       "description": "fraction of all commodity shipped by current mode",
       "isInputParameter": true,
-      "name": "coal_rail_mass_frac",
+      "name": "SCTG15_rail_mass_frac",
       "parameterScope": "PROCESS_SCOPE",
       "value": 0.6894216361958984
     },
     {
       "@type": "Parameter",
-      "@id": "695d2ac3-9d53-3079-b49e-97c667287370",
+      "@id": "44b8b407-44b6-3f9f-8ff7-5eb61733821d",
       "description": "kg*km; average mass distance per shipment",
-      "formula": "coal_rail_dist*coal_rail_mass_frac",
+      "formula": "SCTG15_rail_dist*SCTG15_rail_mass_frac",
       "isInputParameter": false,
-      "name": "coal_rail_kgkm",
+      "name": "SCTG15_rail_kgkm",
       "parameterScope": "PROCESS_SCOPE"
     },
     {
       "@type": "Parameter",
-      "@id": "f6750217-4994-36b4-9351-0842e3a4b121",
+      "@id": "57820be6-96eb-3de3-83eb-afd4ba1f3bb5",
       "description": "km",
       "isInputParameter": true,
-      "name": "coal_forHire_dist",
+      "name": "SCTG15_inlandWater_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 230.11
+    },
+    {
+      "@type": "Parameter",
+      "@id": "adb1c47a-c43a-37b2-94b3-89a82358c8f8",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": true,
+      "name": "SCTG15_inlandWater_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.1386403272331374
+    },
+    {
+      "@type": "Parameter",
+      "@id": "6b184e35-2a59-34e5-ae41-143146b79030",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "SCTG15_inlandWater_dist*SCTG15_inlandWater_mass_frac",
+      "isInputParameter": false,
+      "name": "SCTG15_inlandWater_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "ea3514e7-a385-3dad-8c83-7a40f8cbd85d",
+      "description": "km",
+      "isInputParameter": true,
+      "name": "SCTG15_longHaul_dist",
       "parameterScope": "PROCESS_SCOPE",
       "value": 88.0
     },
     {
       "@type": "Parameter",
-      "@id": "60561c50-867c-37a6-b9c5-cc74fbaa286a",
+      "@id": "ff160078-43f3-3643-92c4-ae926e1a3f72",
       "description": "fraction of all commodity shipped by current mode",
       "isInputParameter": true,
-      "name": "coal_forHire_mass_frac",
+      "name": "SCTG15_longHaul_mass_frac",
       "parameterScope": "PROCESS_SCOPE",
       "value": 0.1159396215093281
     },
     {
       "@type": "Parameter",
-      "@id": "1a720c64-473d-3f24-b01a-362db3141335",
+      "@id": "d9348a75-2bf6-3ab1-aefe-1c8e59151cc2",
       "description": "kg*km; average mass distance per shipment",
-      "formula": "coal_forHire_dist*coal_forHire_mass_frac",
+      "formula": "SCTG15_longHaul_dist*SCTG15_longHaul_mass_frac",
       "isInputParameter": false,
-      "name": "coal_forHire_kgkm",
+      "name": "SCTG15_longHaul_kgkm",
       "parameterScope": "PROCESS_SCOPE"
     },
     {
       "@type": "Parameter",
-      "@id": "88f1f9d6-36ff-3d5f-aa5a-4db3d9d38113",
+      "@id": "dcf260a2-c13a-3478-bf32-4fc96546ac93",
       "description": "km",
       "isInputParameter": true,
-      "name": "coal_compOwn_dist",
+      "name": "SCTG15_lightTruck_dist",
       "parameterScope": "PROCESS_SCOPE",
       "value": 74.04
     },
     {
       "@type": "Parameter",
-      "@id": "fd0f2eac-bace-3201-89d8-ff8fcd292504",
+      "@id": "4e456436-b6f4-3a76-81e3-aa24f090f9b9",
       "description": "fraction of all commodity shipped by current mode",
       "isInputParameter": true,
-      "name": "coal_compOwn_mass_frac",
+      "name": "SCTG15_lightTruck_mass_frac",
       "parameterScope": "PROCESS_SCOPE",
       "value": 0.0559984150616362
     },
     {
       "@type": "Parameter",
-      "@id": "fbbb1047-8dbc-3f0d-a5b9-af5714125cb5",
+      "@id": "09f92e8e-04f3-36d1-b7c1-3c9a5a5e7fbf",
       "description": "kg*km; average mass distance per shipment",
-      "formula": "coal_compOwn_dist*coal_compOwn_mass_frac",
+      "formula": "SCTG15_lightTruck_dist*SCTG15_lightTruck_mass_frac",
       "isInputParameter": false,
-      "name": "coal_compOwn_kgkm",
+      "name": "SCTG15_lightTruck_kgkm",
       "parameterScope": "PROCESS_SCOPE"
     }
   ],
   "processDocumentation": {
     "completenessDescription": "This process contains no elementary flows. All transportation modes included in the CFS data for each commodity are included. \n",
-    "creationDate": "2025-12-22T12:00:00",
+    "creationDate": "2025-12-23T12:00:00",
     "dataCollectionDescription": "Data from the 2017 CFS PUF were accessed in Q4 of 2025. These data will remain unchanged. The CFS data are updated with each census but are released as separate data sets.\n",
     "dataDocumentor": {
       "@type": "Actor",

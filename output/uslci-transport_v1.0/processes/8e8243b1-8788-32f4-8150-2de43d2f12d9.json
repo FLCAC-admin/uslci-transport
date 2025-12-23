@@ -18,7 +18,7 @@
   "exchanges": [
     {
       "amount": 228.0977431292464,
-      "amountFormula": "",
+      "amountFormula": "SCTG09_longHaul_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "a685da05-1a42-3fe1-a68b-6db458be5e07"
@@ -46,7 +46,7 @@
     },
     {
       "amount": 27.82824132412102,
-      "amountFormula": "",
+      "amountFormula": "SCTG09_lightTruck_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "bf6e7378-4e08-3698-a3a7-c9cc90fcbc07"
@@ -74,7 +74,7 @@
     },
     {
       "amount": 4.734540213986239,
-      "amountFormula": "",
+      "amountFormula": "SCTG09_air_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "61ff7eba-1846-30cb-9840-33939ee0dc26"
@@ -124,17 +124,99 @@
       }
     }
   ],
-  "lastChange": "2025-12-22T12:00:00Z",
+  "lastChange": "2025-12-23T12:00:00Z",
   "location": {
     "@type": "Location",
     "@id": "0b3b97fa-6688-3c56-88ee-4ae80ec0c3c2",
     "name": "United States of America (the)"
   },
   "name": "Transport; average mix; tobacco products",
-  "parameters": [],
+  "parameters": [
+    {
+      "@type": "Parameter",
+      "@id": "3920f2bd-b0c0-3dbc-a312-1066b10b9ea9",
+      "description": "km",
+      "isInputParameter": true,
+      "name": "SCTG09_longHaul_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 312.99
+    },
+    {
+      "@type": "Parameter",
+      "@id": "4c5ff085-8762-3e79-93fe-b26c6c168263",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": true,
+      "name": "SCTG09_longHaul_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.7287700665492394
+    },
+    {
+      "@type": "Parameter",
+      "@id": "ed2cab87-e3dd-3543-89ca-2379635d8caa",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "SCTG09_longHaul_dist*SCTG09_longHaul_mass_frac",
+      "isInputParameter": false,
+      "name": "SCTG09_longHaul_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "e5dd6d60-4dd7-3993-b401-99f7fac051fe",
+      "description": "km",
+      "isInputParameter": true,
+      "name": "SCTG09_lightTruck_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 103.19
+    },
+    {
+      "@type": "Parameter",
+      "@id": "c80f2c61-5308-3dae-98e8-1b05db92eb93",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": true,
+      "name": "SCTG09_lightTruck_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.2696796329501019
+    },
+    {
+      "@type": "Parameter",
+      "@id": "8c0badaa-7cde-3016-8134-19768d625410",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "SCTG09_lightTruck_dist*SCTG09_lightTruck_mass_frac",
+      "isInputParameter": false,
+      "name": "SCTG09_lightTruck_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "6537d617-c3bb-3ad8-aeb2-7f0e0c303236",
+      "description": "km",
+      "isInputParameter": true,
+      "name": "SCTG09_air_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 3053.95
+    },
+    {
+      "@type": "Parameter",
+      "@id": "a01200fd-2e3b-33d9-ac8b-b0ce8eb5a712",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": true,
+      "name": "SCTG09_air_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.0015503005006585
+    },
+    {
+      "@type": "Parameter",
+      "@id": "243f27c1-fa27-3951-9cfa-28fa7d668abd",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "SCTG09_air_dist*SCTG09_air_mass_frac",
+      "isInputParameter": false,
+      "name": "SCTG09_air_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    }
+  ],
   "processDocumentation": {
     "completenessDescription": "This process contains no elementary flows. All transportation modes included in the CFS data for each commodity are included. \n",
-    "creationDate": "2025-12-22T12:00:00",
+    "creationDate": "2025-12-23T12:00:00",
     "dataCollectionDescription": "Data from the 2017 CFS PUF were accessed in Q4 of 2025. These data will remain unchanged. The CFS data are updated with each census but are released as separate data sets.\n",
     "dataDocumentor": {
       "@type": "Actor",

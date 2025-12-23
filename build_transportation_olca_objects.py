@@ -19,6 +19,9 @@ from pathlib import Path
 import yaml
 from esupy.util import make_uuid
 import copy
+from typing import Dict
+import numpy as np
+import re
 
 # Directories
 working_dir = Path(__file__).parent # parent directory
@@ -34,10 +37,6 @@ csv_path = data_dir / 'Weighted_Commodity_Transport_Distances.csv'
 df_olca = pd.read_csv(csv_path)
 df_olca = df_olca.drop(columns=['Mass Shipped (kg)', 'Avg. Dist. Shipped (km)', 'Mass Frac. by Mode'])
 YEAR = 2017
-
-# Read in CSV file containing coal parameter 
-csv_path = data_dir / 'uslci_transport_params.csv'
-df_params = pd.read_csv(csv_path) # read in params to df_params
 
 # Create empty df_olca that includes all schema requirements
 schema = ['ProcessID',
@@ -66,11 +65,9 @@ for column in schema:
 # Remove 'Weighted Dist. Shipped (km)' column
 df_olca['amount'] = df_olca['Weighted Dist. Shipped (km)']
 df_olca = df_olca.drop('Weighted Dist. Shipped (km)', axis=1)
+                                                                                                                                                   
 
-#%% EXTRACT SCTG CATEGORY CONTENTS
-
-
-#%% Code Mapping
+#%% SCTG Mapping
 SCTG_codes = {
     '01': 'Animals and Fish (live)',
     '02': 'Cereal Grains (includes seed)',
@@ -131,10 +128,138 @@ if len(missing_keys) > 0:
     for k in missing_keys:
         print(f'Missing SCTG code: {SCTG_codes[k]} ({k})')
 
+
+#%% Build df_params
+
+param_map = {
+    'company-owned truck': '[SCTG]_lightTruck_[val]',
+    'for-hire truck': '[SCTG]_longHaul_[val]',
+    'rail': '[SCTG]_rail_[val]',
+    'great lakes': '[SCTG]_greatLakes_[val]',
+    'inland water': '[SCTG]_inlandWater_[val]',
+    'air(incl. truck & air)': '[SCTG]_air_[val]',
+    'deep sea': '[SCTG]_deepSea_[val]',
+    'pipeline': '[SCTG]_pipeline_[val]'
+    }
+
+
+def build_df_params(SCTG_code: Dict[str, str], param_map: Dict[str, str]) -> pd.DataFrame:
+    """
+    Build df_params.
+
+    What this does:
+    - Sets the working directory to where this script lives.
+    - Reads the transport data CSV from the local ./data folder.
+    - Uses SCTG codes and the mode mapping to build parameter names.
+    - Creates three rows per transport mode for each commodity:
+      1) dist (input)
+      2) mass_frac (input)
+      3) kgkm (derived, formula shown only; value left blank)
+    - Writes the final table to ./data/uslci_transport_params.csv.
+    - Returns df_params as a DataFrame.
+    """
+    # Work from the folder where this file is saved.
+    working_dir = Path(__file__).parent  # parent directory
+    data_dir = working_dir / 'data'      # data directory
+    input_csv = data_dir / "Weighted_Commodity_Transport_Distances.csv"
+    # Load the transport data for all commodities and modes.
+    df_commData = pd.read_csv(input_csv)
+    # Clean transport mode strings:
+    def _normalize_mode(s: str) -> str:
+        return str(s).strip().lower().replace("&amp;amp;", "&amp;").replace("  ", " ")
+    # Build a normalized mapping from transport mode label -> pattern template.
+    # Example template: "[SCTG]_longHaul_[val]"
+    norm_param_map = {_normalize_mode(k): v for k, v in param_map.items()}
+    # Build a lookup from commodity name (lowercase) -> SCTG code.
+    name_to_code = {v.strip().lower(): k for k, v in SCTG_code.items()}
+    # Return the SCTG code for the commodity name.
+    def _get_sctg_code(commodity_name: str) -> str:
+        return name_to_code[str(commodity_name).strip().lower()]
+    # Fill the template pattern with the SCTG code and token.
+    def _make_name(pattern: str, sctg: str, val: str) -> str:
+        return pattern.replace("[SCTG]", f"SCTG{sctg}").replace("[val]", val)
+    # Create process name using lowercase commodity style.
+    def _process_name(commodity_name: str) -> str:
+        return f"Transport; average mix; {commodity_name.strip().lower()}"
+    # Iterate through each row of csv and build parameter name
+    cols = ["processName", "formula", "isInputParameter", "name", "value", "description"]
+    rows = []
+    for _, row in df_commData.iterrows():
+        commodity = row["Commodity"]
+        mode_norm = _normalize_mode(row["Transport Mode"])
+        # Get SCTG code and the naming pattern for this transport mode.
+        sctg = _get_sctg_code(commodity)
+        pattern = norm_param_map[mode_norm]
+        pname = _process_name(commodity)
+        # Values for this commodity and mode.
+        dist_val = row["Avg. Dist. Shipped (km)"]
+        mass_frac_val = row["Mass Frac. by Mode"]
+        # Build parameter names for dist, mass_frac, and kgkm.
+        name_dist = _make_name(pattern, sctg, "dist")
+        name_mf = _make_name(pattern, sctg, "mass_frac")
+        name_kgkm = _make_name(pattern, sctg, "kgkm")
+        # Show the formula for kgkm, but do not evaluate.
+        formula_kgkm = f"{name_dist}*{name_mf}"
+        # Add three rows. Two inputs and one derived (with formula only).
+        rows.append([pname, "", "TRUE",  name_dist, dist_val, "km"])
+        rows.append([pname, "", "TRUE",  name_mf,   mass_frac_val,
+                     "fraction of all commodity shipped by current mode"])
+        rows.append([pname, formula_kgkm, "FALSE", name_kgkm, np.nan,
+                     "kg*km; average mass distance per shipment"])
+    # Assemble the final DataFrame.
+    df_params = pd.DataFrame(rows, columns=cols)
+    # Write the data
+    output_csv = data_dir / "uslci_transport_params.csv"
+    df_params.to_csv(output_csv, index=False)
+    # Return the table for downstream use.
+    return df_params
+
+
+df_params = build_df_params(SCTG_codes, param_map)
+
+# Create df_params
+csv_path = data_dir / 'uslci_transport_params.csv'
+df_params = pd.read_csv(csv_path) # read in params to df_params
+
 #%% Add values for inputs ###
 
 from flcac_utils.mapping import prepare_tech_flow_mappings
 
+def assign_amount_formula(df_olca: pd.DataFrame,
+                          df_param: pd.DataFrame,
+                          param_map: dict) -> pd.DataFrame:
+    """
+    Populate the 'amountFormula' column with the appropriate [SCTG]_[MODE]_kgkm
+    name based on the row value of ProcessName and Transport Mode. 
+    """
+    def _norm_mode(s: str) -> str:
+        return str(s).strip().lower().replace("&amp;amp;", "&amp;").replace("  ", " ")
+    # Build transport-mode -> token map from templates like '[SCTG]_longHaul_[val]'
+    mode_to_token = {}
+    for mode_label, template in param_map.items():
+        m = re.search(r"\[SCTG\]_(.*?)_\[val\]", template)
+        if not m:
+            raise ValueError(f"Bad param_map template: {template}")
+        mode_to_token[_norm_mode(mode_label)] = m.group(1)
+    # Reduce df_param to *_kgkm rows and extract the mode token
+    dfp = df_param[df_param["name"].str.endswith("_kgkm")].copy()
+    # UPDATED: account for 'SCTG' prefix in the name, e.g., 'SCTG03_longHaul_kgkm'
+    dfp["mode_token"] = dfp["name"].str.extract(r"^SCTG\d+_([A-Za-z]+)_kgkm$")
+    # Build lookup keyed by (processName, mode_token) -> amountFormula (the *_kgkm symbol)
+    lookup = dfp.set_index(["processName", "mode_token"])["name"]  # Series
+    # Compute the mode token in df_olca and assign directly to the existing 'amountFormula'
+    df_new = df_olca.copy()
+    df_new["_mode_norm"] = df_new["Transport Mode"].map(_norm_mode)
+    df_new["_mode_token"] = df_new["_mode_norm"].map(mode_to_token)
+    # Create keys and assign using .map on a dictionary of the lookup Series
+    keys = list(zip(df_new["ProcessName"], df_new["_mode_token"]))
+    df_new["amountFormula"] = pd.Series(keys).map(lookup.to_dict())
+    # Drop helper columns
+    df_new.drop(columns=["_mode_norm", "_mode_token"], inplace=True)
+    return df_new
+
+
+# Asign static values
 df_olca['IsInput'] = True
 df_olca['reference'] = False
 df_olca['unit'] = 'kg*km'
@@ -162,10 +287,7 @@ df_olca['default_provider'] = df_olca['FlowName'].map(
     {k: v.id for k, v in provider_dict.items()})
 
 # Assign amount formula 
-df_olca.loc[(df_olca['Commodity'] == 'Coal') & (df_olca['Transport Mode'] == 'rail'), 'amountFormula'] = 'coal_rail_kgkm'
-df_olca.loc[(df_olca['Commodity'] == 'Coal') & (df_olca['Transport Mode'] == 'inland water'), 'amountFormula'] = 'coal_barge_kgkm'
-df_olca.loc[(df_olca['Commodity'] == 'Coal') & (df_olca['Transport Mode'] == 'for-hire truck'), 'amountFormula'] = 'coal_forHire_kgkm'
-df_olca.loc[(df_olca['Commodity'] == 'Coal') & (df_olca['Transport Mode'] == 'company-owned truck'), 'amountFormula'] = 'coal_compOwn_kgkm'
+df_olca = assign_amount_formula(df_olca, df_params, param_map)
 
 #%% Create ref flow df that will be updated for each process ###
 

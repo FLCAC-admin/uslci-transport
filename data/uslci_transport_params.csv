@@ -1,13 +1,592 @@
-﻿processName,formula,isInputParameter,name,value,description
-Transport; average mix; coal,,TRUE,coal_barge_dist,230.11,km
-Transport; average mix; coal,,TRUE,coal_barge_mass_frac,0.1386403272331374,fraction of all commodity shipped by current mode
-Transport; average mix; coal,coal_barge_dist*coal_barge_mass_frac,FALSE,coal_barge_kgkm,,kg*km; average mass distance per shipment
-Transport; average mix; coal,,TRUE,coal_rail_dist,579.68,km
-Transport; average mix; coal,,TRUE,coal_rail_mass_frac,0.6894216361958984,fraction of all commodity shipped by current mode
-Transport; average mix; coal,coal_rail_dist*coal_rail_mass_frac,FALSE,coal_rail_kgkm,,kg*km; average mass distance per shipment
-Transport; average mix; coal,,TRUE,coal_forHire_dist,88,km
-Transport; average mix; coal,,TRUE,coal_forHire_mass_frac,0.1159396215093281,fraction of all commodity shipped by current mode
-Transport; average mix; coal,coal_forHire_dist*coal_forHire_mass_frac,FALSE,coal_forHire_kgkm,,kg*km; average mass distance per shipment
-Transport; average mix; coal,,TRUE,coal_compOwn_dist,74.04,km
-Transport; average mix; coal,,TRUE,coal_compOwn_mass_frac,0.055998415061636206,fraction of all commodity shipped by current mode
-Transport; average mix; coal,coal_compOwn_dist*coal_compOwn_mass_frac,FALSE,coal_compOwn_kgkm,,kg*km; average mass distance per shipment
+processName,formula,isInputParameter,name,value,description
+"Transport; average mix; agricultural products (excludes animal feed, cereal grains, and forage products)",,TRUE,SCTG03_longHaul_dist,401.19,km
+"Transport; average mix; agricultural products (excludes animal feed, cereal grains, and forage products)",,TRUE,SCTG03_longHaul_mass_frac,0.4936871809278387,fraction of all commodity shipped by current mode
+"Transport; average mix; agricultural products (excludes animal feed, cereal grains, and forage products)",SCTG03_longHaul_dist*SCTG03_longHaul_mass_frac,FALSE,SCTG03_longHaul_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; agricultural products (excludes animal feed, cereal grains, and forage products)",,TRUE,SCTG03_lightTruck_dist,71.37,km
+"Transport; average mix; agricultural products (excludes animal feed, cereal grains, and forage products)",,TRUE,SCTG03_lightTruck_mass_frac,0.2741667161672367,fraction of all commodity shipped by current mode
+"Transport; average mix; agricultural products (excludes animal feed, cereal grains, and forage products)",SCTG03_lightTruck_dist*SCTG03_lightTruck_mass_frac,FALSE,SCTG03_lightTruck_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; agricultural products (excludes animal feed, cereal grains, and forage products)",,TRUE,SCTG03_rail_dist,1044.15,km
+"Transport; average mix; agricultural products (excludes animal feed, cereal grains, and forage products)",,TRUE,SCTG03_rail_mass_frac,0.116427134931661,fraction of all commodity shipped by current mode
+"Transport; average mix; agricultural products (excludes animal feed, cereal grains, and forage products)",SCTG03_rail_dist*SCTG03_rail_mass_frac,FALSE,SCTG03_rail_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; agricultural products (excludes animal feed, cereal grains, and forage products)",,TRUE,SCTG03_inlandWater_dist,1539.77,km
+"Transport; average mix; agricultural products (excludes animal feed, cereal grains, and forage products)",,TRUE,SCTG03_inlandWater_mass_frac,0.1155732220090157,fraction of all commodity shipped by current mode
+"Transport; average mix; agricultural products (excludes animal feed, cereal grains, and forage products)",SCTG03_inlandWater_dist*SCTG03_inlandWater_mass_frac,FALSE,SCTG03_inlandWater_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; agricultural products (excludes animal feed, cereal grains, and forage products)",,TRUE,SCTG03_air_dist,3136.26,km
+"Transport; average mix; agricultural products (excludes animal feed, cereal grains, and forage products)",,TRUE,SCTG03_air_mass_frac,9.56851234866926e-05,fraction of all commodity shipped by current mode
+"Transport; average mix; agricultural products (excludes animal feed, cereal grains, and forage products)",SCTG03_air_dist*SCTG03_air_mass_frac,FALSE,SCTG03_air_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; agricultural products (excludes animal feed, cereal grains, and forage products)",,TRUE,SCTG03_deepSea_dist,1752.8,km
+"Transport; average mix; agricultural products (excludes animal feed, cereal grains, and forage products)",,TRUE,SCTG03_deepSea_mass_frac,5.006084076119055e-05,fraction of all commodity shipped by current mode
+"Transport; average mix; agricultural products (excludes animal feed, cereal grains, and forage products)",SCTG03_deepSea_dist*SCTG03_deepSea_mass_frac,FALSE,SCTG03_deepSea_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; alcoholic beverages and denatured alcohol,,TRUE,SCTG08_lightTruck_dist,59.88,km
+Transport; average mix; alcoholic beverages and denatured alcohol,,TRUE,SCTG08_lightTruck_mass_frac,0.6136775816144259,fraction of all commodity shipped by current mode
+Transport; average mix; alcoholic beverages and denatured alcohol,SCTG08_lightTruck_dist*SCTG08_lightTruck_mass_frac,FALSE,SCTG08_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; alcoholic beverages and denatured alcohol,,TRUE,SCTG08_longHaul_dist,697.07,km
+Transport; average mix; alcoholic beverages and denatured alcohol,,TRUE,SCTG08_longHaul_mass_frac,0.3836321265404774,fraction of all commodity shipped by current mode
+Transport; average mix; alcoholic beverages and denatured alcohol,SCTG08_longHaul_dist*SCTG08_longHaul_mass_frac,FALSE,SCTG08_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; alcoholic beverages and denatured alcohol,,TRUE,SCTG08_rail_dist,1965.14,km
+Transport; average mix; alcoholic beverages and denatured alcohol,,TRUE,SCTG08_rail_mass_frac,0.0025697418459274,fraction of all commodity shipped by current mode
+Transport; average mix; alcoholic beverages and denatured alcohol,SCTG08_rail_dist*SCTG08_rail_mass_frac,FALSE,SCTG08_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; alcoholic beverages and denatured alcohol,,TRUE,SCTG08_air_dist,1037.19,km
+Transport; average mix; alcoholic beverages and denatured alcohol,,TRUE,SCTG08_air_mass_frac,0.000120549999169,fraction of all commodity shipped by current mode
+Transport; average mix; alcoholic beverages and denatured alcohol,SCTG08_air_dist*SCTG08_air_mass_frac,FALSE,SCTG08_air_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; animal feed, eggs, honey, and other products of animal origin",,TRUE,SCTG04_longHaul_dist,192.47,km
+"Transport; average mix; animal feed, eggs, honey, and other products of animal origin",,TRUE,SCTG04_longHaul_mass_frac,0.5634542889879085,fraction of all commodity shipped by current mode
+"Transport; average mix; animal feed, eggs, honey, and other products of animal origin",SCTG04_longHaul_dist*SCTG04_longHaul_mass_frac,FALSE,SCTG04_longHaul_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; animal feed, eggs, honey, and other products of animal origin",,TRUE,SCTG04_lightTruck_dist,104.4,km
+"Transport; average mix; animal feed, eggs, honey, and other products of animal origin",,TRUE,SCTG04_lightTruck_mass_frac,0.389804877907108,fraction of all commodity shipped by current mode
+"Transport; average mix; animal feed, eggs, honey, and other products of animal origin",SCTG04_lightTruck_dist*SCTG04_lightTruck_mass_frac,FALSE,SCTG04_lightTruck_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; animal feed, eggs, honey, and other products of animal origin",,TRUE,SCTG04_rail_dist,1163.61,km
+"Transport; average mix; animal feed, eggs, honey, and other products of animal origin",,TRUE,SCTG04_rail_mass_frac,0.0330039706628519,fraction of all commodity shipped by current mode
+"Transport; average mix; animal feed, eggs, honey, and other products of animal origin",SCTG04_rail_dist*SCTG04_rail_mass_frac,FALSE,SCTG04_rail_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; animal feed, eggs, honey, and other products of animal origin",,TRUE,SCTG04_inlandWater_dist,1718.82,km
+"Transport; average mix; animal feed, eggs, honey, and other products of animal origin",,TRUE,SCTG04_inlandWater_mass_frac,0.0137365563660039,fraction of all commodity shipped by current mode
+"Transport; average mix; animal feed, eggs, honey, and other products of animal origin",SCTG04_inlandWater_dist*SCTG04_inlandWater_mass_frac,FALSE,SCTG04_inlandWater_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; animal feed, eggs, honey, and other products of animal origin",,TRUE,SCTG04_air_dist,3506.38,km
+"Transport; average mix; animal feed, eggs, honey, and other products of animal origin",,TRUE,SCTG04_air_mass_frac,3.060761275559818e-07,fraction of all commodity shipped by current mode
+"Transport; average mix; animal feed, eggs, honey, and other products of animal origin",SCTG04_air_dist*SCTG04_air_mass_frac,FALSE,SCTG04_air_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; animals and fish (live),,TRUE,SCTG01_longHaul_dist,633.53,km
+Transport; average mix; animals and fish (live),,TRUE,SCTG01_longHaul_mass_frac,0.6651293602494468,fraction of all commodity shipped by current mode
+Transport; average mix; animals and fish (live),SCTG01_longHaul_dist*SCTG01_longHaul_mass_frac,FALSE,SCTG01_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; animals and fish (live),,TRUE,SCTG01_lightTruck_dist,212.85,km
+Transport; average mix; animals and fish (live),,TRUE,SCTG01_lightTruck_mass_frac,0.334327570386538,fraction of all commodity shipped by current mode
+Transport; average mix; animals and fish (live),SCTG01_lightTruck_dist*SCTG01_lightTruck_mass_frac,FALSE,SCTG01_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; animals and fish (live),,TRUE,SCTG01_air_dist,1920.98,km
+Transport; average mix; animals and fish (live),,TRUE,SCTG01_air_mass_frac,0.0005430693640152,fraction of all commodity shipped by current mode
+Transport; average mix; animals and fish (live),SCTG01_air_dist*SCTG01_air_mass_frac,FALSE,SCTG01_air_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; articles of base metal,,TRUE,SCTG33_longHaul_dist,668.61,km
+Transport; average mix; articles of base metal,,TRUE,SCTG33_longHaul_mass_frac,0.7621998315963527,fraction of all commodity shipped by current mode
+Transport; average mix; articles of base metal,SCTG33_longHaul_dist*SCTG33_longHaul_mass_frac,FALSE,SCTG33_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; articles of base metal,,TRUE,SCTG33_lightTruck_dist,70.28,km
+Transport; average mix; articles of base metal,,TRUE,SCTG33_lightTruck_mass_frac,0.2085976516252327,fraction of all commodity shipped by current mode
+Transport; average mix; articles of base metal,SCTG33_lightTruck_dist*SCTG33_lightTruck_mass_frac,FALSE,SCTG33_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; articles of base metal,,TRUE,SCTG33_rail_dist,655.75,km
+Transport; average mix; articles of base metal,,TRUE,SCTG33_rail_mass_frac,0.0289666900644537,fraction of all commodity shipped by current mode
+Transport; average mix; articles of base metal,SCTG33_rail_dist*SCTG33_rail_mass_frac,FALSE,SCTG33_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; articles of base metal,,TRUE,SCTG33_air_dist,2469.82,km
+Transport; average mix; articles of base metal,,TRUE,SCTG33_air_mass_frac,0.0002358267139608,fraction of all commodity shipped by current mode
+Transport; average mix; articles of base metal,SCTG33_air_dist*SCTG33_air_mass_frac,FALSE,SCTG33_air_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; base metal in primary or semi-finished forms and in finished basic shapes,,TRUE,SCTG32_longHaul_dist,508.09,km
+Transport; average mix; base metal in primary or semi-finished forms and in finished basic shapes,,TRUE,SCTG32_longHaul_mass_frac,0.7116222531193724,fraction of all commodity shipped by current mode
+Transport; average mix; base metal in primary or semi-finished forms and in finished basic shapes,SCTG32_longHaul_dist*SCTG32_longHaul_mass_frac,FALSE,SCTG32_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; base metal in primary or semi-finished forms and in finished basic shapes,,TRUE,SCTG32_lightTruck_dist,82.23,km
+Transport; average mix; base metal in primary or semi-finished forms and in finished basic shapes,,TRUE,SCTG32_lightTruck_mass_frac,0.1996089907518743,fraction of all commodity shipped by current mode
+Transport; average mix; base metal in primary or semi-finished forms and in finished basic shapes,SCTG32_lightTruck_dist*SCTG32_lightTruck_mass_frac,FALSE,SCTG32_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; base metal in primary or semi-finished forms and in finished basic shapes,,TRUE,SCTG32_rail_dist,765.54,km
+Transport; average mix; base metal in primary or semi-finished forms and in finished basic shapes,,TRUE,SCTG32_rail_mass_frac,0.0652741821907467,fraction of all commodity shipped by current mode
+Transport; average mix; base metal in primary or semi-finished forms and in finished basic shapes,SCTG32_rail_dist*SCTG32_rail_mass_frac,FALSE,SCTG32_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; base metal in primary or semi-finished forms and in finished basic shapes,,TRUE,SCTG32_inlandWater_dist,438.94,km
+Transport; average mix; base metal in primary or semi-finished forms and in finished basic shapes,,TRUE,SCTG32_inlandWater_mass_frac,0.023447764104135,fraction of all commodity shipped by current mode
+Transport; average mix; base metal in primary or semi-finished forms and in finished basic shapes,SCTG32_inlandWater_dist*SCTG32_inlandWater_mass_frac,FALSE,SCTG32_inlandWater_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; base metal in primary or semi-finished forms and in finished basic shapes,,TRUE,SCTG32_air_dist,2626.23,km
+Transport; average mix; base metal in primary or semi-finished forms and in finished basic shapes,,TRUE,SCTG32_air_mass_frac,4.680983387147769e-05,fraction of all commodity shipped by current mode
+Transport; average mix; base metal in primary or semi-finished forms and in finished basic shapes,SCTG32_air_dist*SCTG32_air_mass_frac,FALSE,SCTG32_air_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; basic chemicals,,TRUE,SCTG20_lightTruck_dist,64.81,km
+Transport; average mix; basic chemicals,,TRUE,SCTG20_lightTruck_mass_frac,0.2982547169565145,fraction of all commodity shipped by current mode
+Transport; average mix; basic chemicals,SCTG20_lightTruck_dist*SCTG20_lightTruck_mass_frac,FALSE,SCTG20_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; basic chemicals,,TRUE,SCTG20_longHaul_dist,949.11,km
+Transport; average mix; basic chemicals,,TRUE,SCTG20_longHaul_mass_frac,0.2928564080722252,fraction of all commodity shipped by current mode
+Transport; average mix; basic chemicals,SCTG20_longHaul_dist*SCTG20_longHaul_mass_frac,FALSE,SCTG20_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; basic chemicals,,TRUE,SCTG20_inlandWater_dist,324.74,km
+Transport; average mix; basic chemicals,,TRUE,SCTG20_inlandWater_mass_frac,0.1376011406879894,fraction of all commodity shipped by current mode
+Transport; average mix; basic chemicals,SCTG20_inlandWater_dist*SCTG20_inlandWater_mass_frac,FALSE,SCTG20_inlandWater_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; basic chemicals,,TRUE,SCTG20_rail_dist,1130.09,km
+Transport; average mix; basic chemicals,,TRUE,SCTG20_rail_mass_frac,0.1267819551810593,fraction of all commodity shipped by current mode
+Transport; average mix; basic chemicals,SCTG20_rail_dist*SCTG20_rail_mass_frac,FALSE,SCTG20_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; basic chemicals,,TRUE,SCTG20_pipeline_dist,48.1,km
+Transport; average mix; basic chemicals,,TRUE,SCTG20_pipeline_mass_frac,0.0990881861653276,fraction of all commodity shipped by current mode
+Transport; average mix; basic chemicals,SCTG20_pipeline_dist*SCTG20_pipeline_mass_frac,FALSE,SCTG20_pipeline_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; basic chemicals,,TRUE,SCTG20_deepSea_dist,262.53,km
+Transport; average mix; basic chemicals,,TRUE,SCTG20_deepSea_mass_frac,0.0453992198837656,fraction of all commodity shipped by current mode
+Transport; average mix; basic chemicals,SCTG20_deepSea_dist*SCTG20_deepSea_mass_frac,FALSE,SCTG20_deepSea_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; basic chemicals,,TRUE,SCTG20_air_dist,3384.32,km
+Transport; average mix; basic chemicals,,TRUE,SCTG20_air_mass_frac,1.83730531183931e-05,fraction of all commodity shipped by current mode
+Transport; average mix; basic chemicals,SCTG20_air_dist*SCTG20_air_mass_frac,FALSE,SCTG20_air_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; cereal grains (includes seed),,TRUE,SCTG02_longHaul_dist,153.14,km
+Transport; average mix; cereal grains (includes seed),,TRUE,SCTG02_longHaul_mass_frac,0.4820118670506677,fraction of all commodity shipped by current mode
+Transport; average mix; cereal grains (includes seed),SCTG02_longHaul_dist*SCTG02_longHaul_mass_frac,FALSE,SCTG02_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; cereal grains (includes seed),,TRUE,SCTG02_rail_dist,754.45,km
+Transport; average mix; cereal grains (includes seed),,TRUE,SCTG02_rail_mass_frac,0.233340864409975,fraction of all commodity shipped by current mode
+Transport; average mix; cereal grains (includes seed),SCTG02_rail_dist*SCTG02_rail_mass_frac,FALSE,SCTG02_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; cereal grains (includes seed),,TRUE,SCTG02_lightTruck_dist,60.46,km
+Transport; average mix; cereal grains (includes seed),,TRUE,SCTG02_lightTruck_mass_frac,0.201904038836839,fraction of all commodity shipped by current mode
+Transport; average mix; cereal grains (includes seed),SCTG02_lightTruck_dist*SCTG02_lightTruck_mass_frac,FALSE,SCTG02_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; cereal grains (includes seed),,TRUE,SCTG02_inlandWater_dist,1600.82,km
+Transport; average mix; cereal grains (includes seed),,TRUE,SCTG02_inlandWater_mass_frac,0.0827432297025182,fraction of all commodity shipped by current mode
+Transport; average mix; cereal grains (includes seed),SCTG02_inlandWater_dist*SCTG02_inlandWater_mass_frac,FALSE,SCTG02_inlandWater_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; coal,,TRUE,SCTG15_rail_dist,579.68,km
+Transport; average mix; coal,,TRUE,SCTG15_rail_mass_frac,0.6894216361958984,fraction of all commodity shipped by current mode
+Transport; average mix; coal,SCTG15_rail_dist*SCTG15_rail_mass_frac,FALSE,SCTG15_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; coal,,TRUE,SCTG15_inlandWater_dist,230.11,km
+Transport; average mix; coal,,TRUE,SCTG15_inlandWater_mass_frac,0.1386403272331374,fraction of all commodity shipped by current mode
+Transport; average mix; coal,SCTG15_inlandWater_dist*SCTG15_inlandWater_mass_frac,FALSE,SCTG15_inlandWater_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; coal,,TRUE,SCTG15_longHaul_dist,88.0,km
+Transport; average mix; coal,,TRUE,SCTG15_longHaul_mass_frac,0.1159396215093281,fraction of all commodity shipped by current mode
+Transport; average mix; coal,SCTG15_longHaul_dist*SCTG15_longHaul_mass_frac,FALSE,SCTG15_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; coal,,TRUE,SCTG15_lightTruck_dist,74.04,km
+Transport; average mix; coal,,TRUE,SCTG15_lightTruck_mass_frac,0.0559984150616362,fraction of all commodity shipped by current mode
+Transport; average mix; coal,SCTG15_lightTruck_dist*SCTG15_lightTruck_mass_frac,FALSE,SCTG15_lightTruck_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; electronic and other electrical equipment and components, and office equipment",,TRUE,SCTG35_longHaul_dist,793.1,km
+"Transport; average mix; electronic and other electrical equipment and components, and office equipment",,TRUE,SCTG35_longHaul_mass_frac,0.6949047109772072,fraction of all commodity shipped by current mode
+"Transport; average mix; electronic and other electrical equipment and components, and office equipment",SCTG35_longHaul_dist*SCTG35_longHaul_mass_frac,FALSE,SCTG35_longHaul_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; electronic and other electrical equipment and components, and office equipment",,TRUE,SCTG35_lightTruck_dist,54.49,km
+"Transport; average mix; electronic and other electrical equipment and components, and office equipment",,TRUE,SCTG35_lightTruck_mass_frac,0.2978144077101601,fraction of all commodity shipped by current mode
+"Transport; average mix; electronic and other electrical equipment and components, and office equipment",SCTG35_lightTruck_dist*SCTG35_lightTruck_mass_frac,FALSE,SCTG35_lightTruck_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; electronic and other electrical equipment and components, and office equipment",,TRUE,SCTG35_air_dist,2352.9,km
+"Transport; average mix; electronic and other electrical equipment and components, and office equipment",,TRUE,SCTG35_air_mass_frac,0.0045863128171954,fraction of all commodity shipped by current mode
+"Transport; average mix; electronic and other electrical equipment and components, and office equipment",SCTG35_air_dist*SCTG35_air_mass_frac,FALSE,SCTG35_air_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; electronic and other electrical equipment and components, and office equipment",,TRUE,SCTG35_rail_dist,98.72,km
+"Transport; average mix; electronic and other electrical equipment and components, and office equipment",,TRUE,SCTG35_rail_mass_frac,0.0026006534464634,fraction of all commodity shipped by current mode
+"Transport; average mix; electronic and other electrical equipment and components, and office equipment",SCTG35_rail_dist*SCTG35_rail_mass_frac,FALSE,SCTG35_rail_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; electronic and other electrical equipment and components, and office equipment",,TRUE,SCTG35_inlandWater_dist,231.89,km
+"Transport; average mix; electronic and other electrical equipment and components, and office equipment",,TRUE,SCTG35_inlandWater_mass_frac,9.39150489736386e-05,fraction of all commodity shipped by current mode
+"Transport; average mix; electronic and other electrical equipment and components, and office equipment",SCTG35_inlandWater_dist*SCTG35_inlandWater_mass_frac,FALSE,SCTG35_inlandWater_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; fertilizers,,TRUE,SCTG22_lightTruck_dist,65.53,km
+Transport; average mix; fertilizers,,TRUE,SCTG22_lightTruck_mass_frac,0.5058338540331279,fraction of all commodity shipped by current mode
+Transport; average mix; fertilizers,SCTG22_lightTruck_dist*SCTG22_lightTruck_mass_frac,FALSE,SCTG22_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; fertilizers,,TRUE,SCTG22_longHaul_dist,206.74,km
+Transport; average mix; fertilizers,,TRUE,SCTG22_longHaul_mass_frac,0.3978607168910694,fraction of all commodity shipped by current mode
+Transport; average mix; fertilizers,SCTG22_longHaul_dist*SCTG22_longHaul_mass_frac,FALSE,SCTG22_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; fertilizers,,TRUE,SCTG22_rail_dist,1417.2,km
+Transport; average mix; fertilizers,,TRUE,SCTG22_rail_mass_frac,0.0618780013063981,fraction of all commodity shipped by current mode
+Transport; average mix; fertilizers,SCTG22_rail_dist*SCTG22_rail_mass_frac,FALSE,SCTG22_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; fertilizers,,TRUE,SCTG22_inlandWater_dist,379.41,km
+Transport; average mix; fertilizers,,TRUE,SCTG22_inlandWater_mass_frac,0.0333196004910171,fraction of all commodity shipped by current mode
+Transport; average mix; fertilizers,SCTG22_inlandWater_dist*SCTG22_inlandWater_mass_frac,FALSE,SCTG22_inlandWater_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; fertilizers,,TRUE,SCTG22_pipeline_dist,32.08,km
+Transport; average mix; fertilizers,,TRUE,SCTG22_pipeline_mass_frac,0.0011078259749499,fraction of all commodity shipped by current mode
+Transport; average mix; fertilizers,SCTG22_pipeline_dist*SCTG22_pipeline_mass_frac,FALSE,SCTG22_pipeline_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; fertilizers,,TRUE,SCTG22_air_dist,4081.29,km
+Transport; average mix; fertilizers,,TRUE,SCTG22_air_mass_frac,1.3034374038738795e-09,fraction of all commodity shipped by current mode
+Transport; average mix; fertilizers,SCTG22_air_dist*SCTG22_air_mass_frac,FALSE,SCTG22_air_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",,TRUE,SCTG18_lightTruck_dist,43.14,km
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",,TRUE,SCTG18_lightTruck_mass_frac,0.4071060412166589,fraction of all commodity shipped by current mode
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",SCTG18_lightTruck_dist*SCTG18_lightTruck_mass_frac,FALSE,SCTG18_lightTruck_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",,TRUE,SCTG18_longHaul_dist,101.22,km
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",,TRUE,SCTG18_longHaul_mass_frac,0.3131388086303518,fraction of all commodity shipped by current mode
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",SCTG18_longHaul_dist*SCTG18_longHaul_mass_frac,FALSE,SCTG18_longHaul_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",,TRUE,SCTG18_pipeline_dist,36.31,km
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",,TRUE,SCTG18_pipeline_mass_frac,0.184762986308491,fraction of all commodity shipped by current mode
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",SCTG18_pipeline_dist*SCTG18_pipeline_mass_frac,FALSE,SCTG18_pipeline_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",,TRUE,SCTG18_inlandWater_dist,50.7,km
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",,TRUE,SCTG18_inlandWater_mass_frac,0.0737088742635281,fraction of all commodity shipped by current mode
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",SCTG18_inlandWater_dist*SCTG18_inlandWater_mass_frac,FALSE,SCTG18_inlandWater_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",,TRUE,SCTG18_deepSea_dist,188.79,km
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",,TRUE,SCTG18_deepSea_mass_frac,0.0174481087926612,fraction of all commodity shipped by current mode
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",SCTG18_deepSea_dist*SCTG18_deepSea_mass_frac,FALSE,SCTG18_deepSea_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",,TRUE,SCTG18_rail_dist,194.99,km
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",,TRUE,SCTG18_rail_mass_frac,0.0038335136105045,fraction of all commodity shipped by current mode
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",SCTG18_rail_dist*SCTG18_rail_mass_frac,FALSE,SCTG18_rail_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",,TRUE,SCTG18_air_dist,1227.82,km
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",,TRUE,SCTG18_air_mass_frac,1.667177804203695e-06,fraction of all commodity shipped by current mode
+"Transport; average mix; fuel oils (includes diesel, bunker c, and biodiesel)",SCTG18_air_dist*SCTG18_air_mass_frac,FALSE,SCTG18_air_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; furniture, mattresses and mattress supports, lamps, lighting fittings, and illuminated signs",,TRUE,SCTG39_longHaul_dist,1118.3,km
+"Transport; average mix; furniture, mattresses and mattress supports, lamps, lighting fittings, and illuminated signs",,TRUE,SCTG39_longHaul_mass_frac,0.7810524016264738,fraction of all commodity shipped by current mode
+"Transport; average mix; furniture, mattresses and mattress supports, lamps, lighting fittings, and illuminated signs",SCTG39_longHaul_dist*SCTG39_longHaul_mass_frac,FALSE,SCTG39_longHaul_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; furniture, mattresses and mattress supports, lamps, lighting fittings, and illuminated signs",,TRUE,SCTG39_lightTruck_dist,100.63,km
+"Transport; average mix; furniture, mattresses and mattress supports, lamps, lighting fittings, and illuminated signs",,TRUE,SCTG39_lightTruck_mass_frac,0.2177714423623133,fraction of all commodity shipped by current mode
+"Transport; average mix; furniture, mattresses and mattress supports, lamps, lighting fittings, and illuminated signs",SCTG39_lightTruck_dist*SCTG39_lightTruck_mass_frac,FALSE,SCTG39_lightTruck_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; furniture, mattresses and mattress supports, lamps, lighting fittings, and illuminated signs",,TRUE,SCTG39_air_dist,2666.21,km
+"Transport; average mix; furniture, mattresses and mattress supports, lamps, lighting fittings, and illuminated signs",,TRUE,SCTG39_air_mass_frac,0.0011324474195676,fraction of all commodity shipped by current mode
+"Transport; average mix; furniture, mattresses and mattress supports, lamps, lighting fittings, and illuminated signs",SCTG39_air_dist*SCTG39_air_mass_frac,FALSE,SCTG39_air_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; furniture, mattresses and mattress supports, lamps, lighting fittings, and illuminated signs",,TRUE,SCTG39_deepSea_dist,336.87,km
+"Transport; average mix; furniture, mattresses and mattress supports, lamps, lighting fittings, and illuminated signs",,TRUE,SCTG39_deepSea_mass_frac,4.370859164527209e-05,fraction of all commodity shipped by current mode
+"Transport; average mix; furniture, mattresses and mattress supports, lamps, lighting fittings, and illuminated signs",SCTG39_deepSea_dist*SCTG39_deepSea_mass_frac,FALSE,SCTG39_deepSea_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",,TRUE,SCTG17_longHaul_dist,94.85,km
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",,TRUE,SCTG17_longHaul_mass_frac,0.3780295507691582,fraction of all commodity shipped by current mode
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",SCTG17_longHaul_dist*SCTG17_longHaul_mass_frac,FALSE,SCTG17_longHaul_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",,TRUE,SCTG17_pipeline_dist,68.39,km
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",,TRUE,SCTG17_pipeline_mass_frac,0.2908133053461637,fraction of all commodity shipped by current mode
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",SCTG17_pipeline_dist*SCTG17_pipeline_mass_frac,FALSE,SCTG17_pipeline_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",,TRUE,SCTG17_lightTruck_dist,40.97,km
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",,TRUE,SCTG17_lightTruck_mass_frac,0.2880231071373354,fraction of all commodity shipped by current mode
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",SCTG17_lightTruck_dist*SCTG17_lightTruck_mass_frac,FALSE,SCTG17_lightTruck_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",,TRUE,SCTG17_inlandWater_dist,59.95,km
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",,TRUE,SCTG17_inlandWater_mass_frac,0.0185192020538297,fraction of all commodity shipped by current mode
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",SCTG17_inlandWater_dist*SCTG17_inlandWater_mass_frac,FALSE,SCTG17_inlandWater_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",,TRUE,SCTG17_deepSea_dist,313.55,km
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",,TRUE,SCTG17_deepSea_mass_frac,0.0129961064216852,fraction of all commodity shipped by current mode
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",SCTG17_deepSea_dist*SCTG17_deepSea_mass_frac,FALSE,SCTG17_deepSea_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",,TRUE,SCTG17_rail_dist,1329.75,km
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",,TRUE,SCTG17_rail_mass_frac,0.0116175136501218,fraction of all commodity shipped by current mode
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",SCTG17_rail_dist*SCTG17_rail_mass_frac,FALSE,SCTG17_rail_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",,TRUE,SCTG17_air_dist,1179.78,km
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",,TRUE,SCTG17_air_mass_frac,1.2146217059188351e-06,fraction of all commodity shipped by current mode
+"Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",SCTG17_air_dist*SCTG17_air_mass_frac,FALSE,SCTG17_air_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; gravel and crushed stone (excludes dolomite and slate),,TRUE,SCTG12_longHaul_dist,71.98,km
+Transport; average mix; gravel and crushed stone (excludes dolomite and slate),,TRUE,SCTG12_longHaul_mass_frac,0.5827144087417352,fraction of all commodity shipped by current mode
+Transport; average mix; gravel and crushed stone (excludes dolomite and slate),SCTG12_longHaul_dist*SCTG12_longHaul_mass_frac,FALSE,SCTG12_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; gravel and crushed stone (excludes dolomite and slate),,TRUE,SCTG12_lightTruck_dist,39.54,km
+Transport; average mix; gravel and crushed stone (excludes dolomite and slate),,TRUE,SCTG12_lightTruck_mass_frac,0.3276578068401649,fraction of all commodity shipped by current mode
+Transport; average mix; gravel and crushed stone (excludes dolomite and slate),SCTG12_lightTruck_dist*SCTG12_lightTruck_mass_frac,FALSE,SCTG12_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; gravel and crushed stone (excludes dolomite and slate),,TRUE,SCTG12_rail_dist,139.82,km
+Transport; average mix; gravel and crushed stone (excludes dolomite and slate),,TRUE,SCTG12_rail_mass_frac,0.0561302395930399,fraction of all commodity shipped by current mode
+Transport; average mix; gravel and crushed stone (excludes dolomite and slate),SCTG12_rail_dist*SCTG12_rail_mass_frac,FALSE,SCTG12_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; gravel and crushed stone (excludes dolomite and slate),,TRUE,SCTG12_greatLakes_dist,457.06,km
+Transport; average mix; gravel and crushed stone (excludes dolomite and slate),,TRUE,SCTG12_greatLakes_mass_frac,0.0195793938342683,fraction of all commodity shipped by current mode
+Transport; average mix; gravel and crushed stone (excludes dolomite and slate),SCTG12_greatLakes_dist*SCTG12_greatLakes_mass_frac,FALSE,SCTG12_greatLakes_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; gravel and crushed stone (excludes dolomite and slate),,TRUE,SCTG12_inlandWater_dist,890.13,km
+Transport; average mix; gravel and crushed stone (excludes dolomite and slate),,TRUE,SCTG12_inlandWater_mass_frac,0.0139181509907915,fraction of all commodity shipped by current mode
+Transport; average mix; gravel and crushed stone (excludes dolomite and slate),SCTG12_inlandWater_dist*SCTG12_inlandWater_mass_frac,FALSE,SCTG12_inlandWater_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; logs and other wood in the rough,,TRUE,SCTG25_longHaul_dist,301.64,km
+Transport; average mix; logs and other wood in the rough,,TRUE,SCTG25_longHaul_mass_frac,0.6253658744088991,fraction of all commodity shipped by current mode
+Transport; average mix; logs and other wood in the rough,SCTG25_longHaul_dist*SCTG25_longHaul_mass_frac,FALSE,SCTG25_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; logs and other wood in the rough,,TRUE,SCTG25_lightTruck_dist,84.21,km
+Transport; average mix; logs and other wood in the rough,,TRUE,SCTG25_lightTruck_mass_frac,0.2764931089926233,fraction of all commodity shipped by current mode
+Transport; average mix; logs and other wood in the rough,SCTG25_lightTruck_dist*SCTG25_lightTruck_mass_frac,FALSE,SCTG25_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; logs and other wood in the rough,,TRUE,SCTG25_rail_dist,461.27,km
+Transport; average mix; logs and other wood in the rough,,TRUE,SCTG25_rail_mass_frac,0.0981410165984775,fraction of all commodity shipped by current mode
+Transport; average mix; logs and other wood in the rough,SCTG25_rail_dist*SCTG25_rail_mass_frac,FALSE,SCTG25_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; machinery,,TRUE,SCTG34_longHaul_dist,483.91,km
+Transport; average mix; machinery,,TRUE,SCTG34_longHaul_mass_frac,0.6588407160050856,fraction of all commodity shipped by current mode
+Transport; average mix; machinery,SCTG34_longHaul_dist*SCTG34_longHaul_mass_frac,FALSE,SCTG34_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; machinery,,TRUE,SCTG34_lightTruck_dist,56.12,km
+Transport; average mix; machinery,,TRUE,SCTG34_lightTruck_mass_frac,0.3329384142842757,fraction of all commodity shipped by current mode
+Transport; average mix; machinery,SCTG34_lightTruck_dist*SCTG34_lightTruck_mass_frac,FALSE,SCTG34_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; machinery,,TRUE,SCTG34_rail_dist,22.53,km
+Transport; average mix; machinery,,TRUE,SCTG34_rail_mass_frac,0.007024282107701,fraction of all commodity shipped by current mode
+Transport; average mix; machinery,SCTG34_rail_dist*SCTG34_rail_mass_frac,FALSE,SCTG34_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; machinery,,TRUE,SCTG34_air_dist,1905.86,km
+Transport; average mix; machinery,,TRUE,SCTG34_air_mass_frac,0.0011965876029376,fraction of all commodity shipped by current mode
+Transport; average mix; machinery,SCTG34_air_dist*SCTG34_air_mass_frac,FALSE,SCTG34_air_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; meat, poultry, fish, seafood, and their preparations",,TRUE,SCTG05_longHaul_dist,270.49,km
+"Transport; average mix; meat, poultry, fish, seafood, and their preparations",,TRUE,SCTG05_longHaul_mass_frac,0.7191551129057593,fraction of all commodity shipped by current mode
+"Transport; average mix; meat, poultry, fish, seafood, and their preparations",SCTG05_longHaul_dist*SCTG05_longHaul_mass_frac,FALSE,SCTG05_longHaul_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; meat, poultry, fish, seafood, and their preparations",,TRUE,SCTG05_lightTruck_dist,94.6,km
+"Transport; average mix; meat, poultry, fish, seafood, and their preparations",,TRUE,SCTG05_lightTruck_mass_frac,0.2750463436801729,fraction of all commodity shipped by current mode
+"Transport; average mix; meat, poultry, fish, seafood, and their preparations",SCTG05_lightTruck_dist*SCTG05_lightTruck_mass_frac,FALSE,SCTG05_lightTruck_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; meat, poultry, fish, seafood, and their preparations",,TRUE,SCTG05_deepSea_dist,3647.74,km
+"Transport; average mix; meat, poultry, fish, seafood, and their preparations",,TRUE,SCTG05_deepSea_mass_frac,0.0038197686300218,fraction of all commodity shipped by current mode
+"Transport; average mix; meat, poultry, fish, seafood, and their preparations",SCTG05_deepSea_dist*SCTG05_deepSea_mass_frac,FALSE,SCTG05_deepSea_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; meat, poultry, fish, seafood, and their preparations",,TRUE,SCTG05_rail_dist,747.58,km
+"Transport; average mix; meat, poultry, fish, seafood, and their preparations",,TRUE,SCTG05_rail_mass_frac,0.0011042912831006,fraction of all commodity shipped by current mode
+"Transport; average mix; meat, poultry, fish, seafood, and their preparations",SCTG05_rail_dist*SCTG05_rail_mass_frac,FALSE,SCTG05_rail_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; meat, poultry, fish, seafood, and their preparations",,TRUE,SCTG05_air_dist,5285.19,km
+"Transport; average mix; meat, poultry, fish, seafood, and their preparations",,TRUE,SCTG05_air_mass_frac,0.000713654488268,fraction of all commodity shipped by current mode
+"Transport; average mix; meat, poultry, fish, seafood, and their preparations",SCTG05_air_dist*SCTG05_air_mass_frac,FALSE,SCTG05_air_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; meat, poultry, fish, seafood, and their preparations",,TRUE,SCTG05_inlandWater_dist,606.61,km
+"Transport; average mix; meat, poultry, fish, seafood, and their preparations",,TRUE,SCTG05_inlandWater_mass_frac,0.0001608290126773,fraction of all commodity shipped by current mode
+"Transport; average mix; meat, poultry, fish, seafood, and their preparations",SCTG05_inlandWater_dist*SCTG05_inlandWater_mass_frac,FALSE,SCTG05_inlandWater_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; metallic ores and concentrates,,TRUE,SCTG14_rail_dist,318.91,km
+Transport; average mix; metallic ores and concentrates,,TRUE,SCTG14_rail_mass_frac,0.7973389846860258,fraction of all commodity shipped by current mode
+Transport; average mix; metallic ores and concentrates,SCTG14_rail_dist*SCTG14_rail_mass_frac,FALSE,SCTG14_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; metallic ores and concentrates,,TRUE,SCTG14_longHaul_dist,1097.63,km
+Transport; average mix; metallic ores and concentrates,,TRUE,SCTG14_longHaul_mass_frac,0.1433339206150625,fraction of all commodity shipped by current mode
+Transport; average mix; metallic ores and concentrates,SCTG14_longHaul_dist*SCTG14_longHaul_mass_frac,FALSE,SCTG14_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; metallic ores and concentrates,,TRUE,SCTG14_lightTruck_dist,76.33,km
+Transport; average mix; metallic ores and concentrates,,TRUE,SCTG14_lightTruck_mass_frac,0.0455974723643713,fraction of all commodity shipped by current mode
+Transport; average mix; metallic ores and concentrates,SCTG14_lightTruck_dist*SCTG14_lightTruck_mass_frac,FALSE,SCTG14_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; metallic ores and concentrates,,TRUE,SCTG14_inlandWater_dist,2027.94,km
+Transport; average mix; metallic ores and concentrates,,TRUE,SCTG14_inlandWater_mass_frac,0.0137291776014449,fraction of all commodity shipped by current mode
+Transport; average mix; metallic ores and concentrates,SCTG14_inlandWater_dist*SCTG14_inlandWater_mass_frac,FALSE,SCTG14_inlandWater_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; metallic ores and concentrates,,TRUE,SCTG14_air_dist,1847.47,km
+Transport; average mix; metallic ores and concentrates,,TRUE,SCTG14_air_mass_frac,4.4473309522636393e-07,fraction of all commodity shipped by current mode
+Transport; average mix; metallic ores and concentrates,SCTG14_air_dist*SCTG14_air_mass_frac,FALSE,SCTG14_air_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; milled grain products and preparations, and bakery products",,TRUE,SCTG06_longHaul_dist,174.32,km
+"Transport; average mix; milled grain products and preparations, and bakery products",,TRUE,SCTG06_longHaul_mass_frac,0.6645212843998665,fraction of all commodity shipped by current mode
+"Transport; average mix; milled grain products and preparations, and bakery products",SCTG06_longHaul_dist*SCTG06_longHaul_mass_frac,FALSE,SCTG06_longHaul_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; milled grain products and preparations, and bakery products",,TRUE,SCTG06_lightTruck_dist,74.67,km
+"Transport; average mix; milled grain products and preparations, and bakery products",,TRUE,SCTG06_lightTruck_mass_frac,0.3161653598117843,fraction of all commodity shipped by current mode
+"Transport; average mix; milled grain products and preparations, and bakery products",SCTG06_lightTruck_dist*SCTG06_lightTruck_mass_frac,FALSE,SCTG06_lightTruck_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; milled grain products and preparations, and bakery products",,TRUE,SCTG06_rail_dist,765.77,km
+"Transport; average mix; milled grain products and preparations, and bakery products",,TRUE,SCTG06_rail_mass_frac,0.0190770976833299,fraction of all commodity shipped by current mode
+"Transport; average mix; milled grain products and preparations, and bakery products",SCTG06_rail_dist*SCTG06_rail_mass_frac,FALSE,SCTG06_rail_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; milled grain products and preparations, and bakery products",,TRUE,SCTG06_air_dist,2944.89,km
+"Transport; average mix; milled grain products and preparations, and bakery products",,TRUE,SCTG06_air_mass_frac,0.0001401719505155,fraction of all commodity shipped by current mode
+"Transport; average mix; milled grain products and preparations, and bakery products",SCTG06_air_dist*SCTG06_air_mass_frac,FALSE,SCTG06_air_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; milled grain products and preparations, and bakery products",,TRUE,SCTG06_inlandWater_dist,3905.87,km
+"Transport; average mix; milled grain products and preparations, and bakery products",,TRUE,SCTG06_inlandWater_mass_frac,9.608615450364697e-05,fraction of all commodity shipped by current mode
+"Transport; average mix; milled grain products and preparations, and bakery products",SCTG06_inlandWater_dist*SCTG06_inlandWater_mass_frac,FALSE,SCTG06_inlandWater_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; miscellaneous manufactured products,,TRUE,SCTG40_longHaul_dist,1098.49,km
+Transport; average mix; miscellaneous manufactured products,,TRUE,SCTG40_longHaul_mass_frac,0.718069467547384,fraction of all commodity shipped by current mode
+Transport; average mix; miscellaneous manufactured products,SCTG40_longHaul_dist*SCTG40_longHaul_mass_frac,FALSE,SCTG40_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; miscellaneous manufactured products,,TRUE,SCTG40_lightTruck_dist,97.15,km
+Transport; average mix; miscellaneous manufactured products,,TRUE,SCTG40_lightTruck_mass_frac,0.2813590613985101,fraction of all commodity shipped by current mode
+Transport; average mix; miscellaneous manufactured products,SCTG40_lightTruck_dist*SCTG40_lightTruck_mass_frac,FALSE,SCTG40_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; miscellaneous manufactured products,,TRUE,SCTG40_air_dist,2591.79,km
+Transport; average mix; miscellaneous manufactured products,,TRUE,SCTG40_air_mass_frac,0.0005650969190811,fraction of all commodity shipped by current mode
+Transport; average mix; miscellaneous manufactured products,SCTG40_air_dist*SCTG40_air_mass_frac,FALSE,SCTG40_air_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; miscellaneous manufactured products,,TRUE,SCTG40_rail_dist,6.44,km
+Transport; average mix; miscellaneous manufactured products,,TRUE,SCTG40_rail_mass_frac,6.374135024826598e-06,fraction of all commodity shipped by current mode
+Transport; average mix; miscellaneous manufactured products,SCTG40_rail_dist*SCTG40_rail_mass_frac,FALSE,SCTG40_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; mixed freight,,TRUE,SCTG43_lightTruck_dist,114.68,km
+Transport; average mix; mixed freight,,TRUE,SCTG43_lightTruck_mass_frac,0.6205910354029365,fraction of all commodity shipped by current mode
+Transport; average mix; mixed freight,SCTG43_lightTruck_dist*SCTG43_lightTruck_mass_frac,FALSE,SCTG43_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; mixed freight,,TRUE,SCTG43_longHaul_dist,410.26,km
+Transport; average mix; mixed freight,,TRUE,SCTG43_longHaul_mass_frac,0.3775707185156666,fraction of all commodity shipped by current mode
+Transport; average mix; mixed freight,SCTG43_longHaul_dist*SCTG43_longHaul_mass_frac,FALSE,SCTG43_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; mixed freight,,TRUE,SCTG43_air_dist,2578.85,km
+Transport; average mix; mixed freight,,TRUE,SCTG43_air_mass_frac,0.0009522130737925,fraction of all commodity shipped by current mode
+Transport; average mix; mixed freight,SCTG43_air_dist*SCTG43_air_mass_frac,FALSE,SCTG43_air_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; mixed freight,,TRUE,SCTG43_rail_dist,810.25,km
+Transport; average mix; mixed freight,,TRUE,SCTG43_rail_mass_frac,0.0007950179547595,fraction of all commodity shipped by current mode
+Transport; average mix; mixed freight,SCTG43_rail_dist*SCTG43_rail_mass_frac,FALSE,SCTG43_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; mixed freight,,TRUE,SCTG43_deepSea_dist,1631.34,km
+Transport; average mix; mixed freight,,TRUE,SCTG43_deepSea_mass_frac,7.701568291862994e-05,fraction of all commodity shipped by current mode
+Transport; average mix; mixed freight,SCTG43_deepSea_dist*SCTG43_deepSea_mass_frac,FALSE,SCTG43_deepSea_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; mixed freight,,TRUE,SCTG43_inlandWater_dist,3027.74,km
+Transport; average mix; mixed freight,,TRUE,SCTG43_inlandWater_mass_frac,1.3999369926217084e-05,fraction of all commodity shipped by current mode
+Transport; average mix; mixed freight,SCTG43_inlandWater_dist*SCTG43_inlandWater_mass_frac,FALSE,SCTG43_inlandWater_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; monumental or building stone,,TRUE,SCTG10_longHaul_dist,570.01,km
+Transport; average mix; monumental or building stone,,TRUE,SCTG10_longHaul_mass_frac,0.6938831396847193,fraction of all commodity shipped by current mode
+Transport; average mix; monumental or building stone,SCTG10_longHaul_dist*SCTG10_longHaul_mass_frac,FALSE,SCTG10_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; monumental or building stone,,TRUE,SCTG10_lightTruck_dist,81.55,km
+Transport; average mix; monumental or building stone,,TRUE,SCTG10_lightTruck_mass_frac,0.3061168603152807,fraction of all commodity shipped by current mode
+Transport; average mix; monumental or building stone,SCTG10_lightTruck_dist*SCTG10_lightTruck_mass_frac,FALSE,SCTG10_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; motorized and other vehicles (includes parts),,TRUE,SCTG36_longHaul_dist,612.09,km
+Transport; average mix; motorized and other vehicles (includes parts),,TRUE,SCTG36_longHaul_mass_frac,0.7392941461191133,fraction of all commodity shipped by current mode
+Transport; average mix; motorized and other vehicles (includes parts),SCTG36_longHaul_dist*SCTG36_longHaul_mass_frac,FALSE,SCTG36_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; motorized and other vehicles (includes parts),,TRUE,SCTG36_lightTruck_dist,71.82,km
+Transport; average mix; motorized and other vehicles (includes parts),,TRUE,SCTG36_lightTruck_mass_frac,0.2421439473702148,fraction of all commodity shipped by current mode
+Transport; average mix; motorized and other vehicles (includes parts),SCTG36_lightTruck_dist*SCTG36_lightTruck_mass_frac,FALSE,SCTG36_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; motorized and other vehicles (includes parts),,TRUE,SCTG36_rail_dist,2126.47,km
+Transport; average mix; motorized and other vehicles (includes parts),,TRUE,SCTG36_rail_mass_frac,0.0176730792732448,fraction of all commodity shipped by current mode
+Transport; average mix; motorized and other vehicles (includes parts),SCTG36_rail_dist*SCTG36_rail_mass_frac,FALSE,SCTG36_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; motorized and other vehicles (includes parts),,TRUE,SCTG36_air_dist,2108.13,km
+Transport; average mix; motorized and other vehicles (includes parts),,TRUE,SCTG36_air_mass_frac,0.0007981642394654,fraction of all commodity shipped by current mode
+Transport; average mix; motorized and other vehicles (includes parts),SCTG36_air_dist*SCTG36_air_mass_frac,FALSE,SCTG36_air_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; motorized and other vehicles (includes parts),,TRUE,SCTG36_inlandWater_dist,374.59,km
+Transport; average mix; motorized and other vehicles (includes parts),,TRUE,SCTG36_inlandWater_mass_frac,7.304757034931574e-05,fraction of all commodity shipped by current mode
+Transport; average mix; motorized and other vehicles (includes parts),SCTG36_inlandWater_dist*SCTG36_inlandWater_mass_frac,FALSE,SCTG36_inlandWater_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; motorized and other vehicles (includes parts),,TRUE,SCTG36_deepSea_dist,292.28,km
+Transport; average mix; motorized and other vehicles (includes parts),,TRUE,SCTG36_deepSea_mass_frac,1.761542761222656e-05,fraction of all commodity shipped by current mode
+Transport; average mix; motorized and other vehicles (includes parts),SCTG36_deepSea_dist*SCTG36_deepSea_mass_frac,FALSE,SCTG36_deepSea_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; natural sands,,TRUE,SCTG11_longHaul_dist,202.64,km
+Transport; average mix; natural sands,,TRUE,SCTG11_longHaul_mass_frac,0.5280242298044905,fraction of all commodity shipped by current mode
+Transport; average mix; natural sands,SCTG11_longHaul_dist*SCTG11_longHaul_mass_frac,FALSE,SCTG11_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; natural sands,,TRUE,SCTG11_lightTruck_dist,49.67,km
+Transport; average mix; natural sands,,TRUE,SCTG11_lightTruck_mass_frac,0.2855876614454495,fraction of all commodity shipped by current mode
+Transport; average mix; natural sands,SCTG11_lightTruck_dist*SCTG11_lightTruck_mass_frac,FALSE,SCTG11_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; natural sands,,TRUE,SCTG11_rail_dist,550.67,km
+Transport; average mix; natural sands,,TRUE,SCTG11_rail_mass_frac,0.1689638568251136,fraction of all commodity shipped by current mode
+Transport; average mix; natural sands,SCTG11_rail_dist*SCTG11_rail_mass_frac,FALSE,SCTG11_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; natural sands,,TRUE,SCTG11_inlandWater_dist,738.25,km
+Transport; average mix; natural sands,,TRUE,SCTG11_inlandWater_mass_frac,0.0174242519249463,fraction of all commodity shipped by current mode
+Transport; average mix; natural sands,SCTG11_inlandWater_dist*SCTG11_inlandWater_mass_frac,FALSE,SCTG11_inlandWater_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; non-metallic mineral products,,TRUE,SCTG31_lightTruck_dist,50.22,km
+Transport; average mix; non-metallic mineral products,,TRUE,SCTG31_lightTruck_mass_frac,0.6220648225720845,fraction of all commodity shipped by current mode
+Transport; average mix; non-metallic mineral products,SCTG31_lightTruck_dist*SCTG31_lightTruck_mass_frac,FALSE,SCTG31_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; non-metallic mineral products,,TRUE,SCTG31_longHaul_dist,667.64,km
+Transport; average mix; non-metallic mineral products,,TRUE,SCTG31_longHaul_mass_frac,0.3483875891161924,fraction of all commodity shipped by current mode
+Transport; average mix; non-metallic mineral products,SCTG31_longHaul_dist*SCTG31_longHaul_mass_frac,FALSE,SCTG31_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; non-metallic mineral products,,TRUE,SCTG31_rail_dist,601.26,km
+Transport; average mix; non-metallic mineral products,,TRUE,SCTG31_rail_mass_frac,0.0259263757595406,fraction of all commodity shipped by current mode
+Transport; average mix; non-metallic mineral products,SCTG31_rail_dist*SCTG31_rail_mass_frac,FALSE,SCTG31_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; non-metallic mineral products,,TRUE,SCTG31_greatLakes_dist,421.21,km
+Transport; average mix; non-metallic mineral products,,TRUE,SCTG31_greatLakes_mass_frac,0.0017716029275212,fraction of all commodity shipped by current mode
+Transport; average mix; non-metallic mineral products,SCTG31_greatLakes_dist*SCTG31_greatLakes_mass_frac,FALSE,SCTG31_greatLakes_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; non-metallic mineral products,,TRUE,SCTG31_inlandWater_dist,899.92,km
+Transport; average mix; non-metallic mineral products,,TRUE,SCTG31_inlandWater_mass_frac,0.0012197131556891,fraction of all commodity shipped by current mode
+Transport; average mix; non-metallic mineral products,SCTG31_inlandWater_dist*SCTG31_inlandWater_mass_frac,FALSE,SCTG31_inlandWater_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; non-metallic mineral products,,TRUE,SCTG31_air_dist,4323.92,km
+Transport; average mix; non-metallic mineral products,,TRUE,SCTG31_air_mass_frac,0.0004788568681403,fraction of all commodity shipped by current mode
+Transport; average mix; non-metallic mineral products,SCTG31_air_dist*SCTG31_air_mass_frac,FALSE,SCTG31_air_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; non-metallic mineral products,,TRUE,SCTG31_deepSea_dist,469.4,km
+Transport; average mix; non-metallic mineral products,,TRUE,SCTG31_deepSea_mass_frac,0.0001311821063446,fraction of all commodity shipped by current mode
+Transport; average mix; non-metallic mineral products,SCTG31_deepSea_dist*SCTG31_deepSea_mass_frac,FALSE,SCTG31_deepSea_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; non-metallic mineral products,,TRUE,SCTG31_pipeline_dist,20.92,km
+Transport; average mix; non-metallic mineral products,,TRUE,SCTG31_pipeline_mass_frac,1.9857494487077207e-05,fraction of all commodity shipped by current mode
+Transport; average mix; non-metallic mineral products,SCTG31_pipeline_dist*SCTG31_pipeline_mass_frac,FALSE,SCTG31_pipeline_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; other chemical products and preparations,,TRUE,SCTG23_longHaul_dist,794.58,km
+Transport; average mix; other chemical products and preparations,,TRUE,SCTG23_longHaul_mass_frac,0.7575387371841468,fraction of all commodity shipped by current mode
+Transport; average mix; other chemical products and preparations,SCTG23_longHaul_dist*SCTG23_longHaul_mass_frac,FALSE,SCTG23_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; other chemical products and preparations,,TRUE,SCTG23_lightTruck_dist,65.3,km
+Transport; average mix; other chemical products and preparations,,TRUE,SCTG23_lightTruck_mass_frac,0.2098852226882992,fraction of all commodity shipped by current mode
+Transport; average mix; other chemical products and preparations,SCTG23_lightTruck_dist*SCTG23_lightTruck_mass_frac,FALSE,SCTG23_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; other chemical products and preparations,,TRUE,SCTG23_rail_dist,1169.89,km
+Transport; average mix; other chemical products and preparations,,TRUE,SCTG23_rail_mass_frac,0.029718828152695,fraction of all commodity shipped by current mode
+Transport; average mix; other chemical products and preparations,SCTG23_rail_dist*SCTG23_rail_mass_frac,FALSE,SCTG23_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; other chemical products and preparations,,TRUE,SCTG23_inlandWater_dist,59.71,km
+Transport; average mix; other chemical products and preparations,,TRUE,SCTG23_inlandWater_mass_frac,0.0026847945862712,fraction of all commodity shipped by current mode
+Transport; average mix; other chemical products and preparations,SCTG23_inlandWater_dist*SCTG23_inlandWater_mass_frac,FALSE,SCTG23_inlandWater_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; other chemical products and preparations,,TRUE,SCTG23_air_dist,1671.69,km
+Transport; average mix; other chemical products and preparations,,TRUE,SCTG23_air_mass_frac,0.0001724173885874,fraction of all commodity shipped by current mode
+Transport; average mix; other chemical products and preparations,SCTG23_air_dist*SCTG23_air_mass_frac,FALSE,SCTG23_air_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",,TRUE,SCTG19_longHaul_dist,238.65,km
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",,TRUE,SCTG19_longHaul_mass_frac,0.3962753678905711,fraction of all commodity shipped by current mode
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",SCTG19_longHaul_dist*SCTG19_longHaul_mass_frac,FALSE,SCTG19_longHaul_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",,TRUE,SCTG19_lightTruck_dist,50.75,km
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",,TRUE,SCTG19_lightTruck_mass_frac,0.2857232069488263,fraction of all commodity shipped by current mode
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",SCTG19_lightTruck_dist*SCTG19_lightTruck_mass_frac,FALSE,SCTG19_lightTruck_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",,TRUE,SCTG19_inlandWater_dist,439.43,km
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",,TRUE,SCTG19_inlandWater_mass_frac,0.1269784303583074,fraction of all commodity shipped by current mode
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",SCTG19_inlandWater_dist*SCTG19_inlandWater_mass_frac,FALSE,SCTG19_inlandWater_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",,TRUE,SCTG19_rail_dist,457.72,km
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",,TRUE,SCTG19_rail_mass_frac,0.0844683391479141,fraction of all commodity shipped by current mode
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",SCTG19_rail_dist*SCTG19_rail_mass_frac,FALSE,SCTG19_rail_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",,TRUE,SCTG19_pipeline_dist,69.94,km
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",,TRUE,SCTG19_pipeline_mass_frac,0.0801611256436592,fraction of all commodity shipped by current mode
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",SCTG19_pipeline_dist*SCTG19_pipeline_mass_frac,FALSE,SCTG19_pipeline_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",,TRUE,SCTG19_deepSea_dist,829.54,km
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",,TRUE,SCTG19_deepSea_mass_frac,0.0263903752303605,fraction of all commodity shipped by current mode
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",SCTG19_deepSea_dist*SCTG19_deepSea_mass_frac,FALSE,SCTG19_deepSea_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",,TRUE,SCTG19_air_dist,3582.12,km
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",,TRUE,SCTG19_air_mass_frac,3.1547803612870964e-06,fraction of all commodity shipped by current mode
+"Transport; average mix; other coal and petroleum products, not elsewhere classified",SCTG19_air_dist*SCTG19_air_mass_frac,FALSE,SCTG19_air_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; other non-metallic minerals not elsewhere classified,,TRUE,SCTG13_longHaul_dist,308.33,km
+Transport; average mix; other non-metallic minerals not elsewhere classified,,TRUE,SCTG13_longHaul_mass_frac,0.6411307523519587,fraction of all commodity shipped by current mode
+Transport; average mix; other non-metallic minerals not elsewhere classified,SCTG13_longHaul_dist*SCTG13_longHaul_mass_frac,FALSE,SCTG13_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; other non-metallic minerals not elsewhere classified,,TRUE,SCTG13_lightTruck_dist,59.77,km
+Transport; average mix; other non-metallic minerals not elsewhere classified,,TRUE,SCTG13_lightTruck_mass_frac,0.2261565384931825,fraction of all commodity shipped by current mode
+Transport; average mix; other non-metallic minerals not elsewhere classified,SCTG13_lightTruck_dist*SCTG13_lightTruck_mass_frac,FALSE,SCTG13_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; other non-metallic minerals not elsewhere classified,,TRUE,SCTG13_pipeline_dist,34.17,km
+Transport; average mix; other non-metallic minerals not elsewhere classified,,TRUE,SCTG13_pipeline_mass_frac,0.0590569741619579,fraction of all commodity shipped by current mode
+Transport; average mix; other non-metallic minerals not elsewhere classified,SCTG13_pipeline_dist*SCTG13_pipeline_mass_frac,FALSE,SCTG13_pipeline_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; other non-metallic minerals not elsewhere classified,,TRUE,SCTG13_inlandWater_dist,1383.26,km
+Transport; average mix; other non-metallic minerals not elsewhere classified,,TRUE,SCTG13_inlandWater_mass_frac,0.0451755039104211,fraction of all commodity shipped by current mode
+Transport; average mix; other non-metallic minerals not elsewhere classified,SCTG13_inlandWater_dist*SCTG13_inlandWater_mass_frac,FALSE,SCTG13_inlandWater_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; other non-metallic minerals not elsewhere classified,,TRUE,SCTG13_rail_dist,1623.75,km
+Transport; average mix; other non-metallic minerals not elsewhere classified,,TRUE,SCTG13_rail_mass_frac,0.0284801595842795,fraction of all commodity shipped by current mode
+Transport; average mix; other non-metallic minerals not elsewhere classified,SCTG13_rail_dist*SCTG13_rail_mass_frac,FALSE,SCTG13_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; other non-metallic minerals not elsewhere classified,,TRUE,SCTG13_air_dist,2281.07,km
+Transport; average mix; other non-metallic minerals not elsewhere classified,,TRUE,SCTG13_air_mass_frac,7.14981999956511e-08,fraction of all commodity shipped by current mode
+Transport; average mix; other non-metallic minerals not elsewhere classified,SCTG13_air_dist*SCTG13_air_mass_frac,FALSE,SCTG13_air_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; other prepared foodstuffs, and fats and oils",,TRUE,SCTG07_longHaul_dist,646.5,km
+"Transport; average mix; other prepared foodstuffs, and fats and oils",,TRUE,SCTG07_longHaul_mass_frac,0.5706060641561438,fraction of all commodity shipped by current mode
+"Transport; average mix; other prepared foodstuffs, and fats and oils",SCTG07_longHaul_dist*SCTG07_longHaul_mass_frac,FALSE,SCTG07_longHaul_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; other prepared foodstuffs, and fats and oils",,TRUE,SCTG07_lightTruck_dist,67.48,km
+"Transport; average mix; other prepared foodstuffs, and fats and oils",,TRUE,SCTG07_lightTruck_mass_frac,0.3771846098104183,fraction of all commodity shipped by current mode
+"Transport; average mix; other prepared foodstuffs, and fats and oils",SCTG07_lightTruck_dist*SCTG07_lightTruck_mass_frac,FALSE,SCTG07_lightTruck_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; other prepared foodstuffs, and fats and oils",,TRUE,SCTG07_rail_dist,1578.87,km
+"Transport; average mix; other prepared foodstuffs, and fats and oils",,TRUE,SCTG07_rail_mass_frac,0.046884990243652,fraction of all commodity shipped by current mode
+"Transport; average mix; other prepared foodstuffs, and fats and oils",SCTG07_rail_dist*SCTG07_rail_mass_frac,FALSE,SCTG07_rail_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; other prepared foodstuffs, and fats and oils",,TRUE,SCTG07_inlandWater_dist,1905.55,km
+"Transport; average mix; other prepared foodstuffs, and fats and oils",,TRUE,SCTG07_inlandWater_mass_frac,0.0052393849211942,fraction of all commodity shipped by current mode
+"Transport; average mix; other prepared foodstuffs, and fats and oils",SCTG07_inlandWater_dist*SCTG07_inlandWater_mass_frac,FALSE,SCTG07_inlandWater_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; other prepared foodstuffs, and fats and oils",,TRUE,SCTG07_air_dist,3541.81,km
+"Transport; average mix; other prepared foodstuffs, and fats and oils",,TRUE,SCTG07_air_mass_frac,6.400608040862843e-05,fraction of all commodity shipped by current mode
+"Transport; average mix; other prepared foodstuffs, and fats and oils",SCTG07_air_dist*SCTG07_air_mass_frac,FALSE,SCTG07_air_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; other prepared foodstuffs, and fats and oils",,TRUE,SCTG07_deepSea_dist,824.12,km
+"Transport; average mix; other prepared foodstuffs, and fats and oils",,TRUE,SCTG07_deepSea_mass_frac,2.0944788182936383e-05,fraction of all commodity shipped by current mode
+"Transport; average mix; other prepared foodstuffs, and fats and oils",SCTG07_deepSea_dist*SCTG07_deepSea_mass_frac,FALSE,SCTG07_deepSea_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; paper or paperboard articles,,TRUE,SCTG28_longHaul_dist,581.18,km
+Transport; average mix; paper or paperboard articles,,TRUE,SCTG28_longHaul_mass_frac,0.752070985776608,fraction of all commodity shipped by current mode
+Transport; average mix; paper or paperboard articles,SCTG28_longHaul_dist*SCTG28_longHaul_mass_frac,FALSE,SCTG28_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; paper or paperboard articles,,TRUE,SCTG28_lightTruck_dist,110.22,km
+Transport; average mix; paper or paperboard articles,,TRUE,SCTG28_lightTruck_mass_frac,0.2424482791835197,fraction of all commodity shipped by current mode
+Transport; average mix; paper or paperboard articles,SCTG28_lightTruck_dist*SCTG28_lightTruck_mass_frac,FALSE,SCTG28_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; paper or paperboard articles,,TRUE,SCTG28_rail_dist,224.66,km
+Transport; average mix; paper or paperboard articles,,TRUE,SCTG28_rail_mass_frac,0.0025701192917918,fraction of all commodity shipped by current mode
+Transport; average mix; paper or paperboard articles,SCTG28_rail_dist*SCTG28_rail_mass_frac,FALSE,SCTG28_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; paper or paperboard articles,,TRUE,SCTG28_inlandWater_dist,83.49,km
+Transport; average mix; paper or paperboard articles,,TRUE,SCTG28_inlandWater_mass_frac,0.0023712032692892,fraction of all commodity shipped by current mode
+Transport; average mix; paper or paperboard articles,SCTG28_inlandWater_dist*SCTG28_inlandWater_mass_frac,FALSE,SCTG28_inlandWater_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; paper or paperboard articles,,TRUE,SCTG28_deepSea_dist,4292.67,km
+Transport; average mix; paper or paperboard articles,,TRUE,SCTG28_deepSea_mass_frac,0.0003373972316439,fraction of all commodity shipped by current mode
+Transport; average mix; paper or paperboard articles,SCTG28_deepSea_dist*SCTG28_deepSea_mass_frac,FALSE,SCTG28_deepSea_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; paper or paperboard articles,,TRUE,SCTG28_air_dist,2744.07,km
+Transport; average mix; paper or paperboard articles,,TRUE,SCTG28_air_mass_frac,0.0002020152471472,fraction of all commodity shipped by current mode
+Transport; average mix; paper or paperboard articles,SCTG28_air_dist*SCTG28_air_mass_frac,FALSE,SCTG28_air_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; pharmaceutical products,,TRUE,SCTG21_longHaul_dist,593.04,km
+Transport; average mix; pharmaceutical products,,TRUE,SCTG21_longHaul_mass_frac,0.6766449338317235,fraction of all commodity shipped by current mode
+Transport; average mix; pharmaceutical products,SCTG21_longHaul_dist*SCTG21_longHaul_mass_frac,FALSE,SCTG21_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; pharmaceutical products,,TRUE,SCTG21_lightTruck_dist,76.29,km
+Transport; average mix; pharmaceutical products,,TRUE,SCTG21_lightTruck_mass_frac,0.3167676961145364,fraction of all commodity shipped by current mode
+Transport; average mix; pharmaceutical products,SCTG21_lightTruck_dist*SCTG21_lightTruck_mass_frac,FALSE,SCTG21_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; pharmaceutical products,,TRUE,SCTG21_rail_dist,1315.81,km
+Transport; average mix; pharmaceutical products,,TRUE,SCTG21_rail_mass_frac,0.0036407707540944,fraction of all commodity shipped by current mode
+Transport; average mix; pharmaceutical products,SCTG21_rail_dist*SCTG21_rail_mass_frac,FALSE,SCTG21_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; pharmaceutical products,,TRUE,SCTG21_air_dist,2729.9,km
+Transport; average mix; pharmaceutical products,,TRUE,SCTG21_air_mass_frac,0.0029465992996455,fraction of all commodity shipped by current mode
+Transport; average mix; pharmaceutical products,SCTG21_air_dist*SCTG21_air_mass_frac,FALSE,SCTG21_air_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; plastics and rubber,,TRUE,SCTG24_longHaul_dist,665.22,km
+Transport; average mix; plastics and rubber,,TRUE,SCTG24_longHaul_mass_frac,0.6546850361644955,fraction of all commodity shipped by current mode
+Transport; average mix; plastics and rubber,SCTG24_longHaul_dist*SCTG24_longHaul_mass_frac,FALSE,SCTG24_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; plastics and rubber,,TRUE,SCTG24_lightTruck_dist,77.15,km
+Transport; average mix; plastics and rubber,,TRUE,SCTG24_lightTruck_mass_frac,0.1963933193357053,fraction of all commodity shipped by current mode
+Transport; average mix; plastics and rubber,SCTG24_lightTruck_dist*SCTG24_lightTruck_mass_frac,FALSE,SCTG24_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; plastics and rubber,,TRUE,SCTG24_rail_dist,793.33,km
+Transport; average mix; plastics and rubber,,TRUE,SCTG24_rail_mass_frac,0.1478591080863554,fraction of all commodity shipped by current mode
+Transport; average mix; plastics and rubber,SCTG24_rail_dist*SCTG24_rail_mass_frac,FALSE,SCTG24_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; plastics and rubber,,TRUE,SCTG24_air_dist,3082.38,km
+Transport; average mix; plastics and rubber,,TRUE,SCTG24_air_mass_frac,0.0010625364134438,fraction of all commodity shipped by current mode
+Transport; average mix; plastics and rubber,SCTG24_air_dist*SCTG24_air_mass_frac,FALSE,SCTG24_air_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; precision instruments and apparatus,,TRUE,SCTG38_longHaul_dist,1758.07,km
+Transport; average mix; precision instruments and apparatus,,TRUE,SCTG38_longHaul_mass_frac,0.8150521680170353,fraction of all commodity shipped by current mode
+Transport; average mix; precision instruments and apparatus,SCTG38_longHaul_dist*SCTG38_longHaul_mass_frac,FALSE,SCTG38_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; precision instruments and apparatus,,TRUE,SCTG38_lightTruck_dist,101.76,km
+Transport; average mix; precision instruments and apparatus,,TRUE,SCTG38_lightTruck_mass_frac,0.1567712491532949,fraction of all commodity shipped by current mode
+Transport; average mix; precision instruments and apparatus,SCTG38_lightTruck_dist*SCTG38_lightTruck_mass_frac,FALSE,SCTG38_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; precision instruments and apparatus,,TRUE,SCTG38_air_dist,2404.1,km
+Transport; average mix; precision instruments and apparatus,,TRUE,SCTG38_air_mass_frac,0.0281765828296698,fraction of all commodity shipped by current mode
+Transport; average mix; precision instruments and apparatus,SCTG38_air_dist*SCTG38_air_mass_frac,FALSE,SCTG38_air_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; printed products,,TRUE,SCTG29_longHaul_dist,135.25,km
+Transport; average mix; printed products,,TRUE,SCTG29_longHaul_mass_frac,0.7534407829591159,fraction of all commodity shipped by current mode
+Transport; average mix; printed products,SCTG29_longHaul_dist*SCTG29_longHaul_mass_frac,FALSE,SCTG29_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; printed products,,TRUE,SCTG29_lightTruck_dist,59.13,km
+Transport; average mix; printed products,,TRUE,SCTG29_lightTruck_mass_frac,0.2456295949568035,fraction of all commodity shipped by current mode
+Transport; average mix; printed products,SCTG29_lightTruck_dist*SCTG29_lightTruck_mass_frac,FALSE,SCTG29_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; printed products,,TRUE,SCTG29_air_dist,2502.07,km
+Transport; average mix; printed products,,TRUE,SCTG29_air_mass_frac,0.0009296220840805,fraction of all commodity shipped by current mode
+Transport; average mix; printed products,SCTG29_air_dist*SCTG29_air_mass_frac,FALSE,SCTG29_air_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; pulp, newsprint, paper, and paperboard",,TRUE,SCTG27_longHaul_dist,685.04,km
+"Transport; average mix; pulp, newsprint, paper, and paperboard",,TRUE,SCTG27_longHaul_mass_frac,0.7179489538055407,fraction of all commodity shipped by current mode
+"Transport; average mix; pulp, newsprint, paper, and paperboard",SCTG27_longHaul_dist*SCTG27_longHaul_mass_frac,FALSE,SCTG27_longHaul_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; pulp, newsprint, paper, and paperboard",,TRUE,SCTG27_lightTruck_dist,83.27,km
+"Transport; average mix; pulp, newsprint, paper, and paperboard",,TRUE,SCTG27_lightTruck_mass_frac,0.185251028309209,fraction of all commodity shipped by current mode
+"Transport; average mix; pulp, newsprint, paper, and paperboard",SCTG27_lightTruck_dist*SCTG27_lightTruck_mass_frac,FALSE,SCTG27_lightTruck_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; pulp, newsprint, paper, and paperboard",,TRUE,SCTG27_rail_dist,1254.56,km
+"Transport; average mix; pulp, newsprint, paper, and paperboard",,TRUE,SCTG27_rail_mass_frac,0.0967919889935464,fraction of all commodity shipped by current mode
+"Transport; average mix; pulp, newsprint, paper, and paperboard",SCTG27_rail_dist*SCTG27_rail_mass_frac,FALSE,SCTG27_rail_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; pulp, newsprint, paper, and paperboard",,TRUE,SCTG27_air_dist,2252.31,km
+"Transport; average mix; pulp, newsprint, paper, and paperboard",,TRUE,SCTG27_air_mass_frac,8.02889170395392e-06,fraction of all commodity shipped by current mode
+"Transport; average mix; pulp, newsprint, paper, and paperboard",SCTG27_air_dist*SCTG27_air_mass_frac,FALSE,SCTG27_air_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; textiles, leather, and articles of textiles or leather",,TRUE,SCTG30_longHaul_dist,1438.67,km
+"Transport; average mix; textiles, leather, and articles of textiles or leather",,TRUE,SCTG30_longHaul_mass_frac,0.7582535533013748,fraction of all commodity shipped by current mode
+"Transport; average mix; textiles, leather, and articles of textiles or leather",SCTG30_longHaul_dist*SCTG30_longHaul_mass_frac,FALSE,SCTG30_longHaul_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; textiles, leather, and articles of textiles or leather",,TRUE,SCTG30_lightTruck_dist,97.75,km
+"Transport; average mix; textiles, leather, and articles of textiles or leather",,TRUE,SCTG30_lightTruck_mass_frac,0.2392709203264299,fraction of all commodity shipped by current mode
+"Transport; average mix; textiles, leather, and articles of textiles or leather",SCTG30_lightTruck_dist*SCTG30_lightTruck_mass_frac,FALSE,SCTG30_lightTruck_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; textiles, leather, and articles of textiles or leather",,TRUE,SCTG30_air_dist,2931.09,km
+"Transport; average mix; textiles, leather, and articles of textiles or leather",,TRUE,SCTG30_air_mass_frac,0.0015894498516005,fraction of all commodity shipped by current mode
+"Transport; average mix; textiles, leather, and articles of textiles or leather",SCTG30_air_dist*SCTG30_air_mass_frac,FALSE,SCTG30_air_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; textiles, leather, and articles of textiles or leather",,TRUE,SCTG30_deepSea_dist,4.83,km
+"Transport; average mix; textiles, leather, and articles of textiles or leather",,TRUE,SCTG30_deepSea_mass_frac,0.0004856125987219,fraction of all commodity shipped by current mode
+"Transport; average mix; textiles, leather, and articles of textiles or leather",SCTG30_deepSea_dist*SCTG30_deepSea_mass_frac,FALSE,SCTG30_deepSea_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; textiles, leather, and articles of textiles or leather",,TRUE,SCTG30_rail_dist,3799.79,km
+"Transport; average mix; textiles, leather, and articles of textiles or leather",,TRUE,SCTG30_rail_mass_frac,0.0004004639218729,fraction of all commodity shipped by current mode
+"Transport; average mix; textiles, leather, and articles of textiles or leather",SCTG30_rail_dist*SCTG30_rail_mass_frac,FALSE,SCTG30_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; tobacco products,,TRUE,SCTG09_longHaul_dist,312.99,km
+Transport; average mix; tobacco products,,TRUE,SCTG09_longHaul_mass_frac,0.7287700665492394,fraction of all commodity shipped by current mode
+Transport; average mix; tobacco products,SCTG09_longHaul_dist*SCTG09_longHaul_mass_frac,FALSE,SCTG09_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; tobacco products,,TRUE,SCTG09_lightTruck_dist,103.19,km
+Transport; average mix; tobacco products,,TRUE,SCTG09_lightTruck_mass_frac,0.2696796329501019,fraction of all commodity shipped by current mode
+Transport; average mix; tobacco products,SCTG09_lightTruck_dist*SCTG09_lightTruck_mass_frac,FALSE,SCTG09_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; tobacco products,,TRUE,SCTG09_air_dist,3053.95,km
+Transport; average mix; tobacco products,,TRUE,SCTG09_air_mass_frac,0.0015503005006585,fraction of all commodity shipped by current mode
+Transport; average mix; tobacco products,SCTG09_air_dist*SCTG09_air_mass_frac,FALSE,SCTG09_air_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; transportation equipment, not elsewhere classified",,TRUE,SCTG37_longHaul_dist,1247.66,km
+"Transport; average mix; transportation equipment, not elsewhere classified",,TRUE,SCTG37_longHaul_mass_frac,0.5098296559432501,fraction of all commodity shipped by current mode
+"Transport; average mix; transportation equipment, not elsewhere classified",SCTG37_longHaul_dist*SCTG37_longHaul_mass_frac,FALSE,SCTG37_longHaul_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; transportation equipment, not elsewhere classified",,TRUE,SCTG37_lightTruck_dist,43.27,km
+"Transport; average mix; transportation equipment, not elsewhere classified",,TRUE,SCTG37_lightTruck_mass_frac,0.2745103472147121,fraction of all commodity shipped by current mode
+"Transport; average mix; transportation equipment, not elsewhere classified",SCTG37_lightTruck_dist*SCTG37_lightTruck_mass_frac,FALSE,SCTG37_lightTruck_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; transportation equipment, not elsewhere classified",,TRUE,SCTG37_rail_dist,384.75,km
+"Transport; average mix; transportation equipment, not elsewhere classified",,TRUE,SCTG37_rail_mass_frac,0.1964033439362632,fraction of all commodity shipped by current mode
+"Transport; average mix; transportation equipment, not elsewhere classified",SCTG37_rail_dist*SCTG37_rail_mass_frac,FALSE,SCTG37_rail_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; transportation equipment, not elsewhere classified",,TRUE,SCTG37_air_dist,2706.47,km
+"Transport; average mix; transportation equipment, not elsewhere classified",,TRUE,SCTG37_air_mass_frac,0.0192566529057744,fraction of all commodity shipped by current mode
+"Transport; average mix; transportation equipment, not elsewhere classified",SCTG37_air_dist*SCTG37_air_mass_frac,FALSE,SCTG37_air_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; waste and scrap (excludes of agriculture or food, see 041xx)",,TRUE,SCTG41_longHaul_dist,237.92,km
+"Transport; average mix; waste and scrap (excludes of agriculture or food, see 041xx)",,TRUE,SCTG41_longHaul_mass_frac,0.5712276082829323,fraction of all commodity shipped by current mode
+"Transport; average mix; waste and scrap (excludes of agriculture or food, see 041xx)",SCTG41_longHaul_dist*SCTG41_longHaul_mass_frac,FALSE,SCTG41_longHaul_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; waste and scrap (excludes of agriculture or food, see 041xx)",,TRUE,SCTG41_lightTruck_dist,96.96,km
+"Transport; average mix; waste and scrap (excludes of agriculture or food, see 041xx)",,TRUE,SCTG41_lightTruck_mass_frac,0.2759839296759764,fraction of all commodity shipped by current mode
+"Transport; average mix; waste and scrap (excludes of agriculture or food, see 041xx)",SCTG41_lightTruck_dist*SCTG41_lightTruck_mass_frac,FALSE,SCTG41_lightTruck_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; waste and scrap (excludes of agriculture or food, see 041xx)",,TRUE,SCTG41_rail_dist,430.52,km
+"Transport; average mix; waste and scrap (excludes of agriculture or food, see 041xx)",,TRUE,SCTG41_rail_mass_frac,0.1049355567743561,fraction of all commodity shipped by current mode
+"Transport; average mix; waste and scrap (excludes of agriculture or food, see 041xx)",SCTG41_rail_dist*SCTG41_rail_mass_frac,FALSE,SCTG41_rail_kgkm,,kg*km; average mass distance per shipment
+"Transport; average mix; waste and scrap (excludes of agriculture or food, see 041xx)",,TRUE,SCTG41_inlandWater_dist,328.21,km
+"Transport; average mix; waste and scrap (excludes of agriculture or food, see 041xx)",,TRUE,SCTG41_inlandWater_mass_frac,0.0478529052667351,fraction of all commodity shipped by current mode
+"Transport; average mix; waste and scrap (excludes of agriculture or food, see 041xx)",SCTG41_inlandWater_dist*SCTG41_inlandWater_mass_frac,FALSE,SCTG41_inlandWater_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; wood products,,TRUE,SCTG26_longHaul_dist,533.86,km
+Transport; average mix; wood products,,TRUE,SCTG26_longHaul_mass_frac,0.6033375403770939,fraction of all commodity shipped by current mode
+Transport; average mix; wood products,SCTG26_longHaul_dist*SCTG26_longHaul_mass_frac,FALSE,SCTG26_longHaul_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; wood products,,TRUE,SCTG26_lightTruck_dist,90.71,km
+Transport; average mix; wood products,,TRUE,SCTG26_lightTruck_mass_frac,0.3602903095856186,fraction of all commodity shipped by current mode
+Transport; average mix; wood products,SCTG26_lightTruck_dist*SCTG26_lightTruck_mass_frac,FALSE,SCTG26_lightTruck_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; wood products,,TRUE,SCTG26_rail_dist,1172.53,km
+Transport; average mix; wood products,,TRUE,SCTG26_rail_mass_frac,0.0363666712079153,fraction of all commodity shipped by current mode
+Transport; average mix; wood products,SCTG26_rail_dist*SCTG26_rail_mass_frac,FALSE,SCTG26_rail_kgkm,,kg*km; average mass distance per shipment
+Transport; average mix; wood products,,TRUE,SCTG26_air_dist,1601.13,km
+Transport; average mix; wood products,,TRUE,SCTG26_air_mass_frac,5.478829372192659e-06,fraction of all commodity shipped by current mode
+Transport; average mix; wood products,SCTG26_air_dist*SCTG26_air_mass_frac,FALSE,SCTG26_air_kgkm,,kg*km; average mass distance per shipment
