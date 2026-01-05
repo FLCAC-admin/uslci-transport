@@ -19,6 +19,6 @@ Output:
 
 ## Datasets
 
-| Datasts             | Version | flcac-utils | Release        |
-|---------------------|---------|-------------|----------------|
-| Commodity Transport | v1.0.0  | v0.2.0      | 2025 Q4, USLCI |
+| Datasts             | Version | flcac-utils | Release        | Documentation |
+|---------------------|---------|-------------|----------------|---------------|
+| Commodity Transport | v1.0.0  | v0.2.0      | 2025 Q4, USLCI | [Methods](https://github.com/FLCAC-admin/uslci-transport/releases/download/v1.0.0/USLCI_commodity_transport_v1.pdf) |
