@@ -258,7 +258,7 @@ df_olca['default_provider_name'] = df_olca['Transport Mode'].map(
     {k: v['provider'] for k, v in flow_dict.items()})
 
 # Map default provider uuid based on mapped flow name
-df_olca['default_provider'] = df_olca['FlowName'].map(
+df_olca['default_provider'] = df_olca['default_provider_name'].map(
     {k: v.id for k, v in provider_dict.items()})
 
 # Assign amount formula 

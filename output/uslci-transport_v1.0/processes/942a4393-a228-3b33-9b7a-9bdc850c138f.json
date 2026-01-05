@@ -47,6 +47,10 @@
     {
       "amount": 176.0440151541057,
       "amountFormula": "rail_kgkm",
+      "defaultProvider": {
+        "@type": "Process",
+        "@id": "7de9c230-fd0f-3478-be87-f80181132faa"
+      },
       "dqEntry": "(2;3;1;1;3)",
       "flow": {
         "@type": "Flow",
