@@ -18,7 +18,7 @@
   "exchanges": [
     {
       "amount": 194.52426648987884,
-      "amountFormula": "SCTG05_longHaul_kgkm",
+      "amountFormula": "longHaul_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "a685da05-1a42-3fe1-a68b-6db458be5e07"
@@ -46,7 +46,7 @@
     },
     {
       "amount": 26.019384112144355,
-      "amountFormula": "SCTG05_lightTruck_kgkm",
+      "amountFormula": "lightTruck_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "bf6e7378-4e08-3698-a3a7-c9cc90fcbc07"
@@ -74,7 +74,7 @@
     },
     {
       "amount": 13.93352282247596,
-      "amountFormula": "SCTG05_deepSea_kgkm",
+      "amountFormula": "deepSea_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "1e2429d8-8d91-328f-85c3-18d39bdebfa7"
@@ -102,17 +102,13 @@
     },
     {
       "amount": 0.8255460774203552,
-      "amountFormula": "SCTG05_rail_kgkm",
-      "defaultProvider": {
-        "@type": "Process",
-        "@id": "7de9c230-fd0f-3478-be87-f80181132faa"
-      },
+      "amountFormula": "rail_kgkm",
       "dqEntry": "(2;3;1;1;3)",
       "flow": {
         "@type": "Flow",
-        "@id": "73c7494d-4e93-3769-896b-8bb82f0dfccc",
+        "@id": "4326be78-ae8b-3446-9310-278636ee68c5",
         "category": "Technosphere flows/48-49: Transportation and Warehousing/4821: Rail Transportation",
-        "name": "Transport, train, diesel powered"
+        "name": "Transport, rail, freight; diesel powered"
       },
       "flowProperty": {
         "@type": "FlowProperty",
@@ -130,7 +126,7 @@
     },
     {
       "amount": 3.771799564849576,
-      "amountFormula": "SCTG05_air_kgkm",
+      "amountFormula": "air_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "61ff7eba-1846-30cb-9840-33939ee0dc26"
@@ -158,7 +154,7 @@
     },
     {
       "amount": 0.0975604873801821,
-      "amountFormula": "SCTG05_inlandWater_kgkm",
+      "amountFormula": "inlandWater_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "099c3d09-08a3-3cac-9ffd-0558c12033b9"
@@ -208,7 +204,7 @@
       }
     }
   ],
-  "lastChange": "2025-12-23T12:00:00Z",
+  "lastChange": "2026-01-05T12:00:00Z",
   "location": {
     "@type": "Location",
     "@id": "0b3b97fa-6688-3c56-88ee-4ae80ec0c3c2",
@@ -218,170 +214,170 @@
   "parameters": [
     {
       "@type": "Parameter",
-      "@id": "ab4fb67f-80fb-3763-8040-b5107f6a2bc4",
+      "@id": "add3c270-fb20-329f-b655-b9955b995a54",
       "description": "km",
-      "isInputParameter": true,
-      "name": "SCTG05_longHaul_dist",
+      "isInputParameter": "TRUE",
+      "name": "longHaul_dist",
       "parameterScope": "PROCESS_SCOPE",
       "value": 270.49
     },
     {
       "@type": "Parameter",
-      "@id": "5f28923a-5b07-3f0a-a49f-7c94c4bea0b7",
+      "@id": "ce623159-8177-321b-a953-5afdd372b715",
       "description": "fraction of all commodity shipped by current mode",
-      "isInputParameter": true,
-      "name": "SCTG05_longHaul_mass_frac",
+      "isInputParameter": "TRUE",
+      "name": "longHaul_mass_frac",
       "parameterScope": "PROCESS_SCOPE",
       "value": 0.7191551129057593
     },
     {
       "@type": "Parameter",
-      "@id": "8c5adb76-3290-366d-b68a-4314fd2321b6",
+      "@id": "03fc5cc0-151e-3498-953e-a4bafb24d3bf",
       "description": "kg*km; average mass distance per shipment",
-      "formula": "SCTG05_longHaul_dist*SCTG05_longHaul_mass_frac",
-      "isInputParameter": false,
-      "name": "SCTG05_longHaul_kgkm",
+      "formula": "longHaul_dist*longHaul_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "longHaul_kgkm",
       "parameterScope": "PROCESS_SCOPE"
     },
     {
       "@type": "Parameter",
-      "@id": "ee728891-2726-3893-bad6-69ee884adf20",
+      "@id": "b525b64c-e6de-3991-b5c7-4544637aa655",
       "description": "km",
-      "isInputParameter": true,
-      "name": "SCTG05_lightTruck_dist",
+      "isInputParameter": "TRUE",
+      "name": "lightTruck_dist",
       "parameterScope": "PROCESS_SCOPE",
       "value": 94.6
     },
     {
       "@type": "Parameter",
-      "@id": "a004c805-af68-3708-97c4-38926ea8b446",
+      "@id": "0ebaafdb-2910-3c6d-8804-2ef9770e2584",
       "description": "fraction of all commodity shipped by current mode",
-      "isInputParameter": true,
-      "name": "SCTG05_lightTruck_mass_frac",
+      "isInputParameter": "TRUE",
+      "name": "lightTruck_mass_frac",
       "parameterScope": "PROCESS_SCOPE",
       "value": 0.2750463436801729
     },
     {
       "@type": "Parameter",
-      "@id": "07c24465-3e2a-3d2f-be88-b12c37a51c5a",
+      "@id": "d326d958-3fdf-3f17-bcba-3db70d17cd79",
       "description": "kg*km; average mass distance per shipment",
-      "formula": "SCTG05_lightTruck_dist*SCTG05_lightTruck_mass_frac",
-      "isInputParameter": false,
-      "name": "SCTG05_lightTruck_kgkm",
+      "formula": "lightTruck_dist*lightTruck_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "lightTruck_kgkm",
       "parameterScope": "PROCESS_SCOPE"
     },
     {
       "@type": "Parameter",
-      "@id": "86c6dfcb-c58d-3f65-a8dc-fcd376e04097",
+      "@id": "c73bb74f-cecc-3f91-903c-cb86a490bb79",
       "description": "km",
-      "isInputParameter": true,
-      "name": "SCTG05_deepSea_dist",
+      "isInputParameter": "TRUE",
+      "name": "deepSea_dist",
       "parameterScope": "PROCESS_SCOPE",
       "value": 3647.74
     },
     {
       "@type": "Parameter",
-      "@id": "6611ae80-d03b-37c3-90b1-f50fcbdb92ba",
+      "@id": "934d8bca-5314-3a5b-85e8-0bc0cdac023d",
       "description": "fraction of all commodity shipped by current mode",
-      "isInputParameter": true,
-      "name": "SCTG05_deepSea_mass_frac",
+      "isInputParameter": "TRUE",
+      "name": "deepSea_mass_frac",
       "parameterScope": "PROCESS_SCOPE",
       "value": 0.0038197686300218
     },
     {
       "@type": "Parameter",
-      "@id": "e6bf0922-c014-31b0-a5c1-dc0d4489b5a7",
+      "@id": "5af6bc5a-8dce-3d66-86cd-52cd7a09704f",
       "description": "kg*km; average mass distance per shipment",
-      "formula": "SCTG05_deepSea_dist*SCTG05_deepSea_mass_frac",
-      "isInputParameter": false,
-      "name": "SCTG05_deepSea_kgkm",
+      "formula": "deepSea_dist*deepSea_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "deepSea_kgkm",
       "parameterScope": "PROCESS_SCOPE"
     },
     {
       "@type": "Parameter",
-      "@id": "da74d87d-caf3-39a9-8184-87188c5b76cf",
+      "@id": "bdfecf56-6aff-3b38-b448-1ccf54b100d6",
       "description": "km",
-      "isInputParameter": true,
-      "name": "SCTG05_rail_dist",
+      "isInputParameter": "TRUE",
+      "name": "rail_dist",
       "parameterScope": "PROCESS_SCOPE",
       "value": 747.58
     },
     {
       "@type": "Parameter",
-      "@id": "b02fdab5-2bf1-3659-af64-a4a0c4f9d909",
+      "@id": "d54db453-ecd0-30b2-804f-b3e5268f2c6b",
       "description": "fraction of all commodity shipped by current mode",
-      "isInputParameter": true,
-      "name": "SCTG05_rail_mass_frac",
+      "isInputParameter": "TRUE",
+      "name": "rail_mass_frac",
       "parameterScope": "PROCESS_SCOPE",
       "value": 0.0011042912831006
     },
     {
       "@type": "Parameter",
-      "@id": "8bfa44b2-b399-3df3-b035-b8000bac965c",
+      "@id": "b3c2a856-510e-30af-b822-81e23a0c79f4",
       "description": "kg*km; average mass distance per shipment",
-      "formula": "SCTG05_rail_dist*SCTG05_rail_mass_frac",
-      "isInputParameter": false,
-      "name": "SCTG05_rail_kgkm",
+      "formula": "rail_dist*rail_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "rail_kgkm",
       "parameterScope": "PROCESS_SCOPE"
     },
     {
       "@type": "Parameter",
-      "@id": "ffb032a2-4b74-36d2-ac80-406e49daa919",
+      "@id": "e4afc111-f468-313b-adcf-a09cc70d2fac",
       "description": "km",
-      "isInputParameter": true,
-      "name": "SCTG05_air_dist",
+      "isInputParameter": "TRUE",
+      "name": "air_dist",
       "parameterScope": "PROCESS_SCOPE",
       "value": 5285.19
     },
     {
       "@type": "Parameter",
-      "@id": "c72c03eb-c659-3b16-8141-d3dfd194999e",
+      "@id": "8536520d-fded-3905-9bc3-d02c4dc4e735",
       "description": "fraction of all commodity shipped by current mode",
-      "isInputParameter": true,
-      "name": "SCTG05_air_mass_frac",
+      "isInputParameter": "TRUE",
+      "name": "air_mass_frac",
       "parameterScope": "PROCESS_SCOPE",
       "value": 0.000713654488268
     },
     {
       "@type": "Parameter",
-      "@id": "f3d0a3bf-c187-3f59-9446-e74d5648b06d",
+      "@id": "1a148a91-7d65-3c54-a23a-46a92e01850e",
       "description": "kg*km; average mass distance per shipment",
-      "formula": "SCTG05_air_dist*SCTG05_air_mass_frac",
-      "isInputParameter": false,
-      "name": "SCTG05_air_kgkm",
+      "formula": "air_dist*air_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "air_kgkm",
       "parameterScope": "PROCESS_SCOPE"
     },
     {
       "@type": "Parameter",
-      "@id": "dd9b401a-349c-3025-82b8-6c048ac8f960",
+      "@id": "938cca81-24d7-39b5-a2ca-c1fd12a01c03",
       "description": "km",
-      "isInputParameter": true,
-      "name": "SCTG05_inlandWater_dist",
+      "isInputParameter": "TRUE",
+      "name": "inlandWater_dist",
       "parameterScope": "PROCESS_SCOPE",
       "value": 606.61
     },
     {
       "@type": "Parameter",
-      "@id": "c5490718-6873-3802-affa-f6f5805e28a3",
+      "@id": "9f2fac5c-01e1-365f-be67-a38e57f74830",
       "description": "fraction of all commodity shipped by current mode",
-      "isInputParameter": true,
-      "name": "SCTG05_inlandWater_mass_frac",
+      "isInputParameter": "TRUE",
+      "name": "inlandWater_mass_frac",
       "parameterScope": "PROCESS_SCOPE",
       "value": 0.0001608290126773
     },
     {
       "@type": "Parameter",
-      "@id": "410c5d20-80e6-3d75-a32a-a22078fbff59",
+      "@id": "0f7515d9-ba2d-37bc-a640-e7d606ce05ae",
       "description": "kg*km; average mass distance per shipment",
-      "formula": "SCTG05_inlandWater_dist*SCTG05_inlandWater_mass_frac",
-      "isInputParameter": false,
-      "name": "SCTG05_inlandWater_kgkm",
+      "formula": "inlandWater_dist*inlandWater_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "inlandWater_kgkm",
       "parameterScope": "PROCESS_SCOPE"
     }
   ],
   "processDocumentation": {
     "completenessDescription": "This process contains no elementary flows. All transportation modes included in the CFS data for each commodity are included. \n",
-    "creationDate": "2025-12-23T12:00:00",
+    "creationDate": "2026-01-05T12:00:00",
     "dataCollectionDescription": "Data from the 2017 CFS PUF were accessed in Q4 of 2025. These data will remain unchanged. The CFS data are updated with each census but are released as separate data sets.\n",
     "dataDocumentor": {
       "@type": "Actor",

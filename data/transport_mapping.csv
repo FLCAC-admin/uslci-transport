@@ -1,7 +1,7 @@
 SourceRepoName,SourceFlowName,SourceFlowUUID,SourceFlowContext,SourceUnit,MatchCondition,ConversionFactor,TargetRepoName,TargetFlowName,TargetUnit,Provider,Bridge,BridgeFlowName,Mapper,Verifier,LastUpdated,ConversionSource
 uslci-transport,company-owned truck,,,kg*km,=,1,USLCI,"Transport, light commercial truck, diesel powered",kg*km,"Transport, light commercial truck, diesel powered",FALSE,,Christie,,11/13/2025,
 uslci-transport,for-hire truck,,,kg*km,,1,USLCI,"Transport, combination truck, long-haul, diesel powered",kg*km,"Transport, combination truck, long-haul, diesel powered",FALSE,,Christie,,11/13/2025,
-uslci-transport,rail,,,kg*km,,1,USLCI,"Transport, train, diesel powered",kg*km,"Transport, train, diesel powered",FALSE,,Christie,,11/13/2025,
+uslci-transport,rail,,,kg*km,,1,USLCI,"Transport, rail, freight; diesel powered",kg*km,"Transport, rail, freight; diesel powered; tier weighted average",FALSE,,Christie,,11/13/2025,
 uslci-transport,inland water,,,kg*km,,1,USLCI,"Transport, barge, average fuel mix",kg*km,"Transport, barge, average fuel mix",FALSE,,Christie,,11/13/2025,
 uslci-transport,great lakes,,,kg*km,,1,USLCI,"Transport, ocean freighter, average fuel mix",kg*km,"Transport, ocean freighter, average fuel mix",FALSE,,Christie,,11/13/2025,
 uslci-transport,deep sea,,,kg*km,,1,USLCI,"Transport, ocean freighter, average fuel mix",kg*km,"Transport, ocean freighter, average fuel mix",FALSE,,Christie,,11/13/2025,

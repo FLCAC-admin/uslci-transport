@@ -21,7 +21,6 @@ from esupy.util import make_uuid
 import copy
 from typing import Dict
 import numpy as np
-import re
 
 # Directories
 working_dir = Path(__file__).parent # parent directory
@@ -132,118 +131,108 @@ if len(missing_keys) > 0:
 #%% Build df_params
 
 param_map = {
-    'company-owned truck': '[SCTG]_lightTruck_[val]',
-    'for-hire truck': '[SCTG]_longHaul_[val]',
-    'rail': '[SCTG]_rail_[val]',
-    'great lakes': '[SCTG]_greatLakes_[val]',
-    'inland water': '[SCTG]_inlandWater_[val]',
-    'air(incl. truck & air)': '[SCTG]_air_[val]',
-    'deep sea': '[SCTG]_deepSea_[val]',
-    'pipeline': '[SCTG]_pipeline_[val]'
-    }
+    'company-owned truck': 'lightTruck',
+    'for-hire truck':      'longHaul',
+    'rail':                'rail',
+    'great lakes':         'greatLakes',
+    'inland water':        'inlandWater',
+    'air(incl. truck & air)': 'air',
+    'deep sea':            'deepSea',
+    'pipeline':            'pipeline',
+}
 
 
-def build_df_params(df_commData: pd.DataFrame,
-                    param_map: Dict[str, str]) -> pd.DataFrame:
+def build_df_params(df_commData: pd.DataFrame, param_map: Dict[str, str]) -> pd.DataFrame:
     """
-    Build df_params.
+    Build df_params with mode-centric parameter names (no SCTG embedded).
 
     What this does:
-    - Uses SCTG codes and the mode mapping to build parameter names.
     - Creates three rows per transport mode for each commodity:
-      1) dist (input)
-      2) mass_frac (input)
-      3) kgkm (derived, formula shown only; value left blank)
+      1) dist (input)           -> <modeKey>_dist
+      2) mass_frac (input)      -> <modeKey>_mass_frac
+      3) kgkm (derived, formula)-> <modeKey>_kgkm
+    - Writes the final table to ./data/uslci_transport_params.csv.
     - Returns df_params as a DataFrame.
     """
-    # Clean transport mode strings:
     def _normalize_mode(s: str) -> str:
-        return str(s).strip().lower().replace("&amp;amp;", "&amp;").replace("  ", " ")
-    # Build a normalized mapping from transport mode label -> pattern template.
-    # Example template: "[SCTG]_longHaul_[val]"
+        # Normalize raw mode labels from the CSV for stable matching to param_map keys
+        s = str(s).replace("&amp;amp;amp;amp;", "&amp;amp;amp;").strip().lower()
+        # Collapse any accidental double spaces
+        while "  " in s:
+            s = s.replace("  ", " ")
+        return s
+    # Map normalized mode labels (CSV) -> mode keys (used in parameter names)
     norm_param_map = {_normalize_mode(k): v for k, v in param_map.items()}
-    # Build a lookup from commodity name (lowercase) -> SCTG code.
-    name_to_code = {v.strip().lower(): k for k, v in SCTG_codes.items()}
-    # Return the SCTG code for the commodity name.
-    def _get_sctg_code(commodity_name: str) -> str:
-        return name_to_code[str(commodity_name).strip().lower()]
-    # Fill the template pattern with the SCTG code and token.
-    def _make_name(pattern: str, sctg: str, val: str) -> str:
-        return pattern.replace("[SCTG]", f"SCTG{sctg}").replace("[val]", val)
-    # Create process name using lowercase commodity style.
-    def _process_name(commodity_name: str) -> str:
-        return f"Transport; average mix; {commodity_name.strip().lower()}"
-    # Iterate through each row of csv and build parameter name
+    def _process_name(commodity: str) -> str:
+        # Process scoping: parameter names are mode-centric, so uniqueness comes from processName
+        return f"Transport; average mix; {commodity.strip().lower()}"
+    def _make_param_names(mode_key: str):
+        # Construct the three parameter names for a given transport mode
+        return f"{mode_key}_dist", f"{mode_key}_mass_frac", f"{mode_key}_kgkm"
+    # Target output schema
     cols = ["processName", "formula", "isInputParameter", "name", "value", "description"]
     rows = []
-    for _, row in df_commData.iterrows():
+    # Build rows: one triplet per (commodity, transport mode)
+    for idx, row in df_commData.iterrows():
         commodity = row["Commodity"]
         mode_norm = _normalize_mode(row["Transport Mode"])
-        # Get SCTG code and the naming pattern for this transport mode.
-        sctg = _get_sctg_code(commodity)
-        pattern = norm_param_map[mode_norm]
+        # Fail fast if a mode from the CSV is not present in the mapping
+        if mode_norm not in norm_param_map:
+            raise KeyError(f"Mode '{row['Transport Mode']}' not in param_map (row {idx})")
+        mode_key = norm_param_map[mode_norm]
         pname = _process_name(commodity)
-        # Values for this commodity and mode.
+        # Source values from the CSV
         dist_val = row["Avg. Dist. Shipped (km)"]
         mass_frac_val = row["Mass Frac. by Mode"]
-        # Build parameter names for dist, mass_frac, and kgkm.
-        name_dist = _make_name(pattern, sctg, "dist")
-        name_mf = _make_name(pattern, sctg, "mass_frac")
-        name_kgkm = _make_name(pattern, sctg, "kgkm")
-        # Show the formula for kgkm, but do not evaluate.
+        # Parameter names and derived formula
+        name_dist, name_mf, name_kgkm = _make_param_names(mode_key)
         formula_kgkm = f"{name_dist}*{name_mf}"
-        # Add three rows. Two inputs and one derived (with formula only).
-        rows.append([pname, "", "TRUE",  name_dist, dist_val, "km"])
-        rows.append([pname, "", "TRUE",  name_mf,   mass_frac_val,
+        # Two inputs (dist, mass_frac) and one derived (kgkm)
+        rows.append([pname, "", "TRUE", name_dist, dist_val, "km"])
+        rows.append([pname, "", "TRUE", name_mf, mass_frac_val,
                      "fraction of all commodity shipped by current mode"])
         rows.append([pname, formula_kgkm, "FALSE", name_kgkm, np.nan,
                      "kg*km; average mass distance per shipment"])
-    # Assemble the final DataFrame.
-    df_params = pd.DataFrame(rows, columns=cols)
-    return df_params
+    # Assemble the final table
+    return pd.DataFrame(rows, columns=cols)
+
 
 df_params = build_df_params(pd.read_csv(csv_path), param_map)
 df_params.to_csv(data_dir / "uslci_transport_params.csv", index=False)
 
-# df_params = pd.read_csv(data_dir / 'uslci_transport_params.csv')
 
 #%% Add values for inputs ###
 
 from flcac_utils.mapping import prepare_tech_flow_mappings
 
-def assign_amount_formula(df_olca: pd.DataFrame,
-                          df_param: pd.DataFrame,
-                          param_map: dict) -> pd.DataFrame:
+def assign_amount_formula(
+    df_olca: pd.DataFrame,
+    df_param: pd.DataFrame,
+    param_map: dict) -> pd.DataFrame:
     """
-    Populate the 'amountFormula' column with the appropriate [SCTG]_[MODE]_kgkm
-    name based on the row value of ProcessName and Transport Mode. 
+    Populate 'amountFormula' with the '<modeKey>_kgkm' symbol based on ProcessName and Transport Mode.
+    Works with the new mode-centric parameter names (no SCTG in names).
     """
     def _norm_mode(s: str) -> str:
-        return str(s).strip().lower().replace("&amp;amp;", "&amp;").replace("  ", " ")
-    # Build transport-mode -> token map from templates like '[SCTG]_longHaul_[val]'
-    mode_to_token = {}
-    for mode_label, template in param_map.items():
-        m = re.search(r"\[SCTG\]_(.*?)_\[val\]", template)
-        if not m:
-            raise ValueError(f"Bad param_map template: {template}")
-        mode_to_token[_norm_mode(mode_label)] = m.group(1)
-    # Reduce df_param to *_kgkm rows and extract the mode token
+        return str(s).strip().lower().replace("&amp;amp;amp;", "&amp;amp;").replace("  ", " ")
+    # Minimal change: map normalized mode labels directly to mode keys
+    mode_to_token = {_norm_mode(k): v for k, v in param_map.items()}
+    # Reduce df_param to *_kgkm rows and extract mode token from the new names
     dfp = df_param[df_param["name"].str.endswith("_kgkm")].copy()
-    # UPDATED: account for 'SCTG' prefix in the name, e.g., 'SCTG03_longHaul_kgkm'
-    dfp["mode_token"] = dfp["name"].str.extract(r"^SCTG\d+_([A-Za-z]+)_kgkm$")
-    # Build lookup keyed by (processName, mode_token) -> amountFormula (the *_kgkm symbol)
+    # Option B (recommended): strip the suffix to get the mode_key directly
+    dfp["mode_token"] = dfp["name"].str.replace(r"_kgkm$", "", regex=True)
+    # Build lookup keyed by (processName, mode_token) -> '<modeKey>_kgkm'
     lookup = dfp.set_index(["processName", "mode_token"])["name"]  # Series
-    # Compute the mode token in df_olca and assign directly to the existing 'amountFormula'
+    # Compute mode token in df_olca and assign
     df_new = df_olca.copy()
     df_new["_mode_norm"] = df_new["Transport Mode"].map(_norm_mode)
     df_new["_mode_token"] = df_new["_mode_norm"].map(mode_to_token)
-    # Create keys and assign using .map on a dictionary of the lookup Series
+
     keys = list(zip(df_new["ProcessName"], df_new["_mode_token"]))
     df_new["amountFormula"] = pd.Series(keys).map(lookup.to_dict())
-    # Drop helper columns
+
     df_new.drop(columns=["_mode_norm", "_mode_token"], inplace=True)
     return df_new
-
 
 # Asign static values
 df_olca['IsInput'] = True

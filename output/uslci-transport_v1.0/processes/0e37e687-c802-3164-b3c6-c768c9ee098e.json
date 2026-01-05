@@ -18,7 +18,7 @@
   "exchanges": [
     {
       "amount": 395.5203284516868,
-      "amountFormula": "SCTG10_longHaul_kgkm",
+      "amountFormula": "longHaul_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "a685da05-1a42-3fe1-a68b-6db458be5e07"
@@ -46,7 +46,7 @@
     },
     {
       "amount": 24.963829958711138,
-      "amountFormula": "SCTG10_lightTruck_kgkm",
+      "amountFormula": "lightTruck_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "bf6e7378-4e08-3698-a3a7-c9cc90fcbc07"
@@ -96,7 +96,7 @@
       }
     }
   ],
-  "lastChange": "2025-12-23T12:00:00Z",
+  "lastChange": "2026-01-05T12:00:00Z",
   "location": {
     "@type": "Location",
     "@id": "0b3b97fa-6688-3c56-88ee-4ae80ec0c3c2",
@@ -106,62 +106,62 @@
   "parameters": [
     {
       "@type": "Parameter",
-      "@id": "490396b1-73dc-3209-a484-048b025b3992",
+      "@id": "f657d428-f261-30ae-82d4-95451f179167",
       "description": "km",
-      "isInputParameter": true,
-      "name": "SCTG10_longHaul_dist",
+      "isInputParameter": "TRUE",
+      "name": "longHaul_dist",
       "parameterScope": "PROCESS_SCOPE",
       "value": 570.01
     },
     {
       "@type": "Parameter",
-      "@id": "47b7029f-0176-396c-a287-e2db5a86535a",
+      "@id": "4169e523-319b-31f2-bb63-800a7013639b",
       "description": "fraction of all commodity shipped by current mode",
-      "isInputParameter": true,
-      "name": "SCTG10_longHaul_mass_frac",
+      "isInputParameter": "TRUE",
+      "name": "longHaul_mass_frac",
       "parameterScope": "PROCESS_SCOPE",
       "value": 0.6938831396847193
     },
     {
       "@type": "Parameter",
-      "@id": "ddda90f8-46a4-30dc-a6ee-a94c95d6ed0f",
+      "@id": "e8a2725b-d166-3740-a19a-7333f737139b",
       "description": "kg*km; average mass distance per shipment",
-      "formula": "SCTG10_longHaul_dist*SCTG10_longHaul_mass_frac",
-      "isInputParameter": false,
-      "name": "SCTG10_longHaul_kgkm",
+      "formula": "longHaul_dist*longHaul_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "longHaul_kgkm",
       "parameterScope": "PROCESS_SCOPE"
     },
     {
       "@type": "Parameter",
-      "@id": "3ff19be0-40ea-3d42-87c0-818f3e6ad7fb",
+      "@id": "4e765810-38ef-3356-b5a3-6a4f4ac574c9",
       "description": "km",
-      "isInputParameter": true,
-      "name": "SCTG10_lightTruck_dist",
+      "isInputParameter": "TRUE",
+      "name": "lightTruck_dist",
       "parameterScope": "PROCESS_SCOPE",
       "value": 81.55
     },
     {
       "@type": "Parameter",
-      "@id": "044554ba-bba1-3f41-8d51-3d56cc8c86ad",
+      "@id": "1059e23a-f18a-341b-bf3f-9ae158f83ced",
       "description": "fraction of all commodity shipped by current mode",
-      "isInputParameter": true,
-      "name": "SCTG10_lightTruck_mass_frac",
+      "isInputParameter": "TRUE",
+      "name": "lightTruck_mass_frac",
       "parameterScope": "PROCESS_SCOPE",
       "value": 0.3061168603152807
     },
     {
       "@type": "Parameter",
-      "@id": "dd6e045c-8d54-37d5-9e74-13e5ee12a513",
+      "@id": "7135cc96-6965-343d-90f2-264c2b5726f6",
       "description": "kg*km; average mass distance per shipment",
-      "formula": "SCTG10_lightTruck_dist*SCTG10_lightTruck_mass_frac",
-      "isInputParameter": false,
-      "name": "SCTG10_lightTruck_kgkm",
+      "formula": "lightTruck_dist*lightTruck_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "lightTruck_kgkm",
       "parameterScope": "PROCESS_SCOPE"
     }
   ],
   "processDocumentation": {
     "completenessDescription": "This process contains no elementary flows. All transportation modes included in the CFS data for each commodity are included. \n",
-    "creationDate": "2025-12-23T12:00:00",
+    "creationDate": "2026-01-05T12:00:00",
     "dataCollectionDescription": "Data from the 2017 CFS PUF were accessed in Q4 of 2025. These data will remain unchanged. The CFS data are updated with each census but are released as separate data sets.\n",
     "dataDocumentor": {
       "@type": "Actor",
