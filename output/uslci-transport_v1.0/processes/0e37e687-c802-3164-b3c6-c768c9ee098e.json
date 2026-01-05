@@ -18,6 +18,7 @@
   "exchanges": [
     {
       "amount": 395.5203284516868,
+      "amountFormula": "longHaul_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "a685da05-1a42-3fe1-a68b-6db458be5e07"
@@ -45,6 +46,7 @@
     },
     {
       "amount": 24.963829958711138,
+      "amountFormula": "lightTruck_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "bf6e7378-4e08-3698-a3a7-c9cc90fcbc07"
@@ -72,10 +74,6 @@
     },
     {
       "amount": 1.0,
-      "defaultProvider": {
-        "@type": "Process",
-        "@id": "nan"
-      },
       "dqEntry": "",
       "flow": {
         "@type": "Flow",
@@ -98,16 +96,72 @@
       }
     }
   ],
-  "lastChange": "2025-12-05T12:00:00Z",
+  "lastChange": "2026-01-05T12:00:00Z",
   "location": {
     "@type": "Location",
     "@id": "0b3b97fa-6688-3c56-88ee-4ae80ec0c3c2",
     "name": "United States of America (the)"
   },
   "name": "Transport; average mix; monumental or building stone",
+  "parameters": [
+    {
+      "@type": "Parameter",
+      "@id": "f657d428-f261-30ae-82d4-95451f179167",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "longHaul_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 570.01
+    },
+    {
+      "@type": "Parameter",
+      "@id": "4169e523-319b-31f2-bb63-800a7013639b",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "longHaul_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.6938831396847193
+    },
+    {
+      "@type": "Parameter",
+      "@id": "e8a2725b-d166-3740-a19a-7333f737139b",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "longHaul_dist*longHaul_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "longHaul_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "4e765810-38ef-3356-b5a3-6a4f4ac574c9",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "lightTruck_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 81.55
+    },
+    {
+      "@type": "Parameter",
+      "@id": "1059e23a-f18a-341b-bf3f-9ae158f83ced",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "lightTruck_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.3061168603152807
+    },
+    {
+      "@type": "Parameter",
+      "@id": "7135cc96-6965-343d-90f2-264c2b5726f6",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "lightTruck_dist*lightTruck_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "lightTruck_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    }
+  ],
   "processDocumentation": {
     "completenessDescription": "This process contains no elementary flows. All transportation modes included in the CFS data for each commodity are included. \n",
-    "creationDate": "2025-12-05T12:00:00",
+    "creationDate": "2026-01-05T12:00:00",
     "dataCollectionDescription": "Data from the 2017 CFS PUF were accessed in Q4 of 2025. These data will remain unchanged. The CFS data are updated with each census but are released as separate data sets.\n",
     "dataDocumentor": {
       "@type": "Actor",

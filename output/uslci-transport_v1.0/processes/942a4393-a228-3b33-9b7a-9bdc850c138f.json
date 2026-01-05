@@ -18,6 +18,7 @@
   "exchanges": [
     {
       "amount": 73.81529732013925,
+      "amountFormula": "longHaul_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "a685da05-1a42-3fe1-a68b-6db458be5e07"
@@ -45,6 +46,7 @@
     },
     {
       "amount": 176.0440151541057,
+      "amountFormula": "rail_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "7de9c230-fd0f-3478-be87-f80181132faa"
@@ -52,9 +54,9 @@
       "dqEntry": "(2;3;1;1;3)",
       "flow": {
         "@type": "Flow",
-        "@id": "73c7494d-4e93-3769-896b-8bb82f0dfccc",
+        "@id": "4326be78-ae8b-3446-9310-278636ee68c5",
         "category": "Technosphere flows/48-49: Transportation and Warehousing/4821: Rail Transportation",
-        "name": "Transport, train, diesel powered"
+        "name": "Transport, rail, freight; diesel powered"
       },
       "flowProperty": {
         "@type": "FlowProperty",
@@ -72,6 +74,7 @@
     },
     {
       "amount": 12.207118188075286,
+      "amountFormula": "lightTruck_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "bf6e7378-4e08-3698-a3a7-c9cc90fcbc07"
@@ -99,6 +102,7 @@
     },
     {
       "amount": 132.45701697238522,
+      "amountFormula": "inlandWater_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "099c3d09-08a3-3cac-9ffd-0558c12033b9"
@@ -126,10 +130,6 @@
     },
     {
       "amount": 1.0,
-      "defaultProvider": {
-        "@type": "Process",
-        "@id": "nan"
-      },
       "dqEntry": "",
       "flow": {
         "@type": "Flow",
@@ -152,16 +152,126 @@
       }
     }
   ],
-  "lastChange": "2025-12-05T12:00:00Z",
+  "lastChange": "2026-01-05T12:00:00Z",
   "location": {
     "@type": "Location",
     "@id": "0b3b97fa-6688-3c56-88ee-4ae80ec0c3c2",
     "name": "United States of America (the)"
   },
   "name": "Transport; average mix; cereal grains (includes seed)",
+  "parameters": [
+    {
+      "@type": "Parameter",
+      "@id": "2533d620-dd12-3c8f-adc6-8613edb97525",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "longHaul_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 153.14
+    },
+    {
+      "@type": "Parameter",
+      "@id": "bf9907a2-fcc7-3ae2-b6fb-1e264232f0ca",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "longHaul_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.4820118670506677
+    },
+    {
+      "@type": "Parameter",
+      "@id": "b27fa500-5f68-3578-9eb3-f53019ebe140",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "longHaul_dist*longHaul_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "longHaul_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "d8f07e7b-fa9c-38f5-b041-65471a381b0b",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "rail_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 754.45
+    },
+    {
+      "@type": "Parameter",
+      "@id": "bf52e58e-db36-3904-a45e-d57b90cccdbe",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "rail_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.233340864409975
+    },
+    {
+      "@type": "Parameter",
+      "@id": "1e63a132-2e0c-3146-aebd-7b4c8a62b942",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "rail_dist*rail_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "rail_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "8752a5fc-0ad7-331d-8960-39ab9302ed7f",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "lightTruck_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 60.46
+    },
+    {
+      "@type": "Parameter",
+      "@id": "e704d87b-564f-3499-bac2-f9ae818858e0",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "lightTruck_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.201904038836839
+    },
+    {
+      "@type": "Parameter",
+      "@id": "1f1ba924-9c78-3710-9b21-1a59dee4e4d0",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "lightTruck_dist*lightTruck_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "lightTruck_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "89006c15-6c12-33fa-8cce-eecafe5f8c03",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "inlandWater_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 1600.82
+    },
+    {
+      "@type": "Parameter",
+      "@id": "a953bdc1-26cd-378e-ac8f-493a42a688df",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "inlandWater_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.0827432297025182
+    },
+    {
+      "@type": "Parameter",
+      "@id": "b3b695f5-3288-375b-8fc1-ce72d6993ac6",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "inlandWater_dist*inlandWater_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "inlandWater_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    }
+  ],
   "processDocumentation": {
     "completenessDescription": "This process contains no elementary flows. All transportation modes included in the CFS data for each commodity are included. \n",
-    "creationDate": "2025-12-05T12:00:00",
+    "creationDate": "2026-01-05T12:00:00",
     "dataCollectionDescription": "Data from the 2017 CFS PUF were accessed in Q4 of 2025. These data will remain unchanged. The CFS data are updated with each census but are released as separate data sets.\n",
     "dataDocumentor": {
       "@type": "Actor",

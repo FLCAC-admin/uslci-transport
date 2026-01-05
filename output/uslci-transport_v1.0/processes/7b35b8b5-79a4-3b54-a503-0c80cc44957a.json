@@ -18,6 +18,7 @@
   "exchanges": [
     {
       "amount": 1432.9187650257093,
+      "amountFormula": "longHaul_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "a685da05-1a42-3fe1-a68b-6db458be5e07"
@@ -44,7 +45,8 @@
       }
     },
     {
-      "amount": 15.953042313839296,
+      "amount": 15.953042313839294,
+      "amountFormula": "lightTruck_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "bf6e7378-4e08-3698-a3a7-c9cc90fcbc07"
@@ -71,7 +73,8 @@
       }
     },
     {
-      "amount": 67.73932278080932,
+      "amount": 67.7393227808093,
+      "amountFormula": "air_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "61ff7eba-1846-30cb-9840-33939ee0dc26"
@@ -99,10 +102,6 @@
     },
     {
       "amount": 1.0,
-      "defaultProvider": {
-        "@type": "Process",
-        "@id": "nan"
-      },
       "dqEntry": "",
       "flow": {
         "@type": "Flow",
@@ -125,16 +124,99 @@
       }
     }
   ],
-  "lastChange": "2025-12-05T12:00:00Z",
+  "lastChange": "2026-01-05T12:00:00Z",
   "location": {
     "@type": "Location",
     "@id": "0b3b97fa-6688-3c56-88ee-4ae80ec0c3c2",
     "name": "United States of America (the)"
   },
   "name": "Transport; average mix; precision instruments and apparatus",
+  "parameters": [
+    {
+      "@type": "Parameter",
+      "@id": "a6630853-9080-3586-b1f1-19ec670c184b",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "longHaul_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 1758.07
+    },
+    {
+      "@type": "Parameter",
+      "@id": "26a02e4c-47b9-393d-ae2f-5f02c8949a4e",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "longHaul_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.8150521680170353
+    },
+    {
+      "@type": "Parameter",
+      "@id": "0537d8b5-1256-3d19-b42c-ed14f672eddf",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "longHaul_dist*longHaul_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "longHaul_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "dc8833aa-37ec-390a-acde-054ae0dce2b5",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "lightTruck_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 101.76
+    },
+    {
+      "@type": "Parameter",
+      "@id": "231d8409-8ab5-3793-b289-6a4eabfb43ab",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "lightTruck_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.1567712491532949
+    },
+    {
+      "@type": "Parameter",
+      "@id": "f9c084a6-737f-360e-a9e1-15d822b3f0bd",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "lightTruck_dist*lightTruck_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "lightTruck_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "ea54cc6d-bad6-309d-86eb-f4e4ae77c67d",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "air_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 2404.1
+    },
+    {
+      "@type": "Parameter",
+      "@id": "772da7ee-9f53-33af-a604-5bd38c38ac16",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "air_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.0281765828296698
+    },
+    {
+      "@type": "Parameter",
+      "@id": "fdb8e797-5196-3325-a792-db0977774357",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "air_dist*air_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "air_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    }
+  ],
   "processDocumentation": {
     "completenessDescription": "This process contains no elementary flows. All transportation modes included in the CFS data for each commodity are included. \n",
-    "creationDate": "2025-12-05T12:00:00",
+    "creationDate": "2026-01-05T12:00:00",
     "dataCollectionDescription": "Data from the 2017 CFS PUF were accessed in Q4 of 2025. These data will remain unchanged. The CFS data are updated with each census but are released as separate data sets.\n",
     "dataDocumentor": {
       "@type": "Actor",

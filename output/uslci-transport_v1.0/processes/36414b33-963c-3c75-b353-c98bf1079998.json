@@ -17,7 +17,8 @@
   },
   "exchanges": [
     {
-      "amount": 36.74701358707183,
+      "amount": 36.74701358707182,
+      "amountFormula": "lightTruck_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "bf6e7378-4e08-3698-a3a7-c9cc90fcbc07"
@@ -45,6 +46,7 @@
     },
     {
       "amount": 267.4184464475706,
+      "amountFormula": "longHaul_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "a685da05-1a42-3fe1-a68b-6db458be5e07"
@@ -71,7 +73,8 @@
       }
     },
     {
-      "amount": 5.049902491105915,
+      "amount": 5.0499024911059145,
+      "amountFormula": "rail_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "7de9c230-fd0f-3478-be87-f80181132faa"
@@ -79,9 +82,9 @@
       "dqEntry": "(2;3;1;1;3)",
       "flow": {
         "@type": "Flow",
-        "@id": "73c7494d-4e93-3769-896b-8bb82f0dfccc",
+        "@id": "4326be78-ae8b-3446-9310-278636ee68c5",
         "category": "Technosphere flows/48-49: Transportation and Warehousing/4821: Rail Transportation",
-        "name": "Transport, train, diesel powered"
+        "name": "Transport, rail, freight; diesel powered"
       },
       "flowProperty": {
         "@type": "FlowProperty",
@@ -99,6 +102,7 @@
     },
     {
       "amount": 0.1250332536381959,
+      "amountFormula": "air_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "61ff7eba-1846-30cb-9840-33939ee0dc26"
@@ -126,10 +130,6 @@
     },
     {
       "amount": 1.0,
-      "defaultProvider": {
-        "@type": "Process",
-        "@id": "nan"
-      },
       "dqEntry": "",
       "flow": {
         "@type": "Flow",
@@ -152,16 +152,126 @@
       }
     }
   ],
-  "lastChange": "2025-12-05T12:00:00Z",
+  "lastChange": "2026-01-05T12:00:00Z",
   "location": {
     "@type": "Location",
     "@id": "0b3b97fa-6688-3c56-88ee-4ae80ec0c3c2",
     "name": "United States of America (the)"
   },
   "name": "Transport; average mix; alcoholic beverages and denatured alcohol",
+  "parameters": [
+    {
+      "@type": "Parameter",
+      "@id": "2c416d8f-c381-34d1-8f28-9bfc869a8ea3",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "lightTruck_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 59.88
+    },
+    {
+      "@type": "Parameter",
+      "@id": "674b5773-2aff-3ade-bb3c-277bf1ab6d50",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "lightTruck_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.6136775816144259
+    },
+    {
+      "@type": "Parameter",
+      "@id": "5181ea8c-5ec1-3f36-af08-47a5b2854824",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "lightTruck_dist*lightTruck_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "lightTruck_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "b8c81ad0-d639-3dfe-910c-3a92068a5e74",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "longHaul_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 697.07
+    },
+    {
+      "@type": "Parameter",
+      "@id": "dcfdfa0f-c1a0-38b7-bfea-1f06af895b94",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "longHaul_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.3836321265404774
+    },
+    {
+      "@type": "Parameter",
+      "@id": "9cb3f66c-dfd3-3b1e-a643-eaa3c622b736",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "longHaul_dist*longHaul_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "longHaul_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "b9742b86-48b8-394b-9bfe-e46d618e6965",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "rail_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 1965.14
+    },
+    {
+      "@type": "Parameter",
+      "@id": "0d80043e-bc8c-34f9-b140-bc846a67c98f",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "rail_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.0025697418459274
+    },
+    {
+      "@type": "Parameter",
+      "@id": "3e8437c5-0c87-3919-b85c-2abe4fea5d7b",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "rail_dist*rail_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "rail_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "94888e9e-bdf0-31f0-a204-ba922748fdec",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "air_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 1037.19
+    },
+    {
+      "@type": "Parameter",
+      "@id": "36296995-822f-3480-9e36-817e4a6bc3d6",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "air_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.000120549999169
+    },
+    {
+      "@type": "Parameter",
+      "@id": "0f766910-38c2-3191-9ff6-aacf8e665f29",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "air_dist*air_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "air_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    }
+  ],
   "processDocumentation": {
     "completenessDescription": "This process contains no elementary flows. All transportation modes included in the CFS data for each commodity are included. \n",
-    "creationDate": "2025-12-05T12:00:00",
+    "creationDate": "2026-01-05T12:00:00",
     "dataCollectionDescription": "Data from the 2017 CFS PUF were accessed in Q4 of 2025. These data will remain unchanged. The CFS data are updated with each census but are released as separate data sets.\n",
     "dataDocumentor": {
       "@type": "Actor",

@@ -17,7 +17,8 @@
   },
   "exchanges": [
     {
-      "amount": 108.44804700150272,
+      "amount": 108.44804700150274,
+      "amountFormula": "longHaul_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "a685da05-1a42-3fe1-a68b-6db458be5e07"
@@ -45,6 +46,7 @@
     },
     {
       "amount": 40.69562925350208,
+      "amountFormula": "lightTruck_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "bf6e7378-4e08-3698-a3a7-c9cc90fcbc07"
@@ -72,6 +74,7 @@
     },
     {
       "amount": 38.403750303001104,
+      "amountFormula": "rail_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "7de9c230-fd0f-3478-be87-f80181132faa"
@@ -79,9 +82,9 @@
       "dqEntry": "(2;3;1;1;3)",
       "flow": {
         "@type": "Flow",
-        "@id": "73c7494d-4e93-3769-896b-8bb82f0dfccc",
+        "@id": "4326be78-ae8b-3446-9310-278636ee68c5",
         "category": "Technosphere flows/48-49: Transportation and Warehousing/4821: Rail Transportation",
-        "name": "Transport, train, diesel powered"
+        "name": "Transport, rail, freight; diesel powered"
       },
       "flowProperty": {
         "@type": "FlowProperty",
@@ -99,6 +102,7 @@
     },
     {
       "amount": 23.61066781301489,
+      "amountFormula": "inlandWater_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "099c3d09-08a3-3cac-9ffd-0558c12033b9"
@@ -126,6 +130,7 @@
     },
     {
       "amount": 0.0010732192121397,
+      "amountFormula": "air_kgkm",
       "defaultProvider": {
         "@type": "Process",
         "@id": "61ff7eba-1846-30cb-9840-33939ee0dc26"
@@ -153,10 +158,6 @@
     },
     {
       "amount": 1.0,
-      "defaultProvider": {
-        "@type": "Process",
-        "@id": "nan"
-      },
       "dqEntry": "",
       "flow": {
         "@type": "Flow",
@@ -179,16 +180,153 @@
       }
     }
   ],
-  "lastChange": "2025-12-05T12:00:00Z",
+  "lastChange": "2026-01-05T12:00:00Z",
   "location": {
     "@type": "Location",
     "@id": "0b3b97fa-6688-3c56-88ee-4ae80ec0c3c2",
     "name": "United States of America (the)"
   },
   "name": "Transport; average mix; animal feed, eggs, honey, and other products of animal origin",
+  "parameters": [
+    {
+      "@type": "Parameter",
+      "@id": "5fa2f725-51ce-3323-a457-e068b06a8127",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "longHaul_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 192.47
+    },
+    {
+      "@type": "Parameter",
+      "@id": "1949a114-e4e1-3732-b747-e165de1ec408",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "longHaul_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.5634542889879085
+    },
+    {
+      "@type": "Parameter",
+      "@id": "4af691c8-1312-38b0-b5c8-032f6e3049c0",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "longHaul_dist*longHaul_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "longHaul_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "b5aca855-6e60-3ac2-b698-bc965b845556",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "lightTruck_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 104.4
+    },
+    {
+      "@type": "Parameter",
+      "@id": "6016b9cf-c576-30cf-a2d3-cbebdf9d53c7",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "lightTruck_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.389804877907108
+    },
+    {
+      "@type": "Parameter",
+      "@id": "7f363278-4e49-318e-b440-9e42ddce24b2",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "lightTruck_dist*lightTruck_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "lightTruck_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "618b14db-aae6-378a-b562-bc8cdcb7fd7e",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "rail_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 1163.61
+    },
+    {
+      "@type": "Parameter",
+      "@id": "e4315aab-b212-35f4-9721-ec69d40d517f",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "rail_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.0330039706628519
+    },
+    {
+      "@type": "Parameter",
+      "@id": "f7f6d243-2331-35c2-85da-dea81ff673c4",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "rail_dist*rail_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "rail_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "32fed3b2-a21b-33e1-9718-d24c4906fb82",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "inlandWater_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 1718.82
+    },
+    {
+      "@type": "Parameter",
+      "@id": "3eef43bd-e03a-324d-a098-6e7ecda91834",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "inlandWater_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.0137365563660039
+    },
+    {
+      "@type": "Parameter",
+      "@id": "6c90356d-3390-3c1f-a6c3-7ea68a0226cb",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "inlandWater_dist*inlandWater_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "inlandWater_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "ac8cdf62-bdc1-35fd-98fa-4aed1ca184e3",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "air_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 3506.38
+    },
+    {
+      "@type": "Parameter",
+      "@id": "4b95c740-10f2-35d7-bc16-8a1e49d5fa32",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "air_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 3.060761275559818e-07
+    },
+    {
+      "@type": "Parameter",
+      "@id": "e46cb335-8b00-3e77-9fbd-4b6adbec42b0",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "air_dist*air_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "air_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    }
+  ],
   "processDocumentation": {
     "completenessDescription": "This process contains no elementary flows. All transportation modes included in the CFS data for each commodity are included. \n",
-    "creationDate": "2025-12-05T12:00:00",
+    "creationDate": "2026-01-05T12:00:00",
     "dataCollectionDescription": "Data from the 2017 CFS PUF were accessed in Q4 of 2025. These data will remain unchanged. The CFS data are updated with each census but are released as separate data sets.\n",
     "dataDocumentor": {
       "@type": "Actor",
