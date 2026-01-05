@@ -143,27 +143,19 @@ param_map = {
     }
 
 
-def build_df_params(SCTG_code: Dict[str, str], param_map: Dict[str, str]) -> pd.DataFrame:
+def build_df_params(df_commData: pd.DataFrame,
+                    param_map: Dict[str, str]) -> pd.DataFrame:
     """
     Build df_params.
 
     What this does:
-    - Sets the working directory to where this script lives.
-    - Reads the transport data CSV from the local ./data folder.
     - Uses SCTG codes and the mode mapping to build parameter names.
     - Creates three rows per transport mode for each commodity:
       1) dist (input)
       2) mass_frac (input)
       3) kgkm (derived, formula shown only; value left blank)
-    - Writes the final table to ./data/uslci_transport_params.csv.
     - Returns df_params as a DataFrame.
     """
-    # Work from the folder where this file is saved.
-    working_dir = Path(__file__).parent  # parent directory
-    data_dir = working_dir / 'data'      # data directory
-    input_csv = data_dir / "Weighted_Commodity_Transport_Distances.csv"
-    # Load the transport data for all commodities and modes.
-    df_commData = pd.read_csv(input_csv)
     # Clean transport mode strings:
     def _normalize_mode(s: str) -> str:
         return str(s).strip().lower().replace("&amp;amp;", "&amp;").replace("  ", " ")
@@ -171,7 +163,7 @@ def build_df_params(SCTG_code: Dict[str, str], param_map: Dict[str, str]) -> pd.
     # Example template: "[SCTG]_longHaul_[val]"
     norm_param_map = {_normalize_mode(k): v for k, v in param_map.items()}
     # Build a lookup from commodity name (lowercase) -> SCTG code.
-    name_to_code = {v.strip().lower(): k for k, v in SCTG_code.items()}
+    name_to_code = {v.strip().lower(): k for k, v in SCTG_codes.items()}
     # Return the SCTG code for the commodity name.
     def _get_sctg_code(commodity_name: str) -> str:
         return name_to_code[str(commodity_name).strip().lower()]
@@ -208,18 +200,12 @@ def build_df_params(SCTG_code: Dict[str, str], param_map: Dict[str, str]) -> pd.
                      "kg*km; average mass distance per shipment"])
     # Assemble the final DataFrame.
     df_params = pd.DataFrame(rows, columns=cols)
-    # Write the data
-    output_csv = data_dir / "uslci_transport_params.csv"
-    df_params.to_csv(output_csv, index=False)
-    # Return the table for downstream use.
     return df_params
 
+df_params = build_df_params(pd.read_csv(csv_path), param_map)
+df_params.to_csv(data_dir / "uslci_transport_params.csv", index=False)
 
-df_params = build_df_params(SCTG_codes, param_map)
-
-# Create df_params
-csv_path = data_dir / 'uslci_transport_params.csv'
-df_params = pd.read_csv(csv_path) # read in params to df_params
+# df_params = pd.read_csv(data_dir / 'uslci_transport_params.csv')
 
 #%% Add values for inputs ###
 
