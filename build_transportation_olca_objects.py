@@ -36,6 +36,7 @@ csv_path = data_dir / 'Weighted_Commodity_Transport_Distances.csv'
 df_olca = pd.read_csv(csv_path)
 df_olca = df_olca.drop(columns=['Mass Shipped (kg)', 'Avg. Dist. Shipped (km)', 'Mass Frac. by Mode'])
 YEAR = 2017
+VERSION = "1.1"
 
 # Create empty df_olca that includes all schema requirements
 schema = ['ProcessID',
@@ -315,6 +316,8 @@ df_olca['avoided_product'] = False
 df_olca['location'] = 'US'
 df_olca['Year'] = YEAR
 
+# Add ref flow so the new flow gets created
+df_olca = pd.concat([df_olca, refFlow_df], ignore_index=True)
 
 #%% Assign exchange dqi
 
@@ -362,9 +365,6 @@ location_objs = build_location_dict(df_olca, locations)
 
 from flcac_utils.generate_processes import build_flow_dict, \
     build_process_dict, write_objects, validate_exchange_data
-
-# Add ref flow so the new flow gets created
-df_olca = pd.concat([df_olca, refFlow_df], ignore_index=True)
 
 validate_exchange_data(df_olca)
 # Need to update this so that the new ref flow gets created
@@ -419,7 +419,8 @@ for pid in df_olca['ProcessID'].unique():
             source_objs=source_objs,
             actor_objs=actor_objs,
             dq_objs=dq_objs,
-            df_params = df_params
+            df_params = df_params,
+            version=VERSION,
         )
         processes.update(p_dict)
 
