@@ -21,4 +21,5 @@ Output:
 
 | Datasts             | Version | flcac-utils | Release        |
 |---------------------|---------|-------------|----------------|
+| Commodity Transport | v1.1.0  | v0.3.0      | 2026 Q1, USLCI |
 | Commodity Transport | v1.0.0  | v0.2.0      | 2025 Q4, USLCI |
