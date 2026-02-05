@@ -19,6 +19,8 @@ from pathlib import Path
 import yaml
 from esupy.util import make_uuid
 import copy
+from typing import Dict
+import numpy as np
 
 # Directories
 working_dir = Path(__file__).parent # parent directory
@@ -34,6 +36,7 @@ csv_path = data_dir / 'Weighted_Commodity_Transport_Distances.csv'
 df_olca = pd.read_csv(csv_path)
 df_olca = df_olca.drop(columns=['Mass Shipped (kg)', 'Avg. Dist. Shipped (km)', 'Mass Frac. by Mode'])
 YEAR = 2017
+VERSION = "1.1"
 
 # Create empty df_olca that includes all schema requirements
 schema = ['ProcessID',
@@ -41,6 +44,7 @@ schema = ['ProcessID',
           'ProcessName',
           'FlowUUID', 
           'FlowName',
+          'amountFormula',
           'Context',
           'IsInput', 
           'FlowType', 
@@ -61,11 +65,9 @@ for column in schema:
 # Remove 'Weighted Dist. Shipped (km)' column
 df_olca['amount'] = df_olca['Weighted Dist. Shipped (km)']
 df_olca = df_olca.drop('Weighted Dist. Shipped (km)', axis=1)
+                                                                                                                                                   
 
-#%% EXTRACT SCTG CATEGORY CONTENTS
-
-
-#%% Code Mapping
+#%% SCTG Mapping
 SCTG_codes = {
     '01': 'Animals and Fish (live)',
     '02': 'Cereal Grains (includes seed)',
@@ -126,10 +128,114 @@ if len(missing_keys) > 0:
     for k in missing_keys:
         print(f'Missing SCTG code: {SCTG_codes[k]} ({k})')
 
+
+#%% Build df_params
+
+param_map = {
+    'company-owned truck': 'lightTruck',
+    'for-hire truck':      'longHaul',
+    'rail':                'rail',
+    'great lakes':         'greatLakes',
+    'inland water':        'inlandWater',
+    'air(incl. truck & air)': 'air',
+    'deep sea':            'deepSea',
+    'pipeline':            'pipeline',
+}
+
+
+def build_df_params(df_commData: pd.DataFrame, param_map: Dict[str, str]) -> pd.DataFrame:
+    """
+    Build df_params with mode-centric parameter names (no SCTG embedded).
+
+    What this does:
+    - Creates three rows per transport mode for each commodity:
+      1) dist (input)           -> <modeKey>_dist
+      2) mass_frac (input)      -> <modeKey>_mass_frac
+      3) kgkm (derived, formula)-> <modeKey>_kgkm
+    - Writes the final table to ./data/uslci_transport_params.csv.
+    - Returns df_params as a DataFrame.
+    """
+    def _normalize_mode(s: str) -> str:
+        # Normalize raw mode labels from the CSV for stable matching to param_map keys
+        s = str(s).replace("&amp;amp;amp;amp;", "&amp;amp;amp;").strip().lower()
+        # Collapse any accidental double spaces
+        while "  " in s:
+            s = s.replace("  ", " ")
+        return s
+    # Map normalized mode labels (CSV) -> mode keys (used in parameter names)
+    norm_param_map = {_normalize_mode(k): v for k, v in param_map.items()}
+    def _process_name(commodity: str) -> str:
+        # Process scoping: parameter names are mode-centric, so uniqueness comes from processName
+        return f"Transport; average mix; {commodity.strip().lower()}"
+    def _make_param_names(mode_key: str):
+        # Construct the three parameter names for a given transport mode
+        return f"{mode_key}_dist", f"{mode_key}_mass_frac", f"{mode_key}_kgkm"
+    # Target output schema
+    cols = ["processName", "formula", "isInputParameter", "name", "value", "description"]
+    rows = []
+    # Build rows: one triplet per (commodity, transport mode)
+    for idx, row in df_commData.iterrows():
+        commodity = row["Commodity"]
+        mode_norm = _normalize_mode(row["Transport Mode"])
+        # Fail fast if a mode from the CSV is not present in the mapping
+        if mode_norm not in norm_param_map:
+            raise KeyError(f"Mode '{row['Transport Mode']}' not in param_map (row {idx})")
+        mode_key = norm_param_map[mode_norm]
+        pname = _process_name(commodity)
+        # Source values from the CSV
+        dist_val = row["Avg. Dist. Shipped (km)"]
+        mass_frac_val = row["Mass Frac. by Mode"]
+        # Parameter names and derived formula
+        name_dist, name_mf, name_kgkm = _make_param_names(mode_key)
+        formula_kgkm = f"{name_dist}*{name_mf}"
+        # Two inputs (dist, mass_frac) and one derived (kgkm)
+        rows.append([pname, "", "TRUE", name_dist, dist_val, "km"])
+        rows.append([pname, "", "TRUE", name_mf, mass_frac_val,
+                     "fraction of all commodity shipped by current mode"])
+        rows.append([pname, formula_kgkm, "FALSE", name_kgkm, np.nan,
+                     "kg*km; average mass distance per shipment"])
+    # Assemble the final table
+    return pd.DataFrame(rows, columns=cols)
+
+
+df_params = build_df_params(pd.read_csv(csv_path), param_map)
+df_params.to_csv(data_dir / "uslci_transport_params.csv", index=False)
+
+
 #%% Add values for inputs ###
 
 from flcac_utils.mapping import prepare_tech_flow_mappings
 
+def assign_amount_formula(
+    df_olca: pd.DataFrame,
+    df_param: pd.DataFrame,
+    param_map: dict) -> pd.DataFrame:
+    """
+    Populate 'amountFormula' with the '<modeKey>_kgkm' symbol based on ProcessName and Transport Mode.
+    Works with the new mode-centric parameter names (no SCTG in names).
+    """
+    def _norm_mode(s: str) -> str:
+        return str(s).strip().lower().replace("&amp;amp;amp;", "&amp;amp;").replace("  ", " ")
+    # Minimal change: map normalized mode labels directly to mode keys
+    mode_to_token = {_norm_mode(k): v for k, v in param_map.items()}
+    # Reduce df_param to *_kgkm rows and extract mode token from the new names
+    dfp = df_param[df_param["name"].str.endswith("_kgkm")].copy()
+    # Option B (recommended): strip the suffix to get the mode_key directly
+    dfp["mode_token"] = dfp["name"].str.replace(r"_kgkm$", "", regex=True)
+    # Build lookup keyed by (processName, mode_token) -> '<modeKey>_kgkm'
+    lookup = dfp.set_index(["processName", "mode_token"])["name"]  # Series
+    # Compute mode token in df_olca and assign
+    df_new = df_olca.copy()
+    df_new["_mode_norm"] = df_new["Transport Mode"].map(_norm_mode)
+    df_new["_mode_token"] = df_new["_mode_norm"].map(mode_to_token)
+
+    keys = list(zip(df_new["ProcessName"], df_new["_mode_token"]))
+    df_new["amountFormula"] = pd.Series(keys).map(lookup.to_dict())
+
+    df_new.drop(columns=["_mode_norm", "_mode_token"], inplace=True)
+    return df_new
+
+# Asign static values
 df_olca['IsInput'] = True
 df_olca['reference'] = False
 df_olca['unit'] = 'kg*km'
@@ -153,9 +259,11 @@ df_olca['default_provider_name'] = df_olca['Transport Mode'].map(
     {k: v['provider'] for k, v in flow_dict.items()})
 
 # Map default provider uuid based on mapped flow name
-df_olca['default_provider'] = df_olca['FlowName'].map(
+df_olca['default_provider'] = df_olca['default_provider_name'].map(
     {k: v.id for k, v in provider_dict.items()})
 
+# Assign amount formula 
+df_olca = assign_amount_formula(df_olca, df_params, param_map)
 
 #%% Create ref flow df that will be updated for each process ###
 
@@ -175,6 +283,7 @@ ref_flow = {
     'ProcessName': 'nan', # Updated for each process in create json file loop
     'FlowUUID': refFlowUUID,
     'FlowName': refFlowName,
+    'amountFormula':'nan', # this will not be added when make_exchanges() is called unless overwritten with parameter name
     'Context': f'Technosphere flows / {meta.get("Category")}',
     'IsInput': False,
     'FlowType':'PRODUCT_FLOW',
@@ -193,6 +302,9 @@ ref_flow = {
 # Convert ref flow data to df; will be concatenated in the create json file loop
 refFlow_df = pd.DataFrame([ref_flow])
 
+# Assign parameter to reference flow if parameter is used for exchange value
+#refFlow_df['amountFormula'] = 
+
 
 #%% Add values shared by both inputs and ref flow
 
@@ -204,6 +316,8 @@ df_olca['avoided_product'] = False
 df_olca['location'] = 'US'
 df_olca['Year'] = YEAR
 
+# Add ref flow so the new flow gets created
+df_olca = pd.concat([df_olca, refFlow_df], ignore_index=True)
 
 #%% Assign exchange dqi
 
@@ -252,9 +366,6 @@ location_objs = build_location_dict(df_olca, locations)
 from flcac_utils.generate_processes import build_flow_dict, \
     build_process_dict, write_objects, validate_exchange_data
 
-# Add ref flow so the new flow gets created
-df_olca = pd.concat([df_olca, refFlow_df], ignore_index=True)
-
 validate_exchange_data(df_olca)
 # Need to update this so that the new ref flow gets created
 flows, new_flows = build_flow_dict(df_olca)
@@ -298,7 +409,7 @@ for pid in df_olca['ProcessID'].unique():
         for key, value in _process_meta.items():
             if isinstance(value, str):
                 _process_meta[key] = value.replace('[COMMODITY]', commodity).replace('[SCTG]', sctg)
-    
+            
         # Now call your function with filtered data
         p_dict = build_process_dict(
             _df_olca,
@@ -308,6 +419,8 @@ for pid in df_olca['ProcessID'].unique():
             source_objs=source_objs,
             actor_objs=actor_objs,
             dq_objs=dq_objs,
+            df_params = df_params,
+            version=VERSION,
         )
         processes.update(p_dict)
 
@@ -320,7 +433,6 @@ write_objects('uslci-transport', flows, new_flows, processes,
 
 #%% Unzip files to repo
 from flcac_utils.util import extract_latest_zip
-
 extract_latest_zip(out_path,
                    working_dir,
-                   output_folder_name = out_path / 'uslci-transport_v1.0')
+                   output_folder_name = out_path / 'uslci-transport_v1.1')
