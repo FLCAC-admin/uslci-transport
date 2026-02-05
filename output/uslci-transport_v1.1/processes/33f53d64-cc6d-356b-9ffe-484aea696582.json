@@ -1,0 +1,499 @@
+{
+  "@type": "Process",
+  "@id": "33f53d64-cc6d-356b-9ffe-484aea696582",
+  "category": "48-49: Transportation and Warehousing / Commodity Transport",
+  "defaultAllocationMethod": "PHYSICAL_ALLOCATION",
+  "description": "Average transport distances per transportation mode (i.e. truck, rail, water) for the commodity 'Gasoline, Aviation Turbine Fuel, and Ethanol (includes Kerosene, and Fuel Alcohols)'. Commodity categories are defined according to the Standard Classification of Transported Goods (SCTG). The SCTG code for 'Gasoline, Aviation Turbine Fuel, and Ethanol (includes Kerosene, and Fuel Alcohols)' is '17'. Specific commodities that are included in each category can be found in the SCTG Commodity Code Manual which is referenced in the methodology document. The system boundaries for these processes are manufacturing or wholesale gate to consumer. Data are sourced from the 2017 Commodity Flow Survey Public Use File. These data represent U.S. average shipment characteristics per commodity. These data are intended to model transportation of domestically transported and consumed goods. Shipment data for commodities that were ultimately exported from the United States were not included.",
+  "dqEntry": "(4;1)",
+  "dqSystem": {
+    "@type": "DQSystem",
+    "@id": "70bf370f-9912-4ec1-baa3-fbd4eaf85a10",
+    "name": "US EPA - Process Pedigree Matrix"
+  },
+  "exchangeDqSystem": {
+    "@type": "DQSystem",
+    "@id": "d13b2bc4-5e84-4cc8-a6be-9101ebb252ff",
+    "name": "US EPA - Flow Pedigree Matrix"
+  },
+  "exchanges": [
+    {
+      "amount": 35.85610289045465,
+      "amountFormula": "longHaul_kgkm",
+      "defaultProvider": {
+        "@type": "Process",
+        "@id": "a685da05-1a42-3fe1-a68b-6db458be5e07"
+      },
+      "dqEntry": "(2;3;1;1;3)",
+      "flow": {
+        "@type": "Flow",
+        "@id": "13ed0c67-549c-3a01-afee-7083b12dd949",
+        "category": "Technosphere flows/48-49: Transportation and Warehousing/4841: General Freight Trucking",
+        "name": "Transport, combination truck, long-haul, diesel powered"
+      },
+      "flowProperty": {
+        "@type": "FlowProperty",
+        "@id": "838aaa20-0117-11db-92e3-0800200c9a66",
+        "name": "Goods transport (mass*distance)"
+      },
+      "isAvoidedProduct": false,
+      "isInput": true,
+      "isQuantitativeReference": false,
+      "unit": {
+        "@type": "Unit",
+        "@id": "a40229e6-7275-42e3-a304-23d590044770",
+        "name": "kg*km"
+      }
+    },
+    {
+      "amount": 19.88872195262413,
+      "amountFormula": "pipeline_kgkm",
+      "defaultProvider": {
+        "@type": "Process",
+        "@id": "0855376f-1ec5-3f3e-bead-959c932539b7"
+      },
+      "dqEntry": "(2;3;1;1;3)",
+      "flow": {
+        "@type": "Flow",
+        "@id": "acbe5bc4-6afd-31aa-bf3f-4a3fdc491945",
+        "category": "Technosphere flows/48-49: Transportation and Warehousing/4869: Other Pipeline Transportation",
+        "name": "Transport, pipeline, unspecified petroleum products"
+      },
+      "flowProperty": {
+        "@type": "FlowProperty",
+        "@id": "838aaa20-0117-11db-92e3-0800200c9a66",
+        "name": "Goods transport (mass*distance)"
+      },
+      "isAvoidedProduct": false,
+      "isInput": true,
+      "isQuantitativeReference": false,
+      "unit": {
+        "@type": "Unit",
+        "@id": "a40229e6-7275-42e3-a304-23d590044770",
+        "name": "kg*km"
+      }
+    },
+    {
+      "amount": 11.800306699416632,
+      "amountFormula": "lightTruck_kgkm",
+      "defaultProvider": {
+        "@type": "Process",
+        "@id": "bf6e7378-4e08-3698-a3a7-c9cc90fcbc07"
+      },
+      "dqEntry": "(2;3;1;1;3)",
+      "flow": {
+        "@type": "Flow",
+        "@id": "35fe9caf-2ad2-3d14-ae03-21454a89da2e",
+        "category": "Technosphere flows/48-49: Transportation and Warehousing/4841: General Freight Trucking",
+        "name": "Transport, light commercial truck, diesel powered"
+      },
+      "flowProperty": {
+        "@type": "FlowProperty",
+        "@id": "838aaa20-0117-11db-92e3-0800200c9a66",
+        "name": "Goods transport (mass*distance)"
+      },
+      "isAvoidedProduct": false,
+      "isInput": true,
+      "isQuantitativeReference": false,
+      "unit": {
+        "@type": "Unit",
+        "@id": "a40229e6-7275-42e3-a304-23d590044770",
+        "name": "kg*km"
+      }
+    },
+    {
+      "amount": 1.1102261631270942,
+      "amountFormula": "inlandWater_kgkm",
+      "defaultProvider": {
+        "@type": "Process",
+        "@id": "099c3d09-08a3-3cac-9ffd-0558c12033b9"
+      },
+      "dqEntry": "(2;3;1;1;3)",
+      "flow": {
+        "@type": "Flow",
+        "@id": "4069483a-8d94-3b6b-81be-5f0a249b74f4",
+        "category": "Technosphere flows/48-49: Transportation and Warehousing/4832: Inland Water Transportation",
+        "name": "Transport, barge, average fuel mix"
+      },
+      "flowProperty": {
+        "@type": "FlowProperty",
+        "@id": "838aaa20-0117-11db-92e3-0800200c9a66",
+        "name": "Goods transport (mass*distance)"
+      },
+      "isAvoidedProduct": false,
+      "isInput": true,
+      "isQuantitativeReference": false,
+      "unit": {
+        "@type": "Unit",
+        "@id": "a40229e6-7275-42e3-a304-23d590044770",
+        "name": "kg*km"
+      }
+    },
+    {
+      "amount": 4.074929168519403,
+      "amountFormula": "deepSea_kgkm",
+      "defaultProvider": {
+        "@type": "Process",
+        "@id": "1e2429d8-8d91-328f-85c3-18d39bdebfa7"
+      },
+      "dqEntry": "(2;3;1;1;3)",
+      "flow": {
+        "@type": "Flow",
+        "@id": "0e63d1db-e383-3c9a-b02a-b5eebafe87d1",
+        "category": "Technosphere flows/48-49: Transportation and Warehousing/4831: Deep Sea, Coastal, and Great Lakes Water Transportation",
+        "name": "Transport, ocean freighter, average fuel mix"
+      },
+      "flowProperty": {
+        "@type": "FlowProperty",
+        "@id": "838aaa20-0117-11db-92e3-0800200c9a66",
+        "name": "Goods transport (mass*distance)"
+      },
+      "isAvoidedProduct": false,
+      "isInput": true,
+      "isQuantitativeReference": false,
+      "unit": {
+        "@type": "Unit",
+        "@id": "a40229e6-7275-42e3-a304-23d590044770",
+        "name": "kg*km"
+      }
+    },
+    {
+      "amount": 15.448388776249551,
+      "amountFormula": "rail_kgkm",
+      "defaultProvider": {
+        "@type": "Process",
+        "@id": "7de9c230-fd0f-3478-be87-f80181132faa"
+      },
+      "dqEntry": "(2;3;1;1;3)",
+      "flow": {
+        "@type": "Flow",
+        "@id": "4326be78-ae8b-3446-9310-278636ee68c5",
+        "category": "Technosphere flows/48-49: Transportation and Warehousing/4821: Rail Transportation",
+        "name": "Transport, rail, freight; diesel powered"
+      },
+      "flowProperty": {
+        "@type": "FlowProperty",
+        "@id": "838aaa20-0117-11db-92e3-0800200c9a66",
+        "name": "Goods transport (mass*distance)"
+      },
+      "isAvoidedProduct": false,
+      "isInput": true,
+      "isQuantitativeReference": false,
+      "unit": {
+        "@type": "Unit",
+        "@id": "a40229e6-7275-42e3-a304-23d590044770",
+        "name": "kg*km"
+      }
+    },
+    {
+      "amount": 0.0014329863962089,
+      "amountFormula": "air_kgkm",
+      "defaultProvider": {
+        "@type": "Process",
+        "@id": "61ff7eba-1846-30cb-9840-33939ee0dc26"
+      },
+      "dqEntry": "(2;3;1;1;3)",
+      "flow": {
+        "@type": "Flow",
+        "@id": "6a71f6df-1df1-32f0-b926-6e9b932a7fe9",
+        "category": "Technosphere flows/48-49: Transportation and Warehousing/4811: Scheduled Air Transportation",
+        "name": "Transport, aircraft, freight"
+      },
+      "flowProperty": {
+        "@type": "FlowProperty",
+        "@id": "838aaa20-0117-11db-92e3-0800200c9a66",
+        "name": "Goods transport (mass*distance)"
+      },
+      "isAvoidedProduct": false,
+      "isInput": true,
+      "isQuantitativeReference": false,
+      "unit": {
+        "@type": "Unit",
+        "@id": "a40229e6-7275-42e3-a304-23d590044770",
+        "name": "kg*km"
+      }
+    },
+    {
+      "amount": 1.0,
+      "dqEntry": "",
+      "flow": {
+        "@type": "Flow",
+        "@id": "1d6944d8-817b-3ae1-b997-68bdc265557f",
+        "category": "Technosphere flows / 48-49: Transportation and Warehousing / Commodity Transport",
+        "name": "Commodity transport; at consumer"
+      },
+      "flowProperty": {
+        "@type": "FlowProperty",
+        "@id": "93a60a56-a3c8-11da-a746-0800200b9a66",
+        "name": "Mass"
+      },
+      "isAvoidedProduct": false,
+      "isInput": false,
+      "isQuantitativeReference": true,
+      "unit": {
+        "@type": "Unit",
+        "@id": "20aadc24-a391-41cf-b340-3e4529f44bde",
+        "name": "kg"
+      }
+    }
+  ],
+  "lastChange": "2026-02-05T12:00:00Z",
+  "location": {
+    "@type": "Location",
+    "@id": "0b3b97fa-6688-3c56-88ee-4ae80ec0c3c2",
+    "name": "United States of America (the)"
+  },
+  "name": "Transport; average mix; gasoline, aviation turbine fuel, and ethanol (includes kerosene, and fuel alcohols)",
+  "parameters": [
+    {
+      "@type": "Parameter",
+      "@id": "6e3554a8-34cb-32f5-9fa1-25bc245e7491",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "longHaul_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 94.85
+    },
+    {
+      "@type": "Parameter",
+      "@id": "ba1abf50-813c-3bda-980e-60ce875dfb68",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "longHaul_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.3780295507691582
+    },
+    {
+      "@type": "Parameter",
+      "@id": "f3e5c79a-bfaa-3f91-9e78-f129e292a753",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "longHaul_dist*longHaul_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "longHaul_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "4411147d-8c90-3161-a219-54c19ee7e16a",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "pipeline_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 68.39
+    },
+    {
+      "@type": "Parameter",
+      "@id": "fc17b5ac-cac8-3c97-803a-7c6bc7394778",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "pipeline_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.2908133053461637
+    },
+    {
+      "@type": "Parameter",
+      "@id": "89b646de-4877-3d03-8159-bab81377f64b",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "pipeline_dist*pipeline_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "pipeline_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "dc6b5fe2-df90-3cd6-8f71-4c0494feb3c7",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "lightTruck_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 40.97
+    },
+    {
+      "@type": "Parameter",
+      "@id": "47945f72-4e1b-3bfd-acb2-d821eaa0dffe",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "lightTruck_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.2880231071373354
+    },
+    {
+      "@type": "Parameter",
+      "@id": "502c9c5b-2dd8-37a4-840b-28139751437b",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "lightTruck_dist*lightTruck_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "lightTruck_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "cf761e22-6ae5-39a1-b6de-ee20574e241e",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "inlandWater_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 59.95
+    },
+    {
+      "@type": "Parameter",
+      "@id": "ead57a98-3b9e-3243-9881-db7cb7f63eac",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "inlandWater_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.0185192020538297
+    },
+    {
+      "@type": "Parameter",
+      "@id": "9ea28073-c3da-3c9a-a014-52698480e70b",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "inlandWater_dist*inlandWater_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "inlandWater_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "67e9fe4f-0816-3ab8-9d64-9cc5e31dedec",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "deepSea_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 313.55
+    },
+    {
+      "@type": "Parameter",
+      "@id": "7485ff2a-fca1-3911-911b-0fd06d6ec6b6",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "deepSea_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.0129961064216852
+    },
+    {
+      "@type": "Parameter",
+      "@id": "0518bd47-68d0-3250-86b1-9c7f0bfbd4c5",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "deepSea_dist*deepSea_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "deepSea_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "94fee217-713f-361e-acde-af44d78524dd",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "rail_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 1329.75
+    },
+    {
+      "@type": "Parameter",
+      "@id": "7bd91bdf-748e-34d1-9a3a-2d438f5f9ab6",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "rail_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 0.0116175136501218
+    },
+    {
+      "@type": "Parameter",
+      "@id": "6d64391f-b46a-3490-8656-1ece52a0aa16",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "rail_dist*rail_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "rail_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    },
+    {
+      "@type": "Parameter",
+      "@id": "c36a0b22-135e-314c-84c3-cb5eca8768c2",
+      "description": "km",
+      "isInputParameter": "TRUE",
+      "name": "air_dist",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 1179.78
+    },
+    {
+      "@type": "Parameter",
+      "@id": "148b5b10-e0e1-3fb8-98af-0b1d5fafb6d8",
+      "description": "fraction of all commodity shipped by current mode",
+      "isInputParameter": "TRUE",
+      "name": "air_mass_frac",
+      "parameterScope": "PROCESS_SCOPE",
+      "value": 1.2146217059188351e-06
+    },
+    {
+      "@type": "Parameter",
+      "@id": "3b6f4fa6-c71b-3b18-ae36-b3729461c289",
+      "description": "kg*km; average mass distance per shipment",
+      "formula": "air_dist*air_mass_frac",
+      "isInputParameter": "FALSE",
+      "name": "air_kgkm",
+      "parameterScope": "PROCESS_SCOPE"
+    }
+  ],
+  "processDocumentation": {
+    "completenessDescription": "This process contains no elementary flows. All transportation modes included in the CFS data for each commodity are included.",
+    "creationDate": "2026-02-05T12:00:00",
+    "dataCollectionDescription": "Data from the 2017 CFS PUF were accessed in Q4 of 2025. These data will remain unchanged. The CFS data are updated with each census but are released as separate data sets.",
+    "dataDocumentor": {
+      "@type": "Actor",
+      "@id": "38e67478-a915-43d9-ad67-e25db79a4acc",
+      "category": "Organisations",
+      "name": "ERG"
+    },
+    "dataGenerator": {
+      "@type": "Actor",
+      "@id": "38e67478-a915-43d9-ad67-e25db79a4acc",
+      "category": "Organisations",
+      "name": "ERG"
+    },
+    "dataSelectionDescription": "Data were retrieved for all available commodities.",
+    "dataSetOwner": {
+      "@type": "Actor",
+      "@id": "a949a0f5-4617-3422-b57b-2dabdf6d9443",
+      "category": "Organisations",
+      "name": "US Census Bureau"
+    },
+    "dataTreatmentDescription": "Estimation of the total mass of each commodity shipped per transportation mode was completed based on the 2017 CFS PUF User Guide instructions. Estimation of average shipment distance for each commodity transport mode was completed based on the 2017 CFS PUF User Guide instructions. The shipment distances produced based on the calculation from the 2017 CFS PUF User Guide are weighted based on the mass fraction of the mass of commodity shipped by each mode. A more detailed discussion of the methodology is included in the methodology document.",
+    "geographyDescription": "This process represents the average U.S. shipment for the commodity.",
+    "intendedApplication": "This process is intended to provide representative mixes of transportation for commodities in the US.",
+    "inventoryMethodDescription": "Not applicable; this process contains only technosphere flows. This process contains the mixture of transport processes used to model transport of a specific commodity moved within the U.S.",
+    "modelingConstantsDescription": "Approaches to compile and estimate average transport practices for U.S. commodities from Commodity Flow Survey data are described in the linked methodology document. Transportation technologies were mapped to those available in USLCI.",
+    "projectDescription": "This dataset was developed by the Federal LCA Commons Data Curator Eastern Research Group, Inc. (ERG) under subcontract (SUB-2024-10066) to the National Renewable Energy Laboratory under Department of Energy (DOE) Prime Contract No. DE-AC36-08GO28308. The work is funded by DOE's Advanced Materials & Manufacturing Technologies Office (AMMTO).",
+    "publication": {
+      "@type": "Source",
+      "@id": "75ac425f-71f2-354a-b139-dc3b40672d2a",
+      "name": "ERG (2025) US Average Commodity Transport"
+    },
+    "restrictionsDescription": "The Commodity Flow Survey Public Use File is a work of the United States Government and is therefore not subject to copyright protection under Title 17 U.S.C. \u00a7105. This provision states: \u2018Copyright protection under this title is not available for any work of the United States Government.\u2019 Accordingly, the data are in the public domain and may be used freely, with attribution recommended for transparency.\nThese U.S. LCI Database Project data (\"Data\") are provided by the National Renewable Energy Laboratory (\"NREL\"), operated by the Alliance for Sustainable Energy, LLC (\"Alliance\") for the US Department of Energy (\"DOE\") under Contract No. DE-AC36-08GO28308. The United States Government (the \"Government\") retains and the user acknowledges that the Government retains a non-exclusive, paid-up, irrevocable, worldwide license to publish or reproduce the published form of these data, or allow others to do so, for Government purposes.\nAccess to and use of these Data shall impose the following obligations on the user, as set forth in this Agreement. The user is granted the right, without any fee or cost, to use, copy, modify, alter, enhance and distribute these Data for any purpose whatsoever, provided that this entire notice appears in all copies of the Data. Any modification, alteration or enhancement of these data shall be identified and documented by the user. Further, the user agrees to credit the DOE/NREL/Alliance in any publication that results from the use of these Data. The names DOE/NREL/Alliance, however, may not be used in any advertising or publicity to endorse or promote any products or commercial entities unless specific written permission is obtained from DOE/NREL/Alliance. The user also understands that DOE/NREL/Alliance is not obligated to provide the user with any support, consulting, training or assistance of any kind with regard to the use of these Data or to provide the user with any updates, revisions or new versions of these Data.\nYOU AGREE TO INDEMNIFY THE GOVERNMENT AND DOE/NREL/ALLIANCE, AND ITS SUBSIDIARIES, AFFILIATES, OFFICERS, AGENTS, AND EMPLOYEES AGAINST ANY CLAIM OR DEMAND, INCLUDING REASONABLE ATTORNEYS' FEES, RELATED TO YOUR USE OF THESE DATA. THESE DATA ARE PROVIDED BY DOE/NREL/ALLIANCE \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE GOVERNMENT OR DOE/NREL/ALLIANCE BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER, INCLUDING BUT NOT LIMITED TO CLAIMS ASSOCIATED WITH THE LOSS OF DATA OR PROFITS, WHICH MAY RESULT FROM AN ACTION IN CONTRACT, NEGLIGENCE OR OTHER TORTIOUS CLAIM THAT ARISES OUT OF OR IN CONNECTION WITH THE ACCESS, USE OR PERFORMANCE OF THESE DATA.",
+    "reviews": [
+      {
+        "details": "ERG internally reviewed the programs, underlying assumptions, and mathematical operations required to produce the JSON-LD files for addition to USLCI.\n",
+        "reviewType": "Dependent internal review"
+      }
+    ],
+    "samplingDescription": "The uncertainty included in the CFS PUF was not captured.",
+    "sources": [
+      {
+        "@type": "Source",
+        "@id": "c0f1c139-c78b-392b-9815-8ae13b4af794",
+        "name": "US Census Bureau (2017) CFS Public Use File"
+      },
+      {
+        "@type": "Source",
+        "@id": "08ec12aa-5bcd-3e1d-b1e0-85689f02fbf1",
+        "name": "US Census Bureau (2017) CFS Public Use File User Guide"
+      }
+    ],
+    "technologyDescription": "This data represents the standard transportation technology used in the U.S. for all modes excluding pipeline. The current default provider for pipeline entries represent the transportation of crude petroleum which was selected as a proxy for SCTG Code 20 (Basic Chemicals) and SCTG Code 31 (Non-Metallic Minerals). Currently, there are no pipeline processes in USLCI that specifically relate to chemical or mineral transport.",
+    "timeDescription": "This process reflects a sample of four weeks of transportation activities, one week per quarter, over the course of 2017.",
+    "useAdvice": "These data are intended to be used as proxies for commodity specifc transport inputs when primary or more relevant data are not available. It is recommended that the user review the transportation modes present in each process and make a judgement call about which modes are relevant for the use case and which modes should be excluded. These processes only represent the domestic transport of commodities within the United States.",
+    "validFrom": "2017-01-01T00:00:00",
+    "validUntil": "2017-12-31T00:00:00"
+  },
+  "processType": "UNIT_PROCESS",
+  "version": "01.01.000"
+}

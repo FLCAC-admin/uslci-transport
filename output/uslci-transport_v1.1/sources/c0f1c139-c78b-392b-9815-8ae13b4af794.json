@@ -1,0 +1,11 @@
+{
+  "@type": "Source",
+  "@id": "c0f1c139-c78b-392b-9815-8ae13b4af794",
+  "description": "United States Census Bureau, Commodity Flow Survey Public Use File, 2021",
+  "lastChange": "2026-02-05T12:00:00Z",
+  "name": "US Census Bureau (2017) CFS Public Use File",
+  "textReference": "",
+  "url": "https://www2.census.gov/programs-surveys/cfs/datasets/2017/CFS%202017%20PUF%20CSV.zip",
+  "version": "00.00.001",
+  "year": "2021"
+}
